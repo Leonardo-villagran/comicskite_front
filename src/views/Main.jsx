@@ -1,3 +1,5 @@
+import fotos from "../assets/img/Imagen2.jpg";
+
 export default function Home() {
     return (
         <div style={{ backgroundColor: '#295b6fff', padding: '1rem' }}>
@@ -11,7 +13,7 @@ export default function Home() {
                         VENTA DE COMICS
                     </h2>
                     <div className="container">
-                        <img className="rounded-5 border border-white border-4" src="img/Imagen2.jpg" alt="Imagen" style={{ width: '80%', height: '80%'}} />
+                        <img className="rounded-5 border border-white border-4" src={fotos} alt="Imagen" style={{ width: '80%', height: '80%'}} />
 
                     </div>
                 </div>

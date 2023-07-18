@@ -1,15 +1,21 @@
 import Navbar from "./NavbarJwt";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import Context from '../Context/Context';
+import { useContext } from 'react';
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 // import decodeTokenPayload from '../services/services'
 
-const Productos = () => {
+const Detalles = () => {
   // const token = localStorage.getItem("token");
   // const payload = decodeTokenPayload(token);
 
-  const [productos, setProductos] = useState([]);
+  const { id_producto } = useParams();
+  const { producto, setProducto } = useContext(Context);
+
+  
+  console.log("id_producto: ", id_producto)
 
   useEffect(() => {
     // Función para obtener el token de JWT almacenado en el navegador
@@ -19,19 +25,19 @@ const Productos = () => {
 
     // Realizar la solicitud GET al backend con Axios
     axios
-      .get("http://localhost:3000/productos", {
+      .get(`http://localhost:3000/detalles/${id_producto}`, {
         headers: {
           Authorization: `Bearer ${getTokenFromLocalStorage()}`, // Agregar el token en el encabezado con formato Bearer
         },
       })
       .then((response) => {
         // Actualizar el estado con la lista de productos obtenida del backend
-        setProductos(response.data);
+        setProducto(response.data);
       })
       .catch((error) => {
         console.error("Error al obtener la lista de productos:", error);
       });
-  }, []);
+  }, [setProducto, id_producto]);
 
   return (
     <div>
@@ -62,16 +68,16 @@ const Productos = () => {
                           /> */}
               <div className="container mt-4">
                 <div className="row">
-                  {productos.map((producto) => (
-                    <div key={producto.id_producto} className="col-12 col-sm-12 col-md-6 col-lg-4 ">
+                    <div key={producto.id_producto} className="col-12">
                       <Card>
                         <Card.Img variant="top" src={`img/productos/${producto.imagen_grande}`} />
                         <Card.Body>
                           <Card.Title>{producto.nombre}</Card.Title>
                           <Card.Text>Número: {producto.numero}</Card.Text>
+                          <Card.Text>{producto.detalle}</Card.Text>
+                          <Card.Text>Stock: {producto.stock}</Card.Text>
                           <Card.Text>Precio: ${producto.precio}</Card.Text>
                           <div className="w-100 justify-content-between">
-                            <Link to={"/detalles/" + producto.id_producto}>
                             <Button
                             variant="primary"
                             className="m-1 mr-2 text-uppercase"
@@ -80,11 +86,10 @@ const Productos = () => {
                               borderColor: "#ebca6d",
                               color: "#ebca6d",
                               fontSize: "12px",
-                            }} 
+                            }}
                           >
                             Detalles
                             </Button>
-                            </Link>
                             <Button
                             variant="primary"
                             className="mr-2 text-uppercase"
@@ -101,7 +106,6 @@ const Productos = () => {
                         </Card.Body>
                       </Card>
                     </div>
-                  ))}
                 </div>
               </div>
             </div>
@@ -112,4 +116,4 @@ const Productos = () => {
   );
 };
 
-export default Productos;
+export default Detalles;

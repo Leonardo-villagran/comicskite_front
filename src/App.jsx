@@ -2,6 +2,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './views/Home';
 import Productos from './views/Productos';
+import Detalles from './views/Detalles';
 
 import Registrar from './views/Registrar';
 import IniciarSesion from './views/IniciarSesion';
@@ -19,9 +20,10 @@ import { useState, useEffect } from 'react';
 function App() {
 
   const [products, setProducts] = useState([]);
+  const [producto, setProducto] = useState([]);
   const [tokenContent, setTokenContent] = useState('');
 
-  const globalState = { products, setProducts, tokenContent, setTokenContent};
+  const globalState = { producto, setProducto, products, setProducts, tokenContent, setTokenContent};
 
   useEffect(() => {
     // Retrieve the token from local storage
@@ -47,6 +49,7 @@ function App() {
           <Route path="/registrar" element={tokenContent ? <Productos /> : <Registrar /> } />
           <Route path="/iniciar_sesion" element={tokenContent ? <Productos /> : <IniciarSesion/>} />
           <Route path="/productos" element={tokenContent ? <Productos /> : <Navigate to="/" />} />
+          <Route path="/detalles/:id_producto" element={tokenContent ? <Detalles /> : <Navigate to="/" />} />
           <Route path="/salir" element={<Salir />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
