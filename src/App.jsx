@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './views/Home';
 import Productos from './views/Productos';
 import Detalles from './views/Detalles';
+import Favoritos from './views/Favoritos';
+import Perfil from './views/Perfil';
 
 import Registrar from './views/Registrar';
 import IniciarSesion from './views/IniciarSesion';
@@ -19,10 +21,12 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-
+  const [productos, setProductos] = useState([]);
+  const [producto, setProducto] = useState([]);
+  
   const [tokenContent, setTokenContent] = useState('');
 
-  const globalState = { tokenContent, setTokenContent};
+  const globalState = {producto, setProducto, productos, setProductos, tokenContent, setTokenContent};
 
   useEffect(() => {
     // Retrieve the token from local storage
@@ -39,7 +43,8 @@ function App() {
     // Update the state with the content of the token
   }, []);
 
-  console.log(tokenContent);
+  //console.log(tokenContent);
+  console.log(producto);
   return (
     <Router>
       <Context.Provider value={globalState}>
@@ -48,6 +53,8 @@ function App() {
           <Route path="/registrar" element={tokenContent ? <Productos /> : <Registrar /> } />
           <Route path="/iniciar_sesion" element={tokenContent ? <Productos /> : <IniciarSesion/>} />
           <Route path="/productos" element={tokenContent ? <Productos /> : <Navigate to="/" />} />
+          <Route path="/favoritos" element={tokenContent ? <Favoritos /> : <Navigate to="/" />} />
+          <Route path="/perfil" element={tokenContent ? <Perfil /> : <Navigate to="/" />} />
           <Route path="/detalles/:id_producto" element={tokenContent ? <Detalles /> : <Navigate to="/" />} />
           <Route path="/salir" element={<Salir />} />
           <Route path="*" element={<NotFound />} />

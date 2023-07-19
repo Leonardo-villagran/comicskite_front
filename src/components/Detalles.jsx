@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-
+import Context from '../Context/Context';
+import { useContext } from 'react';
 
 const ruta = 'http://localhost:5173/public/';
 
@@ -16,14 +17,12 @@ const Detalles = () => {
     // const payload = decodeTokenPayload(token);
 
     const { id_producto } = useParams();
-    const [producto, setProducto] = useState([]);
-
+    const { producto, setProducto } = useContext(Context);
     //console.log("id_producto: ", id_producto)
 
     useEffect(() => {
         // Función para obtener el token de JWT almacenado en el navegador
         const getTokenFromLocalStorage = localStorage.getItem("token");
-
         // Realizar la solicitud GET al backend con Axios
         axios
             .get(`http://localhost:3000/detalles/${id_producto}`, {

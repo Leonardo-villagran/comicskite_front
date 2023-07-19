@@ -35,6 +35,20 @@ export default function NavbarButtons() {
                     Publicaciones
                 </Button>
             </Link>
+            <Link to="/favoritos">
+                <Button
+                    variant="primary"
+                    className="mr-2 text-uppercase"
+                    style={{
+                        backgroundColor: 'black',
+                        borderColor: '#ebca6d',
+                        color: '#ebca6d',
+                        fontSize: '12px',
+                    }}
+                >
+                    Mis Favoritos
+                </Button>
+            </Link>
             <Link to="/perfil">
                 <Button
                     variant="primary"

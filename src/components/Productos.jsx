@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
+import Context from '../Context/Context';
+import { useContext } from 'react';
 
 //Importación de imágenes utilizadas para la generación de botón like.
 import blanco from "../assets/img/iconos/corazon_blanco.png";
@@ -13,8 +15,8 @@ import rojo from "../assets/img/iconos/corazon_rojo.png";
 const Productos = () => {
     // const token = localStorage.getItem("token");
     // const payload = decodeTokenPayload(token);
+    const { productos, setProductos } = useContext(Context);
 
-    const [productos, setProductos] = useState([]);
     useEffect(() => {
         const getTokenFromLocalStorage = localStorage.getItem("token");
         // Función para obtener el token de JWT almacenado en el navegador
@@ -32,7 +34,7 @@ const Productos = () => {
             .catch((error) => {
                 console.error("Error al obtener la lista de productos:", error);
             });
-    }, []);
+    }, [setProductos]);
 
 
     const presionarboton = (id_producto) => {
