@@ -1,5 +1,5 @@
 import Navbar from "./NavbarJwt";
-
+import Carrito from "../components/Carrito";
 const CarritoView = () => {
 
     return (
@@ -15,6 +15,7 @@ const CarritoView = () => {
                             border: "1px solid white",
                         }}
                     >
+                        <Carrito />
                     </div>
                 </div>
             </div>
