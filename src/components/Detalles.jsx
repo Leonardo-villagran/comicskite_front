@@ -117,10 +117,12 @@ const Detalles = () => {
                 <Card.Text>{producto.detalle}</Card.Text>
                 <div
                   className="w-100"
-                  style={{ display: "flex", justifyContent: "flex-end" }}
+                  style={{ display: "flex", justifyContent: "space-around" }}
                 >
-                  <Card.Text>Stock: {producto.stock}</Card.Text>
-                  <Card.Text>Precio: ${producto.precio}</Card.Text>
+                  <div>
+                    <Card.Text>Stock: {producto.stock}</Card.Text>
+                    <Card.Text>Precio: ${producto.precio}</Card.Text>
+                  </div>
 
                   <Button
                     variant="primary"
