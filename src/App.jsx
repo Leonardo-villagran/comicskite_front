@@ -5,6 +5,7 @@ import Productos from './views/Productos';
 import Detalles from './views/Detalles';
 import Favoritos from './views/Favoritos';
 import Perfil from './views/Perfil';
+import NuevoProducto from './views/NuevoProducto';
 
 import Registrar from './views/Registrar';
 import IniciarSesion from './views/IniciarSesion';
@@ -18,6 +19,7 @@ import {BrowserRouter as Router, Route, Routes, Navigate  } from 'react-router-d
 
 import Context from "./Context/Context";
 import { useState, useEffect } from 'react';
+
 
 function App() {
 
@@ -55,6 +57,7 @@ function App() {
           <Route path="/productos" element={tokenContent ? <Productos /> : <Navigate to="/" />} />
           <Route path="/favoritos" element={tokenContent ? <Favoritos /> : <Navigate to="/" />} />
           <Route path="/perfil" element={tokenContent ? <Perfil /> : <Navigate to="/" />} />
+          <Route path="//publicaciones" element={tokenContent ? <NuevoProducto /> : <Navigate to="/" />} />
           <Route path="/detalles/:id_producto" element={tokenContent ? <Detalles /> : <Navigate to="/" />} />
           <Route path="/salir" element={<Salir />} />
           <Route path="*" element={<NotFound />} />
