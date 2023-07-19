@@ -19,11 +19,10 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-  const [products, setProducts] = useState([]);
-  const [producto, setProducto] = useState([]);
+
   const [tokenContent, setTokenContent] = useState('');
 
-  const globalState = { producto, setProducto, products, setProducts, tokenContent, setTokenContent};
+  const globalState = { tokenContent, setTokenContent};
 
   useEffect(() => {
     // Retrieve the token from local storage
