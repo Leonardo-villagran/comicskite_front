@@ -134,7 +134,7 @@ const Productos = () => {
   
     return (
         <div>
-            <ToastContainer /> {/* Componente necesario para mostrar los toasts */}
+            <ToastContainer position="top-right" /> {/* Componente necesario para mostrar los toasts */}
             <div className="container">
                 <div className="row">
                     {productos.map((producto) => (

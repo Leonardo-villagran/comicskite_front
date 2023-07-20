@@ -126,7 +126,7 @@ const Detalles = () => {
 
   return (
     <div>
-      <ToastContainer /> {/* Componente necesario para mostrar los toasts */}
+      <ToastContainer position="top-left" /> {/* Componente necesario para mostrar los toasts */}
       <div className="container mt-4">
         <div className="row">
           <div key={producto.id_producto} className="col-12">
