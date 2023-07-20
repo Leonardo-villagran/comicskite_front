@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import "../assets/css/Navbar.css";
 
@@ -11,6 +11,8 @@ export default function NavbarButtons() {
   const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);
   };
+
+  const setActiveClass = ({ isActive }) => (isActive ? "active" : "inactive");
 
   return (
     <header>
@@ -22,12 +24,11 @@ export default function NavbarButtons() {
       <Navbar className="w-100 justify-content-between mx-3">
         <Nav className={`nav-buttons ${showMenu ? "active" : ""}`}>
           <div className="navbar-buttons">
-            <Link to="/productos">
+            <NavLink to="/productos" className={setActiveClass}>
               <Button
                 variant="primary"
-                className="m-1 mr-2 text-uppercase"
+                className="m-1 mr-2 text-uppercase custom-button"
                 style={{
-                  backgroundColor: "black",
                   borderColor: "#ebca6d",
                   color: "#ebca6d",
                   fontSize: "12px",
@@ -35,13 +36,12 @@ export default function NavbarButtons() {
               >
                 Productos
               </Button>
-            </Link>
-            <Link to="/favoritos">
+            </NavLink>
+            <NavLink to="/favoritos" className={setActiveClass}>
               <Button
                 variant="primary"
-                className="m-1 mr-2 text-uppercase"
+                className="m-1 mr-2 text-uppercase custom-button"
                 style={{
-                  backgroundColor: "black",
                   borderColor: "#ebca6d",
                   color: "#ebca6d",
                   fontSize: "12px",
@@ -49,13 +49,12 @@ export default function NavbarButtons() {
               >
                 Mis Favoritos
               </Button>
-            </Link>
-            <Link to="/perfil">
+            </NavLink>
+            <NavLink to="/perfil" className={setActiveClass}>
               <Button
                 variant="primary"
-                className="m-1 mr-2 text-uppercase"
+                className="m-1 mr-2 text-uppercase custom-button"
                 style={{
-                  backgroundColor: "black",
                   borderColor: "#ebca6d",
                   color: "#ebca6d",
                   fontSize: "12px",
@@ -63,13 +62,12 @@ export default function NavbarButtons() {
               >
                 Perfil
               </Button>
-            </Link>
-            <Link to="/carro_compras">
+            </NavLink>
+            <NavLink to="/carro_compras" className={setActiveClass}>
               <Button
                 variant="primary"
-                className="m-1 mr-2 text-uppercase"
+                className="m-1 mr-2 text-uppercase custom-button"
                 style={{
-                  backgroundColor: "black",
                   borderColor: "#ebca6d",
                   color: "#ebca6d",
                   fontSize: "12px",
@@ -77,13 +75,12 @@ export default function NavbarButtons() {
               >
                 Carro de Compras
               </Button>
-            </Link>
-            <Link to="/salir">
+            </NavLink>
+            <NavLink to="/salir" className={setActiveClass}>
               <Button
                 variant="primary"
-                className="m-1 text-uppercase"
+                className="m-1 text-uppercase custom-button"
                 style={{
-                  backgroundColor: "black",
                   borderColor: "#ebca6d",
                   color: "#ebca6d",
                   fontSize: "12px",
@@ -91,7 +88,7 @@ export default function NavbarButtons() {
               >
                 Salir
               </Button>
-            </Link>
+            </NavLink>
           </div>
         </Nav>
       </Navbar>
