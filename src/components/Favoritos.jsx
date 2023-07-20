@@ -21,7 +21,7 @@ const Productos = () => {
         // Función para obtener el token de JWT almacenado en el navegador
         // Realizar la solicitud GET al backend con Axios
         axios
-            .get("http://localhost:3000/productos", {
+            .get("http://localhost:3000/favoritos", {
                 headers: {
                     Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
                 },
@@ -99,44 +99,58 @@ const Productos = () => {
 
     return (
         <div>
-            <div className="container">
-                <div className="row">
-                    {productos.map((producto) => (
-                        <div
-                            key={producto.id_producto}
-                            className="col-12 col-sm-6 col-md-4 col-lg-3 mt-3"
-                        >
-                            <Card
-                                className="container-fluid h-100"
-                                style={{
-                                    backgroundColor: "#295b6fff",
-                                    color: "#ebca6d",
-                                    border: "1px solid white"
-                                }}
+            {productos ? (
+                <div className="container">
+                    <div className="row">
+                        {productos.map((producto) => (
+                            <div
+                                key={producto.id_producto}
+                                className="col-12 col-sm-6 col-md-4 col-lg-3 mt-3"
                             >
-                                <div className="container">
-                                    <Card.Img
-                                        variant="top"
-                                        src={`img/productos/${producto.imagen_grande}`}
-                                        style={{ maxHeight: "371px", maxWidth: "246px" }}
-                                    />
-                                </div>
-                                <Card.Body>
-                                    <div className="heart px-3">
-                                        <img
-                                            onClick={() => presionarboton(producto.id_producto)}
-                                            src={producto.likes === false ? blanco : rojo}
-                                            alt="foto"
+                                <Card
+                                    className="container-fluid h-100"
+                                    style={{
+                                        backgroundColor: "#295b6fff",
+                                        color: "#ebca6d",
+                                        border: "1px solid white"
+                                    }}
+                                >
+                                    <div className="container">
+                                        <Card.Img
+                                            variant="top"
+                                            src={`img/productos/${producto.imagen_grande}`}
+                                            style={{ maxHeight: "371px", maxWidth: "246px" }}
                                         />
                                     </div>
-                                    <Card.Title>{producto.nombre}</Card.Title>
-                                    <Card.Text>Número: {producto.numero}</Card.Text>
-                                    <Card.Text>Precio: ${producto.precio}</Card.Text>
-                                    <div className="w-100 justify-content-between">
-                                        <Link to={"/detalles/" + producto.id_producto}>
+                                    <Card.Body>
+                                        <div className="heart px-3">
+                                            <img
+                                                onClick={() => presionarboton(producto.id_producto)}
+                                                src={producto.likes === false ? blanco : rojo}
+                                                alt="foto"
+                                            />
+                                        </div>
+                                        <Card.Title>{producto.nombre}</Card.Title>
+                                        <Card.Text>Número: {producto.numero}</Card.Text>
+                                        <Card.Text>Precio: ${producto.precio}</Card.Text>
+                                        <div className="w-100 justify-content-between">
+                                            <Link to={"/detalles/" + producto.id_producto}>
+                                                <Button
+                                                    variant="primary"
+                                                    className="m-1 mr-2 text-uppercase"
+                                                    style={{
+                                                        backgroundColor: "black",
+                                                        borderColor: "#ebca6d",
+                                                        color: "#ebca6d",
+                                                        fontSize: "12px",
+                                                    }}
+                                                >
+                                                    Detalles
+                                                </Button>
+                                            </Link>
                                             <Button
                                                 variant="primary"
-                                                className="m-1 mr-2 text-uppercase"
+                                                className="mr-2 text-uppercase"
                                                 style={{
                                                     backgroundColor: "black",
                                                     borderColor: "#ebca6d",
@@ -144,28 +158,18 @@ const Productos = () => {
                                                     fontSize: "12px",
                                                 }}
                                             >
-                                                Detalles
+                                                Agregar al carro
                                             </Button>
-                                        </Link>
-                                        <Button
-                                            variant="primary"
-                                            className="mr-2 text-uppercase"
-                                            style={{
-                                                backgroundColor: "black",
-                                                borderColor: "#ebca6d",
-                                                color: "#ebca6d",
-                                                fontSize: "12px",
-                                            }}
-                                        >
-                                            Agregar al carro
-                                        </Button>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                    ))}
+                                        </div>
+                                    </Card.Body>
+                                </Card>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <p>Cargando...</p>
+            )}
         </div>
     );
 };

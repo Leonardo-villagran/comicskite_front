@@ -5,10 +5,6 @@ import { Link } from "react-router-dom";
 import Context from "../Context/Context";
 import { useContext } from "react";
 
-//Importación de imágenes utilizadas para la generación de botón like.
-import blanco from "../assets/img/iconos/corazon_blanco.png";
-import rojo from "../assets/img/iconos/corazon_rojo.png";
-
 // import decodeTokenPayload from '../services/services'
 
 const Productos = () => {
@@ -21,7 +17,7 @@ const Productos = () => {
         // Función para obtener el token de JWT almacenado en el navegador
         // Realizar la solicitud GET al backend con Axios
         axios
-            .get("http://localhost:3000/productos", {
+            .get("http://localhost:3000/publicaciones", {
                 headers: {
                     Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
                 },
@@ -35,70 +31,13 @@ const Productos = () => {
             });
     }, [setProductos]);
 
-    const presionarboton = (id_producto) => {
-        const getTokenFromLocalStorage = localStorage.getItem("token");
-        //console.log(productos);
-
-        const producto = productos.find(
-            (producto) => producto.id_producto === id_producto
-        );
-
-        if (producto.likes) {
-            producto.likes = false;
-
-            // Realizar la solicitud GET al backend con Axios
-            axios
-                .delete(`http://localhost:3000/dislikes/${id_producto}`, {
-                    headers: {
-                        Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
-                    },
-                })
-                .then((response) => {
-                    // Actualizar el estado con la lista de productos obtenida del backend
-                    console.log(response.data.mensaje);
-                })
-                .catch((error) => {
-                    console.error("Error al borrar el like:", error);
-                });
-        } else {
-            producto.likes = true;
-
-            // Realizar la solicitud GET al backend con Axios
-            axios
-                .post(`http://localhost:3000/likes/${id_producto}`, null, {
-                    headers: {
-                        Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
-                    },
-                })
-                .then((response) => {
-                    // Actualizar el estado con la lista de productos obtenida del backend
-                    console.log(response.data.mensaje);
-                })
-                .catch((error) => {
-                    console.error("Error al agregar el like:", error);
-                });
-        }
-
-        //console.log(producto);
-
-        // Encontrar el índice del producto antiguo
-        const indiceProductoAntiguo = productos.findIndex(
-            (producto) => producto.id_producto === id_producto
-        );
-
-        if (indiceProductoAntiguo !== -1) {
-            // Crear un nuevo array de productos con el producto modificado
-            const nuevosProductos = [...productos];
-            nuevosProductos[indiceProductoAntiguo] = producto;
-
-            // Actualizar el estado 'productos' con el nuevo array generado
-            setProductos(nuevosProductos);
-            //console.log(nuevosProductos);
-        }
-    };
 
     return (
-        <div>
+
+
+        <div> <Link to="/nuevo_producto">
+            <Button style={{ backgroundColor: 'black', borderColor: '#ebca6d', color: '#ebca6d', fontSize: '14px' }} >Agregar Comic</Button>
+        </Link>
             <div className="container">
                 <div className="row">
                     {productos.map((producto) => (
@@ -122,13 +61,6 @@ const Productos = () => {
                                     />
                                 </div>
                                 <Card.Body>
-                                    <div className="heart px-3">
-                                        <img
-                                            onClick={() => presionarboton(producto.id_producto)}
-                                            src={producto.likes === false ? blanco : rojo}
-                                            alt="foto"
-                                        />
-                                    </div>
                                     <Card.Title>{producto.nombre}</Card.Title>
                                     <Card.Text>Número: {producto.numero}</Card.Text>
                                     <Card.Text>Precio: ${producto.precio}</Card.Text>
@@ -157,7 +89,7 @@ const Productos = () => {
                                                 fontSize: "12px",
                                             }}
                                         >
-                                            Agregar al carro
+                                            Editar contenido
                                         </Button>
                                     </div>
                                 </Card.Body>

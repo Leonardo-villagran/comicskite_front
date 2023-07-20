@@ -1,11 +1,11 @@
 import Navbar from "./NavbarJwt";
-import Favoritos from "../components/Favoritos";
-const FavoritosView = () => {
+import Publicaciones from "../components/Publicaciones";
+
+const ProductosView = () => {
 
     return (
         <div>
             <Navbar />
-
             <div style={{ backgroundColor: "#295b6fff", padding: "1rem" }}>
                 <div style={{ backgroundColor: "black", padding: "1rem" }}>
                     <div
@@ -15,7 +15,7 @@ const FavoritosView = () => {
                             border: "1px solid white",
                         }}
                     >
-                        <Favoritos/>
+                        <Publicaciones />
                     </div>
                 </div>
             </div>
@@ -23,4 +23,4 @@ const FavoritosView = () => {
     );
 };
 
-export default FavoritosView;
+export default ProductosView;

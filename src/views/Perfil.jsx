@@ -1,4 +1,5 @@
 import Navbar from "./NavbarJwt";
+import Perfil from "../components/Perfil";
 
 
 const PerfilView = () => {
@@ -16,6 +17,7 @@ const PerfilView = () => {
                             border: "1px solid white",
                         }}
                     >
+                        <Perfil/>
                     </div>
                 </div>
             </div>
