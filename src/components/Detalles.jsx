@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import Context from "../Context/Context";
 import { useContext } from "react";
 import "../Styles/Detalles.css";
+import { toast, ToastContainer } from "react-toastify"; // Importar el toast
+import "react-toastify/dist/ReactToastify.css"; // Estilos del toast
 
 const ruta = "http://localhost:5173/public/";
 
@@ -169,6 +171,7 @@ const Detalles = () => {
                   <Button
                     variant="primary"
                     className="mr-2 text-uppercase"
+                    onClick={() => agregarAlCarrito(producto.id_producto)}
                     style={{
                       backgroundColor: "black",
                       borderColor: "#ebca6d",
