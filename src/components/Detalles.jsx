@@ -167,7 +167,7 @@ const Detalles = () => {
                     <Card.Text>Stock: {producto.stock}</Card.Text>
                     <Card.Text>Precio: ${producto.precio}</Card.Text>
                   </div>
-
+                  <div className="d-flex" style={{ alignItems: "center" }}>
                   <Button
                     variant="primary"
                     className="mr-2 text-uppercase"
@@ -181,6 +181,7 @@ const Detalles = () => {
                   >
                     Agregar al carro
                   </Button>
+                  </div>
                 </div>
               </Card.Body>
             </Card>
