@@ -20,7 +20,8 @@ VALUES
 	('leonardovillagran3@yahoo.com', 'Leonardo 3', 'Villagrán Chicago', 'Siempre viva 742', '2132314234', '$2a$10$JIHB.znSN63btgXsJLS4reQBjgZgFpJwxZlpvqEw8d14oM1dRDTha', 0),
 	('yonofui@legion.cl', 'Yono', 'Fui', 'Siempre viva 742', '2132314234', '$2a$10$jmEt4XfcBVsPwK4XpWBhjepEKZ9TuxiAzkdRNiFSdEnHg07jBi3vC', 0),
 	('paololanderos@gmail.com', 'Paolo', 'Landeros', 'siempre viva 742', '23423423', '$2a$10$iq7C7YUM9N6WaKixoGFd6Os.VJfYN6iJs34n/UChxoYA4vZnUfVEy', 1),
-	('admin@gmail.com', 'Admin', 'Administrator', 'Siempre viva 742', '+56 12234 1234', '$2a$10$JJKBtKGVz6xNfDxM.OjqNuPzgDSoGqD635G3jD9j2ULHbLvr4e6nS', 1);
+	('admin@gmail.com', 'Admin', 'Administrator', 'Siempre viva 742', '+56 12234 1234', '$2a$10$JJKBtKGVz6xNfDxM.OjqNuPzgDSoGqD635G3jD9j2ULHbLvr4e6nS', 1),
+	('lorenzochacano@gmail.com', 'Lorenzo', 'Chacano', 'Siempre viva 742', '+56 12234 1234', '$2a$10$8i2MvgtgDD4fOFvKc1/qVOFXeL5jCzpe2jM710QGfyiRv.gUS6I12', 1);
 
 -- Tabla producto
 CREATE TABLE IF NOT EXISTS "producto" (
