@@ -1,0 +1,23 @@
+/* Estilos para la clase "cardDetail" */
+.cardDetail {
+    display: flex;
+    flex-direction: row;
+    /* Otros estilos que desees aplicar a la clase "cardDetail" */
+  }
+
+.cardImg{
+    width: 200px;
+}
+
+@media (max-width: 800px) {
+    .cardDetail{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 470px) {
+    .cardImg{
+        width: 100%;
+    }
+}

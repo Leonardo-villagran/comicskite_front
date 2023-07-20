@@ -4,6 +4,7 @@ import { Card, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Context from "../Context/Context";
 import { useContext } from "react";
+import "../Styles/Detalles.css";
 
 const ruta = "http://localhost:5173/public/";
 
@@ -91,19 +92,20 @@ const Detalles = () => {
         <div className="row">
           <div key={producto.id_producto} className="col-12">
             <Card
-              className="cardDetail d-flex flex-row"
+              className="cardDetail"
               style={{
                 backgroundColor: "#295b6fff",
                 color: "#ebca6d",
                 border: "1px solid white",
               }}
             >
-              <Card.Img
-                variant="top"
-                src={ruta + "img/productos/" + producto.imagen_grande}
-                alt={producto.nombre}
-                style={{ width: "200px" }}
-              />
+              <div>
+                <Card.Img className="cardImg"
+                  variant="top"
+                  src={ruta + "img/productos/" + producto.imagen_grande}
+                  alt={producto.nombre}
+                />
+              </div>
               <Card.Body>
                 <div className="heart px-2">
                   <img
@@ -112,9 +114,13 @@ const Detalles = () => {
                     alt="foto"
                   />
                 </div>
-                <Card.Title>{producto.nombre}</Card.Title>
-                <Card.Text>Número: {producto.numero}</Card.Text>
-                <Card.Text>{producto.detalle}</Card.Text>
+                <Card.Title className="d-flex">{producto.nombre}</Card.Title>
+                <Card.Text className="d-flex">
+                  Número: {producto.numero}
+                </Card.Text>
+                <Card.Text className="d-flex" style={{ textAlign: "left" }}>
+                  {producto.detalle}
+                </Card.Text>
                 <div
                   className="w-100"
                   style={{ display: "flex", justifyContent: "space-around" }}
@@ -123,19 +129,20 @@ const Detalles = () => {
                     <Card.Text>Stock: {producto.stock}</Card.Text>
                     <Card.Text>Precio: ${producto.precio}</Card.Text>
                   </div>
-
-                  <Button
-                    variant="primary"
-                    className="mr-2 text-uppercase"
-                    style={{
-                      backgroundColor: "black",
-                      borderColor: "#ebca6d",
-                      color: "#ebca6d",
-                      fontSize: "12px",
-                    }}
-                  >
-                    Agregar al carro
-                  </Button>
+                  <div className="d-flex" style={{ alignItems: "center" }}>
+                    <Button
+                      variant="primary"
+                      className="mr-2 text-uppercase"
+                      style={{
+                        backgroundColor: "black",
+                        borderColor: "#ebca6d",
+                        color: "#ebca6d",
+                        fontSize: "12px",
+                      }}
+                    >
+                      Agregar al carro
+                    </Button>
+                  </div>
                 </div>
               </Card.Body>
             </Card>
