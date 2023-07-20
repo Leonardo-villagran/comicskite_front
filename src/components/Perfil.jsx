@@ -31,7 +31,7 @@ const Perfil = () => {
           style={{
             backgroundColor: "#295b6fff",
             color: "#ebca6d",
-            border: "1px solid white",
+            border: "1px solid #295b6fff",
           }}
         >
           <div className="card-body table-perfil">
