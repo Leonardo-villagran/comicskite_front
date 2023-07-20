@@ -4,7 +4,7 @@ import { Card, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Context from "../Context/Context";
 import { useContext } from "react";
-import "../Styles/Detalles.css";
+import "../assets/css/Detalles.css";
 import { toast, ToastContainer } from "react-toastify"; // Importar el toast
 import "react-toastify/dist/ReactToastify.css"; // Estilos del toast
 

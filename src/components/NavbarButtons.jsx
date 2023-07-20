@@ -3,7 +3,7 @@ import { Nav, Navbar } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
-import "../Styles/Navbar.css";
+import "../assets/css/Navbar.css";
 
 export default function NavbarButtons() {
   const [showMenu, setShowMenu] = useState(false);
