@@ -1,0 +1,15 @@
+.table-perfil {
+    margin: 0px 10px 0px 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #295b6fff, rgb(73, 153, 184));
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .table-perfil:hover {
+    transform: scale(1.05);
+  }
+
+  .tr-table{
+    border-bottom: white 1px solid;
+  }

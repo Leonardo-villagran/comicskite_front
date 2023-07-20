@@ -6,6 +6,9 @@
   background-color: #295b6fff;
 }
 
+.custom-button:hover {
+  transform: scale(1.05);
+}
 
 /* Estilos para el botón hamburguesa */
 .nav-btn {
