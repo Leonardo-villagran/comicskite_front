@@ -109,6 +109,7 @@ const Productos = () => {
 
     return (
         <div>
+            {productos.length===0 ? <h3 style={{ color: '#ebca6d' , textTransform: 'uppercase'}}>No hay favoritos</h3>:<div></div>}
             {productos ? (
                 <div className="container">
                     <div className="row">
