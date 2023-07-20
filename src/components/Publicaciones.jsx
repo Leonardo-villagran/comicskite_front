@@ -36,7 +36,7 @@ const Productos = () => {
 
 
         <div> <Link to="/nuevo_producto">
-            <Button style={{ backgroundColor: 'black', borderColor: '#ebca6d', color: '#ebca6d', fontSize: '14px' }} >Agregar Comic</Button>
+            <Button className="text-uppercase" style={{ backgroundColor: 'black', borderColor: '#ebca6d', color: '#ebca6d', fontSize: '16px' }} >Agregar Comic</Button>
         </Link>
             <div className="container">
                 <div className="row">

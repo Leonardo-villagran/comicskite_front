@@ -36,10 +36,11 @@ function App() {
   useEffect(() => {
     // Retrieve the token from local storage
     const token = localStorage.getItem('token');
+    const decodedToken = decodeJWT(token);
     // Check if the token exists before proceeding
-    if (token) {
+    if (decodedToken) {
       // Update the state with the content of the token
-      setTokenContent(token);
+      setTokenContent(decodedToken);
       
     } else {
       // Handle the case when there's no token available (optional)
@@ -47,8 +48,20 @@ function App() {
     }
     // Update the state with the content of the token
   }, []);
+  // Función para decodificar el token JWT
+  const decodeJWT = (token) => {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map((c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
+        .join("")
+    );
 
-  //console.log(tokenContent);
+  return JSON.parse(jsonPayload);
+};
+  console.log(tokenContent);
   console.log(producto);
   return (
     <Router>

@@ -9,7 +9,6 @@ import { useContext } from 'react';
 export default function NavbarComponent() {
 
   const { tokenContent } = useContext(Context);
-  
     return (
       <Navbar bg="dark" variant="dark">
         <div className="d-flex align-items-center">
