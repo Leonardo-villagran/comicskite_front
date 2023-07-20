@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext , useState} from "react";
 import { Table, Button } from "react-bootstrap";
 import axios from "axios";
 import Context from "../Context/Context";
@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Carrito = () => {
   const { carrito, setCarrito } = useContext(Context);
+  const [detalleFinal, setDetalleFinal] = useState("");
 
   const eliminarDelCarrito = (id_producto) => {
     const nuevosProductos = carrito.filter((producto) => producto.id_producto !== id_producto);
@@ -61,8 +62,13 @@ const Carrito = () => {
       .then((response) => {
         // Si la solicitud es exitosa, limpiamos el carrito
         setCarrito([]);
-        console.log(response);
+        console.log(response.data);
         toast.success("Carrito procesado con éxito.");
+         // Concatenamos los saltos de línea con "<br />" para mostrarlos correctamente en el navegador
+        const detalleFinalConSaltosDeLinea = response.data.detalle_final.replace(/\n/g, "<br />");
+        setDetalleFinal(detalleFinalConSaltosDeLinea);
+
+
       })
       .catch((error) => {
         console.error("Error al procesar el carrito:", error);
@@ -108,7 +114,7 @@ const Carrito = () => {
                     {producto.cantidad}{" "}
                     <Button variant="outline-primary" onClick={() => aumentarCantidad(producto.id_producto)}>+</Button>
                   </td>
-                  <td>{getTotalPorProducto(producto)}</td> 
+                  <td>{getTotalPorProducto(producto)}</td>
                   <td>
                     <Button variant="danger" onClick={() => eliminarDelCarrito(producto.id_producto)}>
                       Eliminar del carro
@@ -119,10 +125,10 @@ const Carrito = () => {
             </tbody>
           </Table>
           <div><h4 style={{
-              backgroundColor: "black",
-              color: "#ebca6d",
-              fontSize: "24px",
-            }}>Total general: ${getTotalGeneral()}</h4></div>
+            backgroundColor: "black",
+            color: "#ebca6d",
+            fontSize: "24px",
+          }}>Total general: ${getTotalGeneral()}</h4></div>
           <Button variant="primary"
             className="mr-2 text-uppercase"
             style={{
@@ -136,6 +142,13 @@ const Carrito = () => {
         </div>
 
       )}
+      <div style={{
+              backgroundColor: "white",
+              fontSize: "12px",
+            }}>
+        {/* Utilizamos el componente <pre> para preservar los saltos de línea */}
+        <pre dangerouslySetInnerHTML={{ __html: detalleFinal }}></pre>
+      </div>
     </div>
   );
 };
