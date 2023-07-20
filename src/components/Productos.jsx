@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect} from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Context from "../Context/Context";
 import { useContext } from "react";
+import { toast, ToastContainer } from "react-toastify"; // Importar el toast
+import "react-toastify/dist/ReactToastify.css"; // Estilos del toast
 
 //Importación de imágenes utilizadas para la generación de botón like.
 import blanco from "../assets/img/iconos/corazon_blanco.png";
@@ -14,8 +16,8 @@ import rojo from "../assets/img/iconos/corazon_rojo.png";
 const Productos = () => {
     // const token = localStorage.getItem("token");
     // const payload = decodeTokenPayload(token);
-    const { productos, setProductos } = useContext(Context);
-
+    const { carrito, setCarrito,productos, setProductos } = useContext(Context);
+   
     useEffect(() => {
         const getTokenFromLocalStorage = localStorage.getItem("token");
         // Función para obtener el token de JWT almacenado en el navegador
@@ -97,8 +99,42 @@ const Productos = () => {
         }
     };
 
+    const agregarAlCarrito = (id_producto) => {
+        const producto = productos.find((producto) => producto.id_producto === id_producto);
+
+        if (producto) {
+            if (carrito && carrito.length > 0) {
+                const productoEnCarrito = carrito.find((item) => item.id_producto === id_producto);
+                if (productoEnCarrito) {
+                    toast.warning("Este cómic ya está en el carrito");
+                } else {
+                    const nuevoProductoEnCarrito = {
+                        ...producto,
+                        cantidad: 1,
+                    };
+
+                    setCarrito((prevCarrito) => [...prevCarrito, nuevoProductoEnCarrito]);
+                    toast.success("Cómic agregado al carrito con éxito");
+                    console.log("Cómic agregado al carrito:", nuevoProductoEnCarrito);
+                }
+            } else {
+                // Si el carrito está vacío, agregar el cómic directamente
+                const nuevoProductoEnCarrito = {
+                    ...producto,
+                    cantidad: 1,
+                };
+
+                setCarrito([nuevoProductoEnCarrito]);
+
+                toast.success("Cómic agregado al carrito con éxito");
+                console.log("Cómic agregado al carrito:", nuevoProductoEnCarrito);
+            }
+        }
+    };
+  
     return (
         <div>
+            <ToastContainer /> {/* Componente necesario para mostrar los toasts */}
             <div className="container">
                 <div className="row">
                     {productos.map((producto) => (
@@ -156,6 +192,7 @@ const Productos = () => {
                                                 color: "#ebca6d",
                                                 fontSize: "12px",
                                             }}
+                                            onClick={() => agregarAlCarrito(producto.id_producto)}
                                         >
                                             Agregar al carro
                                         </Button>

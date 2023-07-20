@@ -28,10 +28,11 @@ function App() {
 
   const [productos, setProductos] = useState([]);
   const [producto, setProducto] = useState([]);
+  const [carrito, setCarrito] = useState([]);
   
   const [tokenContent, setTokenContent] = useState('');
 
-  const globalState = {producto, setProducto, productos, setProductos, tokenContent, setTokenContent};
+  const globalState = { carrito, setCarrito, producto, setProducto, productos, setProductos, tokenContent, setTokenContent};
 
   useEffect(() => {
     // Retrieve the token from local storage
@@ -59,7 +60,7 @@ function App() {
       return '';
     } else {
       // Hay un token válido en el Local Storage
-      console.log('Se encontró un token en el Local Storage:', token);
+      console.log('Se encontró un token en el Local Storage');
       const base64Url = token.split(".")[1];
       const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
       const jsonPayload = decodeURIComponent(
@@ -73,8 +74,9 @@ function App() {
     }
 
 };
-  console.log(tokenContent);
-  console.log(producto);
+  console.log("Contenido token: ",tokenContent);
+  console.log("Producto: ", producto);
+  console.log("Carrito: ", carrito);
   return (
     <Router>
       <Context.Provider value={globalState}>

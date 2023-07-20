@@ -4,6 +4,8 @@ import { Card, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Context from "../Context/Context";
 import { useContext } from "react";
+import { toast, ToastContainer } from "react-toastify"; // Importar el toast
+import "react-toastify/dist/ReactToastify.css"; // Estilos del toast
 
 const ruta = "http://localhost:5173/public/";
 
@@ -18,6 +20,7 @@ const Detalles = () => {
 
   const { id_producto } = useParams();
   const { producto, setProducto } = useContext(Context);
+  const { carrito, setCarrito } = useContext(Context);
   //console.log("id_producto: ", id_producto)
 
   useEffect(() => {
@@ -85,8 +88,43 @@ const Detalles = () => {
     console.log(producto_solo);
   };
 
+  const agregarAlCarrito = (id_producto) => {
+    let producto_solo = { ...producto };
+
+    if (producto_solo) {
+      if (carrito && carrito.length > 0) {
+        const productoEnCarrito = carrito.find((item) => item.id_producto === id_producto);
+        if (productoEnCarrito) {
+          toast.warning("Este cómic ya está en el carrito");
+        } else {
+          const nuevoProductoEnCarrito = {
+            ...producto_solo,
+            cantidad: 1,
+          };
+
+          setCarrito((prevCarrito) => [...prevCarrito, nuevoProductoEnCarrito]);
+          toast.success("Cómic agregado al carrito con éxito");
+          console.log("Cómic agregado al carrito:", nuevoProductoEnCarrito);
+        }
+      } else {
+        // Si el carrito está vacío, agregar el cómic directamente
+        const nuevoProductoEnCarrito = {
+          ...producto_solo,
+          cantidad: 1,
+        };
+
+        setCarrito([nuevoProductoEnCarrito]);
+
+        toast.success("Cómic agregado al carrito con éxito");
+        console.log("Cómic agregado al carrito:", nuevoProductoEnCarrito);
+      }
+    }
+  };
+
+
   return (
     <div>
+       <ToastContainer /> {/* Componente necesario para mostrar los toasts */}
       <div className="container mt-4">
         <div className="row">
           <div key={producto.id_producto} className="col-12">
@@ -133,6 +171,7 @@ const Detalles = () => {
                       color: "#ebca6d",
                       fontSize: "12px",
                     }}
+                    onClick={() => agregarAlCarrito(producto.id_producto)}
                   >
                     Agregar al carro
                   </Button>

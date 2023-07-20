@@ -56,6 +56,11 @@ const Productos = () => {
                 .then((response) => {
                     // Actualizar el estado con la lista de productos obtenida del backend
                     console.log(response.data.mensaje);
+
+                    // Eliminar el producto de la lista 'productos' en el frontend
+                    const nuevosProductos = productos.filter((producto) => producto.id_producto !== id_producto);
+                    setProductos(nuevosProductos);
+
                 })
                 .catch((error) => {
                     console.error("Error al borrar el like:", error);
@@ -73,6 +78,11 @@ const Productos = () => {
                 .then((response) => {
                     // Actualizar el estado con la lista de productos obtenida del backend
                     console.log(response.data.mensaje);
+
+                    // Eliminar el producto de la lista 'productos' en el frontend
+                    const nuevosProductos = productos.filter((producto) => producto.id_producto !== id_producto);
+                    setProductos(nuevosProductos);
+
                 })
                 .catch((error) => {
                     console.error("Error al agregar el like:", error);
