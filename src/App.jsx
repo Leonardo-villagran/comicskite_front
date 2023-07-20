@@ -35,7 +35,9 @@ function App() {
 
   useEffect(() => {
     // Retrieve the token from local storage
+    
     const token = localStorage.getItem('token');
+
     const decodedToken = decodeJWT(token);
     // Check if the token exists before proceeding
     if (decodedToken) {
@@ -50,16 +52,26 @@ function App() {
   }, []);
   // Función para decodificar el token JWT
   const decodeJWT = (token) => {
-    const base64Url = token.split(".")[1];
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split("")
-        .map((c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
-        .join("")
-    );
 
-  return JSON.parse(jsonPayload);
+    if (token === null || token === '') {
+      // No hay token en el Local Storage o está vacío
+      console.log('No hay token almacenado en el Local Storage.');
+      return '';
+    } else {
+      // Hay un token válido en el Local Storage
+      console.log('Se encontró un token en el Local Storage:', token);
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map((c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
+          .join("")
+      );
+  
+    return JSON.parse(jsonPayload);
+    }
+
 };
   console.log(tokenContent);
   console.log(producto);
