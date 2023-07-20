@@ -25,7 +25,6 @@ const Perfil = () => {
 
     return (
         <div>
-            <h2 style={{ color: '#ebca6d' }}>PERFIL DE USUARIO</h2>
             {userData ? (
                 <Card
                     className="cardDetail d-flex flex-row"
