@@ -94,7 +94,9 @@ const Detalles = () => {
 
     if (producto_solo) {
       if (carrito && carrito.length > 0) {
-        const productoEnCarrito = carrito.find((item) => item.id_producto === id_producto);
+        const productoEnCarrito = carrito.find(
+          (item) => item.id_producto === id_producto
+        );
         if (productoEnCarrito) {
           toast.warning("Este cómic ya está en el carrito");
         } else {
@@ -122,10 +124,9 @@ const Detalles = () => {
     }
   };
 
-
   return (
     <div>
-       <ToastContainer /> {/* Componente necesario para mostrar los toasts */}
+      <ToastContainer /> {/* Componente necesario para mostrar los toasts */}
       <div className="container mt-4">
         <div className="row">
           <div key={producto.id_producto} className="col-12">
@@ -138,7 +139,8 @@ const Detalles = () => {
               }}
             >
               <div>
-                <Card.Img className="cardImg"
+                <Card.Img
+                  className="cardImg"
                   variant="top"
                   src={ruta + "img/productos/" + producto.imagen_grande}
                   alt={producto.nombre}
@@ -168,19 +170,19 @@ const Detalles = () => {
                     <Card.Text>Precio: ${producto.precio}</Card.Text>
                   </div>
                   <div className="d-flex" style={{ alignItems: "center" }}>
-                  <Button
-                    variant="primary"
-                    className="mr-2 text-uppercase"
-                    onClick={() => agregarAlCarrito(producto.id_producto)}
-                    style={{
-                      backgroundColor: "black",
-                      borderColor: "#ebca6d",
-                      color: "#ebca6d",
-                      fontSize: "12px",
-                    }}
-                  >
-                    Agregar al carro
-                  </Button>
+                    <Button
+                      variant="primary"
+                      className="mr-2 text-uppercase"
+                      onClick={() => agregarAlCarrito(producto.id_producto)}
+                      style={{
+                        backgroundColor: "black",
+                        borderColor: "#ebca6d",
+                        color: "#ebca6d",
+                        fontSize: "12px",
+                      }}
+                    >
+                      Agregar al carro
+                    </Button>
                   </div>
                 </div>
               </Card.Body>
