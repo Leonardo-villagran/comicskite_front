@@ -1,0 +1,11 @@
+.super_card {
+    margin: 0px 10px 0px 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: linear-gradient(to top, rgb(29, 87, 110), rgb(2, 30, 41));
+    transition: transform 0.2s ease-in-out;
+}
+
+.super_card:hover {
+    transform: scale(1.05);
+}

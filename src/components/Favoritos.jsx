@@ -4,6 +4,8 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Context from "../Context/Context";
 import { useContext } from "react";
+import { toast, ToastContainer } from "react-toastify"; // Importar el toast
+import "react-toastify/dist/ReactToastify.css"; // Estilos del toast
 
 //Importación de imágenes utilizadas para la generación de botón like.
 import blanco from "../assets/img/iconos/corazon_blanco.png";
@@ -14,7 +16,7 @@ import rojo from "../assets/img/iconos/corazon_rojo.png";
 const Productos = () => {
     // const token = localStorage.getItem("token");
     // const payload = decodeTokenPayload(token);
-    const { productos, setProductos } = useContext(Context);
+    const { carrito, setCarrito, productos, setProductos } = useContext(Context);
 
     useEffect(() => {
         const getTokenFromLocalStorage = localStorage.getItem("token");
@@ -107,8 +109,42 @@ const Productos = () => {
         }
     };
 
+    const agregarAlCarrito = (id_producto) => {
+        const producto = productos.find((producto) => producto.id_producto === id_producto);
+
+        if (producto) {
+            if (carrito && carrito.length > 0) {
+                const productoEnCarrito = carrito.find((item) => item.id_producto === id_producto);
+                if (productoEnCarrito) {
+                    toast.warning("Este cómic ya está en el carrito");
+                } else {
+                    const nuevoProductoEnCarrito = {
+                        ...producto,
+                        cantidad: 1,
+                    };
+
+                    setCarrito((prevCarrito) => [...prevCarrito, nuevoProductoEnCarrito]);
+                    toast.success("Cómic agregado al carrito con éxito");
+                    console.log("Cómic agregado al carrito:", nuevoProductoEnCarrito);
+                }
+            } else {
+                // Si el carrito está vacío, agregar el cómic directamente
+                const nuevoProductoEnCarrito = {
+                    ...producto,
+                    cantidad: 1,
+                };
+
+                setCarrito([nuevoProductoEnCarrito]);
+
+                toast.success("Cómic agregado al carrito con éxito");
+                console.log("Cómic agregado al carrito:", nuevoProductoEnCarrito);
+            }
+        }
+    };
+
     return (
         <div>
+            <ToastContainer position="top-right" />
             {productos.length===0 ? <h3 style={{ color: '#ebca6d' , textTransform: 'uppercase'}}>No hay favoritos</h3>:<div></div>}
             {productos ? (
                 <div className="container">
@@ -160,17 +196,18 @@ const Productos = () => {
                                                 </Button>
                                             </Link>
                                             <Button
-                                                variant="primary"
-                                                className="mr-2 text-uppercase"
-                                                style={{
-                                                    backgroundColor: "black",
-                                                    borderColor: "#ebca6d",
-                                                    color: "#ebca6d",
-                                                    fontSize: "12px",
-                                                }}
-                                            >
-                                                Agregar al carro
-                                            </Button>
+                                            variant="primary"
+                                            className="mr-2 text-uppercase"
+                                            style={{
+                                                backgroundColor: "black",
+                                                borderColor: "#ebca6d",
+                                                color: "#ebca6d",
+                                                fontSize: "12px",
+                                            }}
+                                            onClick={() => agregarAlCarrito(producto.id_producto)}
+                                        >
+                                            Agregar al carro
+                                        </Button>
                                         </div>
                                     </Card.Body>
                                 </Card>

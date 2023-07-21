@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const AgregarProducto = () => {
+const EditarProducto = () => {
     const navigate = useNavigate();
+    const { id_producto } = useParams();
 
     const [formData, setFormData] = useState({
         nombre: '',
@@ -18,6 +19,44 @@ const AgregarProducto = () => {
         stock: ''
     });
 
+    useEffect(() => {
+        // Cargar los datos del producto existente
+        const fetchProduct = async () => {
+            try {
+                const token = localStorage.getItem('token'); // Reemplaza 'jwt_token' por la clave adecuada para el token JWT en el almacenamiento local
+                if (!token) {
+                    // Manejo del caso donde el token no está disponible
+                    toast.error('Token no encontrado. Inicie sesión para continuar.');
+                    return;
+                }
+
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                };
+
+                const response = await axios.get(`http://localhost:3000/productos/${id_producto}`, config);
+                const productData = response.data;
+
+                // Actualizar el estado con los datos del producto existente
+                setFormData({
+                    nombre: productData.nombre,
+                    numero: productData.numero,
+                    imagen_pequena: productData.imagen_pequena,
+                    imagen_grande: productData.imagen_grande,
+                    detalle: productData.detalle,
+                    precio: productData.precio,
+                    stock: productData.stock,
+                });
+            } catch (error) {
+                toast.error('Error al cargar los datos del producto. Intente nuevamente más tarde.');
+            }
+        };
+
+        fetchProduct();
+    }, [id_producto]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -26,37 +65,33 @@ const AgregarProducto = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-
             const token = localStorage.getItem('token'); // Reemplaza 'jwt_token' por la clave adecuada para el token JWT en el almacenamiento local
             if (!token) {
                 // Manejo del caso donde el token no está disponible
                 toast.error('Token no encontrado. Inicie sesión para continuar.');
                 return;
             }
-            console.log(token);
-            // Agregar el token al encabezado de la solicitud
+
             const config = {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             };
 
-            // Crear un objeto con los campos del formulario
             const productInfo = {
                 nombre: formData.nombre,
                 numero: formData.numero,
                 detalle: formData.detalle,
-                imagen_pequena : formData.imagen_pequena,
-                imagen_grande : formData.imagen_grande,
+                imagen_pequena: formData.imagen_pequena,
+                imagen_grande: formData.imagen_grande,
                 precio: formData.precio,
                 stock: formData.stock,
             };
 
-
-            const response = await axios.post('http://localhost:3000/nuevo_producto', productInfo, config);
+            const response = await axios.put(`http://localhost:3000/editar_productos/${id_producto}`, productInfo, config);
 
             if (response.data) {
-                toast.success('Producto agregado satisfactoriamente');
+                toast.success('Producto actualizado satisfactoriamente');
                 navigate('/publicaciones');
             } else {
                 toast.error('Error. Por favor, complete correctamente el formulario.');
@@ -70,9 +105,11 @@ const AgregarProducto = () => {
         background: 'white',
     };
 
+
+
     return (
         <div>
-            <h2 style={{ color: '#ebca6d' }}>AGREGAR PRODUCTO</h2>
+            <h2 style={{ color: '#ebca6d' }}>EDITAR PRODUCTO</h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Nombre:</label>
@@ -124,6 +161,7 @@ const AgregarProducto = () => {
                         />
                     </div>
                 </div>
+
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Imagen grande:</label>
                     <div className="col-sm-10">
@@ -196,13 +234,14 @@ const AgregarProducto = () => {
 
                 <div className="form-group row justify-content-end">
                     <div className="col-sm-10 text-right">
-                        <Button variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }} type="submit">Agregar Producto</Button>
+                        <Button variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }} type="submit">Actualizar Producto</Button>
                     </div>
                 </div>
             </form>
             <ToastContainer />
         </div>
     );
+
 };
 
-export default AgregarProducto;
+export default EditarProducto;

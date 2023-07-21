@@ -4,6 +4,7 @@ import axios from "axios";
 import Context from "../Context/Context";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../assets/css/Carrito.css";
 
 const Carrito = () => {
   const { carrito, setCarrito } = useContext(Context);
@@ -79,13 +80,11 @@ const Carrito = () => {
   return (
     <div>
       <ToastContainer position="top-right" />
-      
-      {carrito.length === 0 ? (
-        <h3 style={{ color: '#ebca6d', textTransform: 'uppercase' }} >El carrito está vacío</h3>
-      ) : (
+      {carrito.length === 0 ? (<h3 style={{ color: '#ebca6d', textTransform: 'uppercase' }} >El carrito está vacío</h3>): (
         <div>
           <h3 style={{ color: '#ebca6d', textTransform: 'uppercase' }}>Carrito de compras</h3>
-          <Table striped bordered hover>
+          <div className="card-body">
+          <Table striped bordered hover className="gradient-table">
             <thead>
               <tr>
                 <th>Imagen</th>
@@ -99,7 +98,7 @@ const Carrito = () => {
             </thead>
             <tbody>
               {carrito.map((producto) => (
-                <tr key={producto.id_producto}>
+                <tr key={producto.id_producto}  >
                   <td>
                     <img
                       src={`img/productos/${producto.imagen_pequena}`}
@@ -125,6 +124,7 @@ const Carrito = () => {
               ))}
             </tbody>
           </Table>
+          </div>
           <div><h4 style={{
             backgroundColor: "black",
             color: "#ebca6d",
@@ -143,12 +143,11 @@ const Carrito = () => {
         </div>
 
       )}
-      <div style={{
-              backgroundColor: "white",
-              fontSize: "12px",
-            }}>
+      <div>
         {/* Utilizamos el componente <pre> para preservar los saltos de línea */}
-        <pre dangerouslySetInnerHTML={{ __html: detalleFinal }}></pre>
+        {detalleFinal.length === 0 ? (<div></div>):( 
+        <p className="gradient-table " dangerouslySetInnerHTML={{ __html: detalleFinal }}></p>)
+        }
       </div>
     </div>
   );

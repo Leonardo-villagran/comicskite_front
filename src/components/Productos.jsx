@@ -6,6 +6,7 @@ import Context from "../Context/Context";
 import { useContext } from "react";
 import { toast, ToastContainer } from "react-toastify"; // Importar el toast
 import "react-toastify/dist/ReactToastify.css"; // Estilos del toast
+import '../assets/css/Producto.css'
 
 //Importación de imágenes utilizadas para la generación de botón like.
 import blanco from "../assets/img/iconos/corazon_blanco.png";
@@ -131,7 +132,7 @@ const Productos = () => {
             }
         }
     };
-  
+
     return (
         <div>
             <ToastContainer position="top-right" /> {/* Componente necesario para mostrar los toasts */}
@@ -143,7 +144,7 @@ const Productos = () => {
                             className="col-12 col-sm-6 col-md-4 col-lg-3 mt-3"
                         >
                             <Card
-                                className="container-fluid h-100"
+                                className="super_card container-fluid h-100"
                                 style={{
                                     backgroundColor: "#295b6fff",
                                     color: "#ebca6d",
