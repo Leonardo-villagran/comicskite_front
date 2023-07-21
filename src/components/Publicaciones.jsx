@@ -64,6 +64,7 @@ const Productos = () => {
                                 <Card.Body>
                                     <Card.Title>{producto.nombre}</Card.Title>
                                     <Card.Text>Número: {producto.numero}</Card.Text>
+                                    <Card.Text>Stock: {producto.stock}</Card.Text>
                                     <Card.Text>Precio: ${producto.precio}</Card.Text>
                                     <div className="w-100 justify-content-between">
                                         <Link to={"/detalles/" + producto.id_producto}>
