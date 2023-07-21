@@ -57,7 +57,7 @@ const Productos = () => {
                                 <div className="container">
                                     <Card.Img
                                         variant="top"
-                                        src={`img/productos/${producto.imagen_grande}`}
+                                        src={producto.imagen_grande}
                                         style={{ maxHeight: "371px", maxWidth: "246px" }}
                                     />
                                 </div>

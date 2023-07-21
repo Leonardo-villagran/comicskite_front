@@ -101,7 +101,7 @@ const Carrito = () => {
                 <tr key={producto.id_producto}  >
                   <td>
                     <img
-                      src={`img/productos/${producto.imagen_pequena}`}
+                      src={producto.imagen_pequena}
                       alt={producto.nombre}
                       style={{ maxHeight: "50px", maxWidth: "50px" }}
                     />

@@ -4,10 +4,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { uploadFileSmall, uploadFileLarge } from '../assets/js/firebase';
 
 const AgregarProducto = () => {
     const navigate = useNavigate();
-
+    const [smallImage, setSmallImage] = useState(null);
+    const [largeImage, setLargeImage] = useState(null);
     const [formData, setFormData] = useState({
         nombre: '',
         numero: '',
@@ -40,14 +42,18 @@ const AgregarProducto = () => {
                     Authorization: `Bearer ${token}`
                 }
             };
-
+            
+            const resultSmall= await uploadFileSmall(smallImage);
+            console.log("Imagen pequeña: ",resultSmall);
+            const resultLarge= await uploadFileLarge(largeImage);
+            console.log("Imagen grande: ", resultLarge);
             // Crear un objeto con los campos del formulario
             const productInfo = {
                 nombre: formData.nombre,
                 numero: formData.numero,
                 detalle: formData.detalle,
-                imagen_pequena : formData.imagen_pequena,
-                imagen_grande : formData.imagen_grande,
+                imagen_pequena: resultSmall,
+                imagen_grande: resultLarge,
                 precio: formData.precio,
                 stock: formData.stock,
             };
@@ -69,6 +75,17 @@ const AgregarProducto = () => {
     const textFieldStyle = {
         background: 'white',
     };
+
+    const handleSmallImageChange = (e) => {
+        const file = e.target.files[0];
+        setSmallImage(file);
+    };
+
+    const handleLargeImageChange = (e) => {
+        const file = e.target.files[0];
+        setLargeImage(file);
+    };
+
 
     return (
         <div>
@@ -95,7 +112,7 @@ const AgregarProducto = () => {
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Número:</label>
                     <div className="col-sm-10">
                         <TextField
-                            type="text"
+                            type="number"
                             name="numero"
                             value={formData.numero}
                             onChange={handleChange}
@@ -111,33 +128,13 @@ const AgregarProducto = () => {
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Imagen pequeña:</label>
                     <div className="col-sm-10">
-                        <TextField
-                            type="text"
-                            name="imagen_pequena"
-                            value={formData.imagen_pequena}
-                            onChange={handleChange}
-                            variant="outlined"
-                            fullWidth
-                            InputProps={{
-                                style: textFieldStyle,
-                            }}
-                        />
+                        <input type="file" name="imagen_pequena" onChange={handleSmallImageChange} />
                     </div>
                 </div>
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Imagen grande:</label>
                     <div className="col-sm-10">
-                        <TextField
-                            type="text"
-                            name="imagen_grande"
-                            value={formData.imagen_grande}
-                            onChange={handleChange}
-                            variant="outlined"
-                            fullWidth
-                            InputProps={{
-                                style: textFieldStyle,
-                            }}
-                        />
+                        <input type="file" name="imagen_grande" onChange={handleLargeImageChange} />
                     </div>
                 </div>
 
