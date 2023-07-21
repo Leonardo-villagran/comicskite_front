@@ -8,8 +8,6 @@ import "../assets/css/Detalles.css";
 import { toast, ToastContainer } from "react-toastify"; // Importar el toast
 import "react-toastify/dist/ReactToastify.css"; // Estilos del toast
 
-const ruta = "http://localhost:5173/public/";
-
 //Importación de imágenes utilizadas para la generación de botón like.
 import blanco from "../assets/img/iconos/corazon_blanco.png";
 import rojo from "../assets/img/iconos/corazon_rojo.png";
@@ -142,7 +140,7 @@ const Detalles = () => {
                 <Card.Img
                   className="cardImg"
                   variant="top"
-                  src={ruta + "img/productos/" + producto.imagen_grande}
+                  src={producto.imagen_grande}
                   alt={producto.nombre}
                 />
               </div>
