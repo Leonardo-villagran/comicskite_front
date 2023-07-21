@@ -13,6 +13,7 @@ const CarritoView = () => {
                             backgroundColor: "#295b6fff",
                             padding: "1rem",
                             border: "1px solid white",
+
                         }}
                     >
                         <Carrito />
