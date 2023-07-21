@@ -38,11 +38,11 @@ const Perfil = () => {
             <table className="container">
               <tbody>
                 <tr className="tr-table">
-                  <th>Nombre: </th>
+                  <th>Nombre:</th>
                   <th>{userData?.nombre} {userData?.apellido}</th>
                 </tr>
                 <tr className="tr-table">
-                  <td>E-mail: </td>
+                  <td>E-mail:</td>
                   <td>{userData.email}</td>
                 </tr>
                 <tr className="tr-table">
@@ -50,7 +50,7 @@ const Perfil = () => {
                   <td>{userData.direccion}</td>
                 </tr>
                 <tr className="tr-table">
-                  <td>Telefono</td>
+                  <td>Telefono:</td>
                   <td>{userData.telefono}</td>
                 </tr>
               </tbody>
