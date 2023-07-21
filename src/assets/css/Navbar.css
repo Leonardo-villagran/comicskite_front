@@ -2,7 +2,7 @@
   background-color: black;
 }
 
-.active .custom-button{
+.isactive .custom-button{
   background-color: #295b6fff;
 }
 

@@ -12,7 +12,7 @@ export default function NavbarButtons() {
     setShowMenu((prevState) => !prevState);
   };
 
-  const setActiveClass = ({ isActive }) => (isActive ? "active" : "inactive");
+  const setActiveClass = ({ isActive }) => (isActive ? "isactive" : "inactive");
 
   return (
     <header>
