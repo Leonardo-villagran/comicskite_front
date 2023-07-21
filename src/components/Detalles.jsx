@@ -131,7 +131,7 @@ const Detalles = () => {
         <div className="row">
           <div key={producto.id_producto} className="col-12">
             <Card
-              className="cardDetail"
+              className="cardDetail super_cardDetail"
               style={{
                 backgroundColor: "#295b6fff",
                 color: "#ebca6d",
