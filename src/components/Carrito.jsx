@@ -79,11 +79,12 @@ const Carrito = () => {
   return (
     <div>
       <ToastContainer position="top-right" />
-      <h3 style={{ color: '#ebca6d', textTransform: 'uppercase' }}>Carrito de compras</h3>
+      
       {carrito.length === 0 ? (
-        <p>El carrito está vacío.</p>
+        <h3 style={{ color: '#ebca6d', textTransform: 'uppercase' }} >El carrito está vacío</h3>
       ) : (
         <div>
+          <h3 style={{ color: '#ebca6d', textTransform: 'uppercase' }}>Carrito de compras</h3>
           <Table striped bordered hover>
             <thead>
               <tr>

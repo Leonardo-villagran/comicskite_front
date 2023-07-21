@@ -46,11 +46,11 @@ const Perfil = () => {
                   <td>{userData.email}</td>
                 </tr>
                 <tr className="tr-table">
-                  <td>Direccion:</td>
+                  <td>Dirección:</td>
                   <td>{userData.direccion}</td>
                 </tr>
                 <tr className="tr-table">
-                  <td>Telefono:</td>
+                  <td>Teléfono:</td>
                   <td>{userData.telefono}</td>
                 </tr>
               </tbody>
