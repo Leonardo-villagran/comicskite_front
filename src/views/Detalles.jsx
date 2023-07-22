@@ -9,7 +9,7 @@ const DetallesView = () => {
       <div className="caja-primera">
                 <div className="caja-segunda">
                     <div className="caja-tercera">
-            <Detalles/>
+            <Detalles mensajeDeCarga={"Cargando detalles..."} />
           </div>
         </div>
       </div>

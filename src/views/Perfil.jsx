@@ -10,7 +10,7 @@ const PerfilView = () => {
             <div className="caja-primera">
                 <div className="caja-segunda">
                     <div className="caja-tercera">
-                        <Perfil/>
+                        <Perfil mensajeDeCarga={"Cargando perfil..."}/>
                     </div>
                 </div>
             </div>

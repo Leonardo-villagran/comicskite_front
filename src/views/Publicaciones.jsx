@@ -9,7 +9,7 @@ const ProductosView = () => {
             <div className="caja-primera">
                 <div className="caja-segunda">
                     <div className="caja-tercera">
-                        <Publicaciones />
+                        <Publicaciones mensajeDeCarga={"Cargando publicaciones..."} />
                     </div>
                 </div>
             </div>

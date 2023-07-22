@@ -9,7 +9,7 @@ const FavoritosView = () => {
             <div className="caja-primera">
                 <div className="caja-segunda">
                     <div className="caja-tercera">
-                        <Favoritos />
+                        <Favoritos mensajeDeCarga={"Cargando favoritos..."} />
                     </div>
                 </div>
             </div>

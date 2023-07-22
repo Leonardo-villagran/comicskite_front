@@ -16,7 +16,8 @@ import rojo from "../assets/img/iconos/corazon_rojo.png";
 
 const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
-const Productos = () => {
+// eslint-disable-next-line react/prop-types
+const Productos = ({mensajeDeCarga}) => {
     // const token = localStorage.getItem("token");
     // const payload = decodeTokenPayload(token);
     const { carrito, setCarrito, productos, setProductos } = useContext(Context);
@@ -152,7 +153,7 @@ const Productos = () => {
         <div>
         {/* Mostrar "Cargando..." mientras los datos se están cargando */}
         {loading ? (
-            <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>Cargando productos...</p>
+            <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>{mensajeDeCarga}</p>
         ) : (
             // Renderizar los datos si la carga ha finalizado
             <>

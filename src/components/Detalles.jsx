@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
@@ -16,7 +16,8 @@ import rojo from "../assets/img/iconos/corazon_rojo.png";
 const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 
-const Detalles = () => {
+// eslint-disable-next-line react/prop-types
+const Detalles = ({mensajeDeCarga}) => {
   // const token = localStorage.getItem("token");
   // const payload = decodeTokenPayload(token);
   
@@ -25,6 +26,9 @@ const Detalles = () => {
   const { producto, setProducto } = useContext(Context);
   const { carrito, setCarrito } = useContext(Context);
   //console.log("id_producto: ", id_producto)
+  const [loading, setLoading] = useState(true);
+
+  
 
   useEffect(() => {
     // Función para obtener el token de JWT almacenado en el navegador
@@ -39,9 +43,11 @@ const Detalles = () => {
       .then((response) => {
         // Actualizar el estado con la lista de productos obtenida del backend
         setProducto(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error al obtener la lista de productos:", error);
+        setLoading(false);
       });
   }, [setProducto, id_producto]);
 
@@ -128,6 +134,12 @@ const Detalles = () => {
 
   return (
     <div>
+       {/* Mostrar "Cargando..." mientras los datos se están cargando */}
+       {loading ? (
+            <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>{mensajeDeCarga}</p>
+        ) : (
+            // Renderizar los datos si la carga ha finalizado
+            <>
       <ToastContainer position="top-right" /> {/* Componente necesario para mostrar los toasts */}
       <div className="container mt-4">
         <div className="row">
@@ -192,6 +204,7 @@ const Detalles = () => {
           </div>
         </div>
       </div>
+      </>)}
     </div>
   );
 };

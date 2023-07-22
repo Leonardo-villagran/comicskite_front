@@ -8,7 +8,7 @@ export default function Registrar() {
       <div className="caja-primera">
                 <div className="caja-segunda">
                     <div className="caja-tercera">
-            <RegistrarComp/>
+            <RegistrarComp mensaje={"REGISTRO DE USUARIO"}/>
           </div>
         </div>
       </div>

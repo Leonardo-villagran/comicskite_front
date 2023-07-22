@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
-const OrdenesCompra = () => {
+// eslint-disable-next-line react/prop-types
+const OrdenesCompra = ({mensajeDeCarga}) => {
   const [ordenesCompra, setOrdenesCompra] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -44,7 +45,7 @@ const OrdenesCompra = () => {
   return (
     <div className="container">
       {isLoading ? (
-        <p style={{ color: '#ebca6d' , textTransform: "uppercase"}}>Cargando órdenes de compra...</p>
+        <p style={{ color: '#ebca6d' , textTransform: "uppercase"}}>{mensajeDeCarga}</p>
       ) : (
         <div>
           <div className="row">

@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
-const RegistroUsuario = () => {
+// eslint-disable-next-line react/prop-types
+const RegistroUsuario = ({mensaje}) => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -49,7 +50,7 @@ const RegistroUsuario = () => {
 
     return (
         <div>
-            <h2 style={{ color: '#ebca6d' }}>REGISTRO DE USUARIO</h2>
+            <h2 style={{ color: '#ebca6d' }}>{mensaje}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Nombre:</label>

@@ -9,7 +9,7 @@ const ProductosView = () => {
       <div className="caja-primera">
         <div className="caja-segunda">
           <div className="caja-tercera">
-            <Productos />
+          <Productos mensajeDeCarga={"Cargando productos..."} />
           </div>
         </div>
       </div>

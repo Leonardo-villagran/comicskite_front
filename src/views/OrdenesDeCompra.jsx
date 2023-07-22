@@ -10,7 +10,7 @@ const OrdenDeCompraView = () => {
             <div className="caja-primera">
                 <div className="caja-segunda">
                     <div className="caja-tercera">
-                        <OrdenDeCompra/>
+                        <OrdenDeCompra mensajeDeCarga={"Cargando órdenes de compra..."}/>
                     </div>
                 </div>
             </div>
