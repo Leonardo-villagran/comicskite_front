@@ -44,7 +44,7 @@ const OrdenesCompra = () => {
   return (
     <div className="container">
       {isLoading ? (
-        <p style={{ color: '#ebca6d' }}>Cargando órdenes de compra...</p>
+        <p style={{ color: '#ebca6d' , textTransform: "uppercase"}}>Cargando órdenes de compra...</p>
       ) : (
         <div>
           <div className="row">

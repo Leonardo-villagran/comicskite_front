@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -14,19 +14,21 @@ import rojo from "../assets/img/iconos/corazon_rojo.png";
 
 // import decodeTokenPayload from '../services/services'
 
-const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
+const base_url = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 const Productos = () => {
     // const token = localStorage.getItem("token");
     // const payload = decodeTokenPayload(token);
-    const { carrito, setCarrito,productos, setProductos } = useContext(Context);
+    const { carrito, setCarrito, productos, setProductos } = useContext(Context);
+    // Agregar estado para controlar si los datos han sido cargados
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getTokenFromLocalStorage = localStorage.getItem("token");
         // Función para obtener el token de JWT almacenado en el navegador
         // Realizar la solicitud GET al backend con Axios
         axios
-            .get(base_url+"/productos", {
+            .get(base_url + "/productos", {
                 headers: {
                     Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
                 },
@@ -34,9 +36,13 @@ const Productos = () => {
             .then((response) => {
                 // Actualizar el estado con la lista de productos obtenida del backend
                 setProductos(response.data);
+                // Marcar que la carga ha finalizado
+                setLoading(false);
             })
             .catch((error) => {
                 console.error("Error al obtener la lista de productos:", error);
+                // Marcar que la carga ha finalizado
+                setLoading(false);
             });
     }, [setProductos]);
 
@@ -138,81 +144,83 @@ const Productos = () => {
     console.log("La ruta utilizada para el backend es: ", base_url);
     return (
         <div>
-            {productos ? (
-            <>
-            <ToastContainer position="top-right" /> {/* Componente necesario para mostrar los toasts */}
-            <div className="container">
-                <div className="row">
-                    {productos.map((producto) => (
-                        <div
-                            key={producto.id_producto}
-                            className="col-12 col-sm-6 col-md-4 col-lg-3 mt-3"
-                        >
-                            <Card
-                                className="super_card container-fluid h-100"
-                                style={{
-                                    backgroundColor: "#295b6fff",
-                                    color: "#ebca6d",
-                                    border: "1px solid white"
-                                }}
-                            >
-                                <div className="container">
-                                    <Card.Img
-                                        variant="top"
-                                        src={producto.imagen_grande}
-                                        style={{ maxHeight: "371px", maxWidth: "246px" }}
-                                    />
+            {/* Mostrar "Cargando..." mientras los datos se están cargando */}
+            {loading ? (
+                <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>Cargando productos...</p>
+            ) : (
+                // Renderizar los datos si la carga ha finalizado
+                <>
+                    <ToastContainer position="top-right" /> {/* Componente necesario para mostrar los toasts */}
+                    <div className="container">
+                        <div className="row">
+                            {productos.map((producto) => (
+                                <div
+                                    key={producto.id_producto}
+                                    className="col-12 col-sm-6 col-md-4 col-lg-3 mt-3"
+                                >
+                                    <Card
+                                        className="super_card container-fluid h-100"
+                                        style={{
+                                            backgroundColor: "#295b6fff",
+                                            color: "#ebca6d",
+                                            border: "1px solid white"
+                                        }}
+                                    >
+                                        <div className="container">
+                                            <Card.Img
+                                                variant="top"
+                                                src={producto.imagen_grande}
+                                                style={{ maxHeight: "371px", maxWidth: "246px" }}
+                                            />
+                                        </div>
+                                        <Card.Body>
+                                            <div className="heart px-3">
+                                                <img
+                                                    onClick={() => presionarboton(producto.id_producto)}
+                                                    src={producto.likes === false ? blanco : rojo}
+                                                    alt="foto"
+                                                />
+                                            </div>
+                                            <Card.Title>{producto.nombre}</Card.Title>
+                                            <Card.Text>Número: {producto.numero}</Card.Text>
+                                            <Card.Text>Stock: {producto.stock}</Card.Text>
+                                            <Card.Text>Precio: ${producto.precio}</Card.Text>
+                                            <div className="w-100 justify-content-between">
+                                                <Link to={"/detalles/" + producto.id_producto}>
+                                                    <Button
+                                                        variant="primary"
+                                                        className="m-1 mr-2 text-uppercase"
+                                                        style={{
+                                                            backgroundColor: "black",
+                                                            borderColor: "#ebca6d",
+                                                            color: "#ebca6d",
+                                                            fontSize: "12px",
+                                                        }}
+                                                    >
+                                                        Detalles
+                                                    </Button>
+                                                </Link>
+                                                <Button
+                                                    variant="primary"
+                                                    className="mr-2 text-uppercase"
+                                                    style={{
+                                                        backgroundColor: "black",
+                                                        borderColor: "#ebca6d",
+                                                        color: "#ebca6d",
+                                                        fontSize: "12px",
+                                                    }}
+                                                    onClick={() => agregarAlCarrito(producto.id_producto)}
+                                                >
+                                                    Agregar al carro
+                                                </Button>
+                                            </div>
+                                        </Card.Body>
+                                    </Card>
                                 </div>
-                                <Card.Body>
-                                    <div className="heart px-3">
-                                        <img
-                                            onClick={() => presionarboton(producto.id_producto)}
-                                            src={producto.likes === false ? blanco : rojo}
-                                            alt="foto"
-                                        />
-                                    </div>
-                                    <Card.Title>{producto.nombre}</Card.Title>
-                                    <Card.Text>Número: {producto.numero}</Card.Text>
-                                    <Card.Text>Stock: {producto.stock}</Card.Text>
-                                    <Card.Text>Precio: ${producto.precio}</Card.Text>
-                                    <div className="w-100 justify-content-between">
-                                        <Link to={"/detalles/" + producto.id_producto}>
-                                            <Button
-                                                variant="primary"
-                                                className="m-1 mr-2 text-uppercase"
-                                                style={{
-                                                    backgroundColor: "black",
-                                                    borderColor: "#ebca6d",
-                                                    color: "#ebca6d",
-                                                    fontSize: "12px",
-                                                }}
-                                            >
-                                                Detalles
-                                            </Button>
-                                        </Link>
-                                        <Button
-                                            variant="primary"
-                                            className="mr-2 text-uppercase"
-                                            style={{
-                                                backgroundColor: "black",
-                                                borderColor: "#ebca6d",
-                                                color: "#ebca6d",
-                                                fontSize: "12px",
-                                            }}
-                                            onClick={() => agregarAlCarrito(producto.id_producto)}
-                                        >
-                                            Agregar al carro
-                                        </Button>
-                                    </div>
-                                </Card.Body>
-                            </Card>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            </div>  
-            </>) : (
-        <p style={{ color: '#ebca6d', textTransform: 'uppercase' }} >Cargando...</p>
-      )}
+                    </div>
+                </>)}
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import { useContext , useState} from "react";
+import { useContext, useState } from "react";
 import { Table, Button } from "react-bootstrap";
 import axios from "axios";
 import Context from "../Context/Context";
@@ -6,7 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../assets/css/Carrito.css";
 
-const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
+const base_url = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 const Carrito = () => {
 
@@ -58,7 +58,7 @@ const Carrito = () => {
       cantidad: producto.cantidad,
     }));
 
-    axios.post(base_url+"/carrito",
+    axios.post(base_url + "/carrito",
       { detalle_productos: productosEnCarrito },
       {
         headers: {
@@ -70,7 +70,7 @@ const Carrito = () => {
         setCarrito([]);
         console.log(response.data);
         toast.success("Carrito procesado con éxito.");
-         // Concatenamos los saltos de línea con "<br />" para mostrarlos correctamente en el navegador
+        // Concatenamos los saltos de línea con "<br />" para mostrarlos correctamente en el navegador
         const detalleFinalConSaltosDeLinea = response.data.detalle_final.replace(/\n/g, "<br />");
         setDetalleFinal(detalleFinalConSaltosDeLinea);
         setIsProcessing(false);
@@ -81,81 +81,83 @@ const Carrito = () => {
         toast.error("Error al procesar el carrito.");
       });
   };
-
   return (
     <div>
-      <ToastContainer position="top-right" />
-      {carrito.length === 0 ? (<h3 style={{ color: '#ebca6d', textTransform: 'uppercase' }} >El carrito está vacío</h3>): (
-        <div>
-          <h3 style={{ color: '#ebca6d', textTransform: 'uppercase' }}>Carrito de compras</h3>
-          <div className="card-body">
-          <Table striped bordered hover className="gradient-table">
-            <thead>
-              <tr>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Número</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {carrito.map((producto) => (
-                <tr key={producto.id_producto}  >
-                  <td>
-                    <img
-                      src={producto.imagen_pequena}
-                      alt={producto.nombre}
-                      style={{ maxHeight: "50px", maxWidth: "50px" }}
-                    />
-                  </td>
-                  <td>{producto.nombre}</td>
-                  <td>{producto.numero}</td>
-                  <td>{producto.precio}</td>
-                  <td>
-                    <Button variant="outline-primary" onClick={() => disminuirCantidad(producto.id_producto)}>-</Button>{" "}
-                    {producto.cantidad}{" "}
-                    <Button variant="outline-primary" onClick={() => aumentarCantidad(producto.id_producto)}>+</Button>
-                  </td>
-                  <td>{getTotalPorProducto(producto)}</td>
-                  <td>
-                    <Button variant="danger" onClick={() => eliminarDelCarrito(producto.id_producto)}>
-                      Eliminar del carro
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-          </div>
-          <div><h4 style={{
-            backgroundColor: "black",
-            color: "#ebca6d",
-            fontSize: "24px",
-          }}>Total general: ${getTotalGeneral()}</h4></div>
-          <Button variant="primary"
-            className="mr-2 text-uppercase"
-            style={{
-              backgroundColor: "black",
-              borderColor: "#ebca6d",
-              color: "#ebca6d",
-              fontSize: "12px",
-            }} onClick={procesarCarrito}
-            disabled={isProcessing} // Deshabilitar el botón mientras se está procesando
-            >
-            Procesar carrito
-          </Button>
-        </div>
+      {/* Mostrar "Cargando..." mientras los datos se están cargando */}
+          <ToastContainer position="top-right" /><>
+          {carrito.length===0 && !detalleFinal ? <div><p style={{ color: '#ebca6d', textTransform: 'uppercase' }} >El carrito está vacío</p></div>: <div></div>}</>
 
-      )}
-      <div>
-        {/* Utilizamos el componente <pre> para preservar los saltos de línea */}
-        {detalleFinal.length === 0 ? (<div></div>):( 
-        <p className="gradient-table " dangerouslySetInnerHTML={{ __html: detalleFinal }}></p>)
-        }
-      </div>
+          {carrito.length === 0  ? (<div></div>) : (
+            <div>
+              <div className="card-body">
+                <Table striped bordered hover className="gradient-table">
+                  <thead>
+                    <tr>
+                      <th>Imagen</th>
+                      <th>Nombre</th>
+                      <th>Número</th>
+                      <th>Precio</th>
+                      <th>Cantidad</th>
+                      <th>Total</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {carrito.map((producto) => (
+                      <tr key={producto.id_producto}  >
+                        <td>
+                          <img
+                            src={producto.imagen_pequena}
+                            alt={producto.nombre}
+                            style={{ maxHeight: "50px", maxWidth: "50px" }}
+                          />
+                        </td>
+                        <td>{producto.nombre}</td>
+                        <td>{producto.numero}</td>
+                        <td>{producto.precio}</td>
+                        <td>
+                          <Button variant="outline-primary" onClick={() => disminuirCantidad(producto.id_producto)}>-</Button>{" "}
+                          {producto.cantidad}{" "}
+                          <Button variant="outline-primary" onClick={() => aumentarCantidad(producto.id_producto)}>+</Button>
+                        </td>
+                        <td>{getTotalPorProducto(producto)}</td>
+                        <td>
+                          <Button variant="danger" onClick={() => eliminarDelCarrito(producto.id_producto)}>
+                            Eliminar del carro
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </div>
+              <div><h4 style={{
+                backgroundColor: "black",
+                color: "#ebca6d",
+                fontSize: "24px",
+              }}>Total general: ${getTotalGeneral()}</h4></div>
+              <Button variant="primary"
+                className="mr-2 text-uppercase"
+                style={{
+                  backgroundColor: "black",
+                  borderColor: "#ebca6d",
+                  color: "#ebca6d",
+                  fontSize: "12px",
+                }} onClick={procesarCarrito}
+                disabled={isProcessing} // Deshabilitar el botón mientras se está procesando
+              >
+                Procesar carrito
+              </Button>
+            </div>
+
+          )}
+          <div>
+            {/* Utilizamos el componente <pre> para preservar los saltos de línea */}
+            {detalleFinal.length === 0 ? (<div></div>) : (
+              <p className="gradient-table " dangerouslySetInnerHTML={{ __html: detalleFinal }}></p>)
+            }
+          </div>
+        
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -20,6 +20,7 @@ const Productos = () => {
     // const token = localStorage.getItem("token");
     // const payload = decodeTokenPayload(token);
     const { carrito, setCarrito, productos, setProductos } = useContext(Context);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getTokenFromLocalStorage = localStorage.getItem("token");
@@ -34,9 +35,11 @@ const Productos = () => {
             .then((response) => {
                 // Actualizar el estado con la lista de productos obtenida del backend
                 setProductos(response.data);
+                setLoading(false);
             })
             .catch((error) => {
                 console.error("Error al obtener la lista de productos:", error);
+                setLoading(false);
             });
     }, [setProductos]);
 
@@ -147,9 +150,14 @@ const Productos = () => {
 
     return (
         <div>
+        {/* Mostrar "Cargando..." mientras los datos se están cargando */}
+        {loading ? (
+            <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>Cargando productos...</p>
+        ) : (
+            // Renderizar los datos si la carga ha finalizado
+            <>
             <ToastContainer position="top-right" />
-            {productos.length===0 ? <h3 style={{ color: '#ebca6d' , textTransform: 'uppercase'}}>No hay favoritos</h3>:<div></div>}
-            {productos ? (
+            {productos.length===0 ? <p style={{ color: '#ebca6d' , textTransform: 'uppercase'}}>No hay favoritos</p>:<div></div>}
                 <div className="container">
                     <div className="row">
                         {productos.map((producto) => (
@@ -219,9 +227,7 @@ const Productos = () => {
                         ))}
                     </div>
                 </div>
-            ) : (
-                <p>Cargando...</p>
-            )}
+                </>)}
         </div>
     );
 };
