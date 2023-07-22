@@ -6,6 +6,8 @@ import { Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { uploadFileSmall, uploadFileLarge } from '../assets/js/firebase';
 
+const base_url= import.meta.env.VITE_BASE_URL;
+
 const AgregarProducto = () => {
     const navigate = useNavigate();
     const [smallImage, setSmallImage] = useState(null);
@@ -59,7 +61,7 @@ const AgregarProducto = () => {
             };
 
 
-            const response = await axios.post('http://localhost:3000/nuevo_producto', productInfo, config);
+            const response = await axios.post(base_url+'/nuevo_producto', productInfo, config);
 
             if (response.data) {
                 toast.success('Producto agregado satisfactoriamente');

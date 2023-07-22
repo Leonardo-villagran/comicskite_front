@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import "../assets/css/Navbar.css";
 
+
 export default function NavbarButtons() {
   const [showMenu, setShowMenu] = useState(false);
 

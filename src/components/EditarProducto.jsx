@@ -6,6 +6,8 @@ import { Button, TextField } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { uploadFileSmall, uploadFileLarge } from '../assets/js/firebase';
 
+const base_url= import.meta.env.VITE_BASE_URL;
+
 const EditarProducto = () => {
     const navigate = useNavigate();
     const { id_producto } = useParams();
@@ -40,7 +42,7 @@ const EditarProducto = () => {
                     }
                 };
 
-                const response = await axios.get(`http://localhost:3000/producto/${id_producto}`, config);
+                const response = await axios.get(`${base_url}/producto/${id_producto}`, config);
                 const productData = response.data;
 
                 
@@ -119,7 +121,7 @@ const EditarProducto = () => {
                 stock: formData.stock,
             };
 
-            const response = await axios.put(`http://localhost:3000/editar_producto/${id_producto}`, productInfo, config);
+            const response = await axios.put(`${base_url}/editar_producto/${id_producto}`, productInfo, config);
 
             if (response.data) {
                 toast.success('Producto actualizado satisfactoriamente');

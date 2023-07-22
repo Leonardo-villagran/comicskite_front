@@ -3,6 +3,8 @@ import axios from "axios";
 import { Card } from "react-bootstrap";
 import "../assets/css/Perfil.css";
 
+const base_url= import.meta.env.VITE_BASE_URL;
+
 const Perfil = () => {
   const [userData, setUserData] = useState(null);
 
@@ -10,7 +12,7 @@ const Perfil = () => {
     // Reemplaza 'TU_JWT_TOKEN' por el token JWT válido que tienes
     const getTokenFromLocalStorage = localStorage.getItem("token");
     axios
-      .get("http://localhost:3000/perfil", {
+      .get(base_url+"/perfil", {
         headers: {
           Authorization: `Bearer ${getTokenFromLocalStorage}`,
         },

@@ -13,6 +13,7 @@ import blanco from "../assets/img/iconos/corazon_blanco.png";
 import rojo from "../assets/img/iconos/corazon_rojo.png";
 
 // import decodeTokenPayload from '../services/services'
+const base_url= import.meta.env.VITE_BASE_URL;
 
 const Productos = () => {
     // const token = localStorage.getItem("token");
@@ -24,7 +25,7 @@ const Productos = () => {
         // Función para obtener el token de JWT almacenado en el navegador
         // Realizar la solicitud GET al backend con Axios
         axios
-            .get("http://localhost:3000/productos", {
+            .get(base_url+"/productos", {
                 headers: {
                     Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
                 },
@@ -51,7 +52,7 @@ const Productos = () => {
 
             // Realizar la solicitud GET al backend con Axios
             axios
-                .delete(`http://localhost:3000/dislikes/${id_producto}`, {
+                .delete(`${base_url}/dislikes/${id_producto}`, {
                     headers: {
                         Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
                     },
@@ -68,7 +69,7 @@ const Productos = () => {
 
             // Realizar la solicitud GET al backend con Axios
             axios
-                .post(`http://localhost:3000/likes/${id_producto}`, null, {
+                .post(`${base_url}/likes/${id_producto}`, null, {
                     headers: {
                         Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
                     },

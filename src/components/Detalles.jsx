@@ -13,9 +13,12 @@ import blanco from "../assets/img/iconos/corazon_blanco.png";
 import rojo from "../assets/img/iconos/corazon_rojo.png";
 // import decodeTokenPayload from '../services/services'
 
+const base_url= import.meta.env.VITE_BASE_URL;
+
 const Detalles = () => {
   // const token = localStorage.getItem("token");
   // const payload = decodeTokenPayload(token);
+  
 
   const { id_producto } = useParams();
   const { producto, setProducto } = useContext(Context);
@@ -27,7 +30,7 @@ const Detalles = () => {
     const getTokenFromLocalStorage = localStorage.getItem("token");
     // Realizar la solicitud GET al backend con Axios
     axios
-      .get(`http://localhost:3000/detalles/${id_producto}`, {
+      .get(`${base_url}/detalles/${id_producto}`, {
         headers: {
           Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
         },

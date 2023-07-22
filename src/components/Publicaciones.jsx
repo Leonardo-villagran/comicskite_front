@@ -7,6 +7,7 @@ import { useContext } from "react";
 import '../assets/css/Producto.css'
 
 // import decodeTokenPayload from '../services/services'
+const base_url= import.meta.env.VITE_BASE_URL;
 
 const Productos = () => {
     // const token = localStorage.getItem("token");
@@ -18,7 +19,7 @@ const Productos = () => {
         // Función para obtener el token de JWT almacenado en el navegador
         // Realizar la solicitud GET al backend con Axios
         axios
-            .get("http://localhost:3000/publicaciones", {
+            .get(base_url+"/publicaciones", {
                 headers: {
                     Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
                 },

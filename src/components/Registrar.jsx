@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
+const base_url= import.meta.env.VITE_BASE_URL;
+
 
 const RegistroUsuario = () => {
     const navigate = useNavigate();
@@ -27,7 +29,7 @@ const RegistroUsuario = () => {
         e.preventDefault();
         try {
             // Aquí va la URL del backend donde se procesará el formulario
-            const response = await axios.post('http://localhost:3000/registrar', formData);
+            const response = await axios.post(base_url+'/registrar', formData);
             // Si el registro fue exitoso, muestra el toast de éxito y redirecciona a la página de inicio de sesión
             if (response.data) {
                 toast.success('Usuario creado satisfactoriamente');

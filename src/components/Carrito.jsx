@@ -6,7 +6,10 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../assets/css/Carrito.css";
 
+const base_url= import.meta.env.VITE_BASE_URL;
+
 const Carrito = () => {
+
   const { carrito, setCarrito } = useContext(Context);
   const [detalleFinal, setDetalleFinal] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -55,7 +58,7 @@ const Carrito = () => {
       cantidad: producto.cantidad,
     }));
 
-    axios.post("http://localhost:3000/carrito",
+    axios.post(base_url+"/carrito",
       { detalle_productos: productosEnCarrito },
       {
         headers: {

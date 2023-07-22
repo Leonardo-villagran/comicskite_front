@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const base_url= import.meta.env.VITE_BASE_URL;
+
 const OrdenesCompra = () => {
   const [ordenesCompra, setOrdenesCompra] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +15,7 @@ const OrdenesCompra = () => {
         const token = localStorage.getItem('token');
 
         // Realizar la solicitud GET al backend para obtener las órdenes de compra
-        const response = await axios.get('http://localhost:3000/orden_compras', {
+        const response = await axios.get(base_url+'/orden_compras', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
