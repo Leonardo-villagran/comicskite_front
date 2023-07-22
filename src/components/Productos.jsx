@@ -188,27 +188,15 @@ const Productos = () => {
                                             <div className="w-100 justify-content-between">
                                                 <Link to={"/detalles/" + producto.id_producto}>
                                                     <Button
-                                                        variant="primary"
-                                                        className="m-1 mr-2 text-uppercase"
-                                                        style={{
-                                                            backgroundColor: "black",
-                                                            borderColor: "#ebca6d",
-                                                            color: "#ebca6d",
-                                                            fontSize: "12px",
-                                                        }}
+                                                        variant="dark"
+                                                        className="m-1 mr-2 boton-personalizado-card"
                                                     >
                                                         Detalles
                                                     </Button>
                                                 </Link>
                                                 <Button
-                                                    variant="primary"
-                                                    className="mr-2 text-uppercase"
-                                                    style={{
-                                                        backgroundColor: "black",
-                                                        borderColor: "#ebca6d",
-                                                        color: "#ebca6d",
-                                                        fontSize: "12px",
-                                                    }}
+                                                    variant="dark"
+                                                    className="m-1 mr-2 boton-personalizado-card"
                                                     onClick={() => agregarAlCarrito(producto.id_producto)}
                                                 >
                                                     Agregar al carro

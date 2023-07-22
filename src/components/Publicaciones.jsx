@@ -38,7 +38,7 @@ const Productos = () => {
 
 
         <div> <Link to="/nuevo_producto">
-            <Button className="text-uppercase" style={{ backgroundColor: 'black', borderColor: '#ebca6d', color: '#ebca6d', fontSize: '16px' }} >Agregar Comic</Button>
+            <Button variant="dark" className="boton-personalizado-titulo"  >Agregar Comic</Button>
         </Link>
             <div className="container">
                 <div className="row">
@@ -70,29 +70,15 @@ const Productos = () => {
                                     <div className="w-100 justify-content-between">
                                         <Link to={"/detalles/" + producto.id_producto}>
                                             <Button
-                                                variant="primary"
-                                                className="m-1 mr-2 text-uppercase"
-                                                style={{
-                                                    backgroundColor: "black",
-                                                    borderColor: "#ebca6d",
-                                                    color: "#ebca6d",
-                                                    fontSize: "12px",
-                                                }}
-                                            >
+                                                variant="dark"
+                                                className="m-1 mr-2 boton-personalizado-card">
                                                 Detalles
                                             </Button>
                                         </Link>
                                         <Link to={"/editar_producto/" + producto.id_producto}>
                                         <Button
-                                            variant="primary"
-                                            className="mr-2 text-uppercase"
-                                            style={{
-                                                backgroundColor: "black",
-                                                borderColor: "#ebca6d",
-                                                color: "#ebca6d",
-                                                fontSize: "12px",
-                                            }}
-                                        >
+                                            variant="dark"
+                                            className="m-1 mr-2 boton-personalizado-card">
                                             Editar contenido
                                         </Button>
                                         </Link>
