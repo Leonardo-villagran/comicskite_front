@@ -1,5 +1,5 @@
 import Navbar from 'react-bootstrap/Navbar';
-import fotos from "../assets/img/comicskite_01.png";
+import fotos from "../assets/img/comicskite_01.jpg";
 
 export default function NavbarTitle() {
     return (
