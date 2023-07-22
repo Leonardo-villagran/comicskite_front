@@ -6,16 +6,9 @@ const NuevoPRoductoView = () => {
     return (
         <div>
             <Navbar />
-
-            <div style={{ backgroundColor: "#295b6fff", padding: "1rem" }}>
-                <div style={{ backgroundColor: "black", padding: "1rem" }}>
-                    <div
-                        style={{
-                            backgroundColor: "#295b6fff",
-                            padding: "1rem",
-                            border: "1px solid white",
-                        }}
-                    >
+            <div className="caja-primera">
+                <div className="caja-segunda">
+                    <div className="caja-tercera">
                         <NuevoProducto />
                     </div>
                 </div>

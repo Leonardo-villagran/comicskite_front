@@ -33,10 +33,7 @@ const Productos = () => {
             });
     }, [setProductos]);
 
-
     return (
-
-
         <div> <Link to="/nuevo_producto">
             <Button variant="dark" className="boton-personalizado-titulo"  >Agregar Comic</Button>
         </Link>

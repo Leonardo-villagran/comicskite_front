@@ -48,7 +48,6 @@ function App() {
   console.log("Producto: ", producto);
   console.log("Carrito: ", carrito);
 
-
   return (
     <Router>
       <Context.Provider value={globalState}>

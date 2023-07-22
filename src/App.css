@@ -85,3 +85,25 @@ body {
   font-size: 12px;
   text-transform: uppercase;
 }
+
+/* fin estilo botones*/
+
+/* cajas de vistas*/
+
+.caja-primera{
+  background-color: #295b6fff;
+  padding: 1rem;
+}
+
+.caja-segunda {
+  background-color: black;
+  padding: 1rem;
+}
+
+.caja-tercera {
+  background-color: #295b6fff;
+  padding: 1rem;
+  border: 1px solid white;
+}
+
+/* Fin vista de cajas de vistas*/
