@@ -187,19 +187,15 @@ const Productos = () => {
                                             <Card.Text>Precio: ${producto.precio}</Card.Text>
                                             <div className="w-100 justify-content-between">
                                                 <Link to={"/detalles/" + producto.id_producto}>
-                                                    <Button
-                                                        variant="dark"
+                                                    <Button variant="dark"
                                                         className="m-1 mr-2 boton-personalizado-card"
-                                                    >
-                                                        Detalles
+                                                    >Detalles
                                                     </Button>
                                                 </Link>
-                                                <Button
-                                                    variant="dark"
+                                                <Button variant="dark"
                                                     className="m-1 mr-2 boton-personalizado-card"
                                                     onClick={() => agregarAlCarrito(producto.id_producto)}
-                                                >
-                                                    Agregar al carro
+                                                >Agregar al carro
                                                 </Button>
                                             </div>
                                         </Card.Body>

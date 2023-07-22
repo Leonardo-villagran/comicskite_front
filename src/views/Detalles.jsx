@@ -6,7 +6,6 @@ const DetallesView = () => {
   return (
     <div>
       <Navbar />
-
       <div className="caja-primera">
                 <div className="caja-segunda">
                     <div className="caja-tercera">
