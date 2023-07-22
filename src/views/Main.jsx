@@ -13,7 +13,7 @@ export default function Home() {
                         VENTA DE COMICS
                     </h2>
                     <div className="container">
-                        <img className="rounded-5 border border-white border-4" src={fotos} alt="Imagen" style={{ width: '80%', height: '80%'}} />
+                        <img className="rounded-5 border border-white border-4" src={fotos} alt="Imagen" style={{ width: '50%', height: '50%'}} />
 
                     </div>
                 </div>
