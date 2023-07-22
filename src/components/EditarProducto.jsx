@@ -1,13 +1,17 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
+import { uploadFileSmall, uploadFileLarge } from '../assets/js/firebase';
 
 const EditarProducto = () => {
     const navigate = useNavigate();
     const { id_producto } = useParams();
+
+    const [smallImage, setSmallImage] = useState(null);
+    const [largeImage, setLargeImage] = useState(null);
 
     const [formData, setFormData] = useState({
         nombre: '',
@@ -36,8 +40,10 @@ const EditarProducto = () => {
                     }
                 };
 
-                const response = await axios.get(`http://localhost:3000/productos/${id_producto}`, config);
+                const response = await axios.get(`http://localhost:3000/producto/${id_producto}`, config);
                 const productData = response.data;
+
+                
 
                 // Actualizar el estado con los datos del producto existente
                 setFormData({
@@ -78,17 +84,42 @@ const EditarProducto = () => {
                 }
             };
 
+            let resultSmall="";
+            let resultLarge="";
+
+                if (smallImage === null) {
+                    // El estado está null
+                    console.log('smallImage está null');
+                    resultSmall = formData.imagen_pequena
+                } else {
+                    // El estado no está null
+                    console.log('smallImage no está null');
+                    resultSmall = await uploadFileSmall(smallImage);   
+                }
+                console.log("Imagen pequeña: ", resultSmall);
+
+                if (largeImage === null) {
+                    // El estado está null
+                    console.log('largeImage está null');
+                    resultLarge = formData.imagen_grande;
+                } else {
+                    // El estado no está null
+                    console.log('largeImage no está null');
+                    resultLarge = await uploadFileLarge(largeImage);
+                }
+                console.log("Imagen grande: ", resultLarge);
+
             const productInfo = {
                 nombre: formData.nombre,
                 numero: formData.numero,
                 detalle: formData.detalle,
-                imagen_pequena: formData.imagen_pequena,
-                imagen_grande: formData.imagen_grande,
+                imagen_pequena: resultSmall,
+                imagen_grande: resultLarge,
                 precio: formData.precio,
                 stock: formData.stock,
             };
 
-            const response = await axios.put(`http://localhost:3000/editar_productos/${id_producto}`, productInfo, config);
+            const response = await axios.put(`http://localhost:3000/editar_producto/${id_producto}`, productInfo, config);
 
             if (response.data) {
                 toast.success('Producto actualizado satisfactoriamente');
@@ -105,6 +136,15 @@ const EditarProducto = () => {
         background: 'white',
     };
 
+    const handleSmallImageChange = (e) => {
+        const file = e.target.files[0];
+        setSmallImage(file);
+    };
+
+    const handleLargeImageChange = (e) => {
+        const file = e.target.files[0];
+        setLargeImage(file);
+    };
 
 
     return (
@@ -148,36 +188,16 @@ const EditarProducto = () => {
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Imagen pequeña:</label>
                     <div className="col-sm-10">
-                        <TextField
-                            type="text"
-                            name="imagen_pequena"
-                            value={formData.imagen_pequena}
-                            onChange={handleChange}
-                            variant="outlined"
-                            fullWidth
-                            InputProps={{
-                                style: textFieldStyle,
-                            }}
-                        />
+                        <input type="file" name="imagen_pequena" onChange={handleSmallImageChange} />
                     </div>
                 </div>
-
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Imagen grande:</label>
                     <div className="col-sm-10">
-                        <TextField
-                            type="text"
-                            name="imagen_grande"
-                            value={formData.imagen_grande}
-                            onChange={handleChange}
-                            variant="outlined"
-                            fullWidth
-                            InputProps={{
-                                style: textFieldStyle,
-                            }}
-                        />
+                        <input type="file" name="imagen_grande" onChange={handleLargeImageChange} />
                     </div>
                 </div>
+
 
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Detalle:</label>

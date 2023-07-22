@@ -9,6 +9,7 @@ import "../assets/css/Carrito.css";
 const Carrito = () => {
   const { carrito, setCarrito } = useContext(Context);
   const [detalleFinal, setDetalleFinal] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const eliminarDelCarrito = (id_producto) => {
     const nuevosProductos = carrito.filter((producto) => producto.id_producto !== id_producto);
@@ -46,6 +47,7 @@ const Carrito = () => {
 
 
   const procesarCarrito = () => {
+    setIsProcessing(true); // Bloquear el botón al inicio de la solicitud
     // Aquí realizamos la solicitud POST al backend para procesar el carrito
     const getTokenFromLocalStorage = localStorage.getItem("token");
     const productosEnCarrito = carrito.map((producto) => ({
@@ -68,7 +70,7 @@ const Carrito = () => {
          // Concatenamos los saltos de línea con "<br />" para mostrarlos correctamente en el navegador
         const detalleFinalConSaltosDeLinea = response.data.detalle_final.replace(/\n/g, "<br />");
         setDetalleFinal(detalleFinalConSaltosDeLinea);
-
+        setIsProcessing(false);
 
       })
       .catch((error) => {
@@ -137,7 +139,9 @@ const Carrito = () => {
               borderColor: "#ebca6d",
               color: "#ebca6d",
               fontSize: "12px",
-            }} onClick={procesarCarrito}>
+            }} onClick={procesarCarrito}
+            disabled={isProcessing} // Deshabilitar el botón mientras se está procesando
+            >
             Procesar carrito
           </Button>
         </div>

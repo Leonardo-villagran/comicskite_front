@@ -18,7 +18,7 @@ const Productos = () => {
     // const token = localStorage.getItem("token");
     // const payload = decodeTokenPayload(token);
     const { carrito, setCarrito,productos, setProductos } = useContext(Context);
-   
+
     useEffect(() => {
         const getTokenFromLocalStorage = localStorage.getItem("token");
         // Función para obtener el token de JWT almacenado en el navegador
@@ -135,6 +135,8 @@ const Productos = () => {
 
     return (
         <div>
+            {productos ? (
+            <>
             <ToastContainer position="top-right" /> {/* Componente necesario para mostrar los toasts */}
             <div className="container">
                 <div className="row">
@@ -204,7 +206,10 @@ const Productos = () => {
                         </div>
                     ))}
                 </div>
-            </div>
+            </div>  
+            </>) : (
+        <p style={{ color: '#ebca6d', textTransform: 'uppercase' }} >Cargando...</p>
+      )}
         </div>
     );
 };

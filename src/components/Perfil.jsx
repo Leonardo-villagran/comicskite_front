@@ -58,7 +58,7 @@ const Perfil = () => {
           </div>
         </Card>
       ) : (
-        <p>Cargando...</p>
+        <p style={{ color: '#ebca6d', textTransform: 'uppercase' }} >Cargando...</p>
       )}
     </div>
   );

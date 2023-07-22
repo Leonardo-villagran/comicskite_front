@@ -81,6 +81,7 @@ const Productos = () => {
                                                 Detalles
                                             </Button>
                                         </Link>
+                                        <Link to={"/editar_producto/" + producto.id_producto}>
                                         <Button
                                             variant="primary"
                                             className="mr-2 text-uppercase"
@@ -93,6 +94,7 @@ const Productos = () => {
                                         >
                                             Editar contenido
                                         </Button>
+                                        </Link>
                                     </div>
                                 </Card.Body>
                             </Card>
