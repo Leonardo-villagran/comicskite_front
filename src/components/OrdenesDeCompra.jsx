@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const base_url= import.meta.env.VITE_BASE_URL;
+const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 const OrdenesCompra = () => {
   const [ordenesCompra, setOrdenesCompra] = useState([]);
@@ -49,7 +49,7 @@ const OrdenesCompra = () => {
         <div>
           <div className="row">
             {ordenesCompra.map((orden) => (
-              <div className="col-12 m-2 " key={orden.id}>
+              <div className="col-12 m-2 " key={orden.id_orden_compra}>
                 <div className="card d-flex "   style={{
                 backgroundColor: "#09232d",
                 color: "#ebca6d",
@@ -59,7 +59,7 @@ const OrdenesCompra = () => {
                   <div className="card-body">
                     <h5 className="card-title ">Orden de Compra #{orden.id_orden_compra}</h5>
                     <p className="card-text">Fecha: {formatearFechaLatino(orden.fecha_venta)}</p>
-                    <p className="card-text"><pre>{orden.detalle_productos}</pre></p>
+                    <pre>{orden.detalle_productos}</pre>
                     {/* Agrega aquí más detalles de la orden de compra si los tienes */}
                   </div>
                 </div>

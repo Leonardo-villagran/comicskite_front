@@ -3,7 +3,7 @@ import axios from "axios";
 import { Card } from "react-bootstrap";
 import "../assets/css/Perfil.css";
 
-const base_url= import.meta.env.VITE_BASE_URL;
+const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 const Perfil = () => {
   const [userData, setUserData] = useState(null);

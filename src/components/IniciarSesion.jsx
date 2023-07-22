@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
 
-const base_url= import.meta.env.VITE_BASE_URL;
+const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 const Login = () => {
     const [formData, setFormData] = useState({

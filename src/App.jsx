@@ -80,6 +80,8 @@ function App() {
   console.log("Contenido token: ",tokenContent);
   console.log("Producto: ", producto);
   console.log("Carrito: ", carrito);
+
+
   return (
     <Router>
       <Context.Provider value={globalState}>

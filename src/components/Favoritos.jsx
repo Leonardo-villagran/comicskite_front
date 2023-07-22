@@ -14,7 +14,7 @@ import rojo from "../assets/img/iconos/corazon_rojo.png";
 
 // import decodeTokenPayload from '../services/services'
 
-const base_url= import.meta.env.VITE_BASE_URL;
+const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 const Productos = () => {
     // const token = localStorage.getItem("token");
