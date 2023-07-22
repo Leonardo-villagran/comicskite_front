@@ -13,6 +13,7 @@ import EditarProducto from './views/EditarProducto';
 import Footer from './views/Footer';
 import Registrar from './views/Registrar';
 import IniciarSesion from './views/IniciarSesion';
+import OrdenDeCompra from './views/OrdenesDeCompra';
 
 import Salir from './views/Salir'; // Importamos el componente Salir
 
@@ -94,6 +95,7 @@ function App() {
           <Route path="/editar_producto/:id_producto" element={tokenContent ? <EditarProducto /> : <Navigate to="/" />} />
           <Route path="/carro_compras" element={tokenContent ? <CarroCompras /> : <Navigate to="/" />} />
           <Route path="/detalles/:id_producto" element={tokenContent ? <Detalles /> : <Navigate to="/" />} />
+          <Route path="/orden_compra" element={tokenContent ? <OrdenDeCompra /> : <Navigate to="/" />} />
           <Route path="/salir" element={<Salir />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

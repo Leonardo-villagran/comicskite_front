@@ -50,6 +50,19 @@ export default function NavbarButtons() {
                 Publicaciones
               </Button>
             </NavLink>
+            <NavLink to="/orden_compra" className={setActiveClass}>
+              <Button
+                variant="primary"
+                className="m-1 mr-2 text-uppercase custom-button"
+                style={{
+                  borderColor: "#ebca6d",
+                  color: "#ebca6d",
+                  fontSize: "12px",
+                }}
+              >
+                Orden de compra
+              </Button>
+            </NavLink>
             <NavLink to="/favoritos" className={setActiveClass}>
               <Button
                 variant="primary"
@@ -89,6 +102,7 @@ export default function NavbarButtons() {
                 Carro de Compras
               </Button>
             </NavLink>
+            
             <NavLink to="/salir" className={setActiveClass}>
               <Button
                 variant="primary"
