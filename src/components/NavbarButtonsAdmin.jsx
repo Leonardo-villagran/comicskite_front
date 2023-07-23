@@ -23,7 +23,7 @@ export default function NavbarButtons() {
           <FaBars />
         </Button>
       </div>
-      <Navbar className="w-100 justify-content-between mx-3">
+      <Navbar className="w-100 justify-content-center mx-3">
         <Nav className={`nav-buttons ${showMenu ? "active" : ""}`}>
           <div className="navbar-buttons">
             <NavLink to="/productos" className={setActiveClass}>

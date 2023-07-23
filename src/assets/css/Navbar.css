@@ -16,7 +16,7 @@
   }
   
   /* Mostrar el botón hamburguesa cuando la pantalla tenga un ancho menor que 700px */
-  @media (max-width: 800px) {
+  @media (max-width: 890px) {
     .div-fabars {
       display: flex;
       justify-content: center;
@@ -38,6 +38,12 @@
     .nav-buttons.active {
       display: flex;
       flex-direction: column;
+    }
+
+    .navbar-buttons{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
   
