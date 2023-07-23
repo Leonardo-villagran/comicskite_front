@@ -38,14 +38,14 @@ const Perfil = ({ mensajeDeCarga }) => {
         // Renderizar los datos si la carga ha finalizado
         <>
             <Card
-              className="cardDetail d-flex flex-row"
+              className="cardDetail d-flex flex-row table-perfil"
               style={{
                 backgroundColor: "#295b6fff",
                 color: "#ebca6d",
                 border: "1px solid #295b6fff",
               }}
             >
-              <div className="card-body table-perfil">
+              <div className="card-body ">
                 <table className="container">
                   <tbody>
                     <tr className="tr-table">
