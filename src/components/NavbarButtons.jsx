@@ -17,7 +17,7 @@ export default function NavbarButtons() {
   const setActiveClass = ({ isActive }) => (isActive ? "isactive" : "inactive");
 
   return (
-    <header>
+    <header className="header-btn d-flex align-items-center">
       <div className="div-fabars">
         <Button className="nav-btn" onClick={toggleMenu}>
           <FaBars />

@@ -45,5 +45,10 @@
       flex-direction: column;
       justify-content: center;
     }
+
+    .header-btn{
+      justify-content: center;
+      flex-direction: column;
+    }
   }
   
