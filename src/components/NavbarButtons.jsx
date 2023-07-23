@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import "../assets/css/Navbar.css";
+import { BsCart4, BsFillPersonFill  } from "react-icons/bs";
 
 
 export default function NavbarButtons() {
@@ -61,7 +62,7 @@ export default function NavbarButtons() {
                   fontSize: "12px",
                 }}
               >
-                Perfil
+                <BsFillPersonFill />
               </Button>
             </NavLink>
             <NavLink to="/carro_compras" className={setActiveClass}>
@@ -74,7 +75,7 @@ export default function NavbarButtons() {
                   fontSize: "12px",
                 }}
               >
-                Carro de Compras
+               < BsCart4  />
               </Button>
             </NavLink>
             <NavLink to="/salir" className={setActiveClass}>
