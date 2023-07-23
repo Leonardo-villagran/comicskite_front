@@ -13,8 +13,8 @@ tipo Postgres.
 - [Uso](#uso)
 - [Contexto](#contexto)
 - [Rutas](#rutas)
-- [Deploy](#Deploy)
-- [Imágenes](#Imágenes)
+- [Deploy](#deploy)
+- [Screenshots](#screenshots)
 
 ## Resumen
 
@@ -134,7 +134,7 @@ Se realizó el deploy del Frontend, Backend y base de datos (Postgress) en reder
 ```bash
 https://react-comicskites.onrender.com/
 ```
-## Imágenes
+## Screenshots
 
 ![Imagen 1](https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fgithub%2FSin-t%C3%ADtulo-1.png?alt=media&token=9332bcff-3e0f-4764-ab4b-4ee1fa290b82)
 ![Imagen 2](https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fgithub%2FSin-t%C3%ADtulo-2.png?alt=media&token=daa86f1f-d4ed-4d35-99e8-1cfd6d3bd764)
