@@ -72,6 +72,7 @@ const Login = () => {
     };
     return (
         <div>
+            <ToastContainer position="top-right" autoClose={1000} newestOnTop />
             <h2 style={{ color: '#ebca6d' }}>INICIAR SESIÓN</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group row my-3">
@@ -116,7 +117,7 @@ const Login = () => {
                     </div>
                 </div>
             </form>
-            <ToastContainer />
+            
         </div>
     );
 };

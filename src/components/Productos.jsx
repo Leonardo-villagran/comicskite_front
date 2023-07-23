@@ -155,7 +155,7 @@ const Productos = ({ mensajeDeCarga }) => {
     console.log("La ruta utilizada para el backend es: ", base_url);
     return (
         <div>
-            <ToastContainer position="top-right" />
+            <ToastContainer position="top-right" autoClose={1000} newestOnTop />
             {/* Mostrar "Cargando..." mientras los datos se están cargando */}
             {loading ? (
                 <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>{mensajeDeCarga}</p>

@@ -54,7 +54,7 @@ const RegistroUsuario = ({ mensaje }) => {
 
     return (
         <div>
-            <ToastContainer />
+            <ToastContainer position="top-right" autoClose={1000} newestOnTop />
             <h2 style={{ color: '#ebca6d' }}>{mensaje}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group row my-3">

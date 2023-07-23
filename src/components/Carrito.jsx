@@ -84,7 +84,7 @@ const Carrito = () => {
   return (
     <div>
       {/* Mostrar "Cargando..." mientras los datos se están cargando */}
-          <ToastContainer position="top-right" /><>
+      <ToastContainer position="top-right" autoClose={1000} newestOnTop /><>
           {carrito.length===0 && !detalleFinal ? <div><p style={{ color: '#ebca6d', textTransform: 'uppercase' }} >El carrito está vacío</p></div>: <div></div>}</>
 
           {carrito.length === 0  ? (<div></div>) : (

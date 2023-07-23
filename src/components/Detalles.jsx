@@ -13,14 +13,14 @@ import blanco from "../assets/img/iconos/corazon_blanco.png";
 import rojo from "../assets/img/iconos/corazon_rojo.png";
 // import decodeTokenPayload from '../services/services'
 
-const base_url= import.meta.env.VITE_API_URL;
+const base_url = import.meta.env.VITE_API_URL;
 
 
 // eslint-disable-next-line react/prop-types
-const Detalles = ({mensajeDeCarga}) => {
+const Detalles = ({ mensajeDeCarga }) => {
   // const token = localStorage.getItem("token");
   // const payload = decodeTokenPayload(token);
-  
+
 
   const { id_producto } = useParams();
   const { producto, setProducto } = useContext(Context);
@@ -28,7 +28,7 @@ const Detalles = ({mensajeDeCarga}) => {
   //console.log("id_producto: ", id_producto)
   const [loading, setLoading] = useState(true);
 
-  
+
 
   useEffect(() => {
     // Función para obtener el token de JWT almacenado en el navegador
@@ -134,77 +134,77 @@ const Detalles = ({mensajeDeCarga}) => {
 
   return (
     <div>
-       {/* Mostrar "Cargando..." mientras los datos se están cargando */}
-       {loading ? (
-            <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>{mensajeDeCarga}</p>
-        ) : (
-            // Renderizar los datos si la carga ha finalizado
-            <>
-      <ToastContainer position="top-right" /> {/* Componente necesario para mostrar los toasts */}
-      <div className="container mt-4">
-        <div className="row">
-          <div key={producto.id_producto} className="col-12">
-            <Card
-              className="cardDetail super_cardDetail"
-              style={{
-                backgroundColor: "#295b6fff",
-                color: "#ebca6d",
-                border: "1px solid white",
-              }}
-            >
-              <div>
-                <Card.Img
-                  className="cardImg"
-                  variant="top"
-                  src={producto.imagen_grande}
-                  alt={producto.nombre}
-                />
-              </div>
-              <Card.Body>
-                <div className="heart px-2">
-                  <img
-                    onClick={() => presionarboton(producto.id_producto)}
-                    src={producto.likes === false ? blanco : rojo}
-                    alt="foto"
-                  />
-                </div>
-                <Card.Title className="d-flex">{producto.nombre}</Card.Title>
-                <Card.Text className="d-flex">
-                  Número: {producto.numero}
-                </Card.Text>
-                <Card.Text className="d-flex" style={{ textAlign: "left" }}>
-                  {producto.detalle}
-                </Card.Text>
-                <div
-                  className="w-100"
-                  style={{ display: "flex", justifyContent: "space-around" }}
+      {/* Mostrar "Cargando..." mientras los datos se están cargando */}
+      {loading ? (
+        <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>{mensajeDeCarga}</p>
+      ) : (
+        // Renderizar los datos si la carga ha finalizado
+        <>
+          <ToastContainer position="top-right" autoClose={1000} newestOnTop />
+          <div className="container mt-4">
+            <div className="row">
+              <div key={producto.id_producto} className="col-12">
+                <Card
+                  className="cardDetail super_cardDetail"
+                  style={{
+                    backgroundColor: "#295b6fff",
+                    color: "#ebca6d",
+                    border: "1px solid white",
+                  }}
                 >
                   <div>
-                    <Card.Text>Stock: {producto.stock}</Card.Text>
-                    <Card.Text>Precio: ${producto.precio}</Card.Text>
+                    <Card.Img
+                      className="cardImg"
+                      variant="top"
+                      src={producto.imagen_grande}
+                      alt={producto.nombre}
+                    />
                   </div>
-                  <div className="d-flex" style={{ alignItems: "center" }}>
-                    <Button
-                      variant="primary"
-                      className="mr-2 text-uppercase"
-                      onClick={() => agregarAlCarrito(producto.id_producto)}
-                      style={{
-                        backgroundColor: "black",
-                        borderColor: "#ebca6d",
-                        color: "#ebca6d",
-                        fontSize: "12px",
-                      }}
+                  <Card.Body>
+                    <div className="heart px-2">
+                      <img
+                        onClick={() => presionarboton(producto.id_producto)}
+                        src={producto.likes === false ? blanco : rojo}
+                        alt="foto"
+                      />
+                    </div>
+                    <Card.Title className="d-flex">{producto.nombre}</Card.Title>
+                    <Card.Text className="d-flex">
+                      Número: {producto.numero}
+                    </Card.Text>
+                    <Card.Text className="d-flex" style={{ textAlign: "left" }}>
+                      {producto.detalle}
+                    </Card.Text>
+                    <div
+                      className="w-100"
+                      style={{ display: "flex", justifyContent: "space-around" }}
                     >
-                      Agregar al carro
-                    </Button>
-                  </div>
-                </div>
-              </Card.Body>
-            </Card>
+                      <div>
+                        <Card.Text>Stock: {producto.stock}</Card.Text>
+                        <Card.Text>Precio: ${producto.precio}</Card.Text>
+                      </div>
+                      <div className="d-flex" style={{ alignItems: "center" }}>
+                        <Button
+                          variant="primary"
+                          className="mr-2 text-uppercase"
+                          onClick={() => agregarAlCarrito(producto.id_producto)}
+                          style={{
+                            backgroundColor: "black",
+                            borderColor: "#ebca6d",
+                            color: "#ebca6d",
+                            fontSize: "12px",
+                          }}
+                        >
+                          Agregar al carro
+                        </Button>
+                      </div>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      </>)}
+        </>)}
     </div>
   );
 };

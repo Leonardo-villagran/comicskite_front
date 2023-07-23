@@ -151,6 +151,7 @@ const EditarProducto = () => {
 
     return (
         <div>
+            <ToastContainer position="top-right" autoClose={1000} newestOnTop />
             <h2 style={{ color: '#ebca6d' }}>EDITAR PRODUCTO</h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-group row my-3">
@@ -260,7 +261,7 @@ const EditarProducto = () => {
                     </div>
                 </div>
             </form>
-            <ToastContainer />
+           
         </div>
     );
 

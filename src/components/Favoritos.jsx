@@ -150,14 +150,13 @@ const Productos = ({mensajeDeCarga}) => {
     };
 
     return (
-        <div>
+        <div><ToastContainer position="top-right" autoClose={1000} newestOnTop />
         {/* Mostrar "Cargando..." mientras los datos se están cargando */}
         {loading ? (
             <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>{mensajeDeCarga}</p>
         ) : (
             // Renderizar los datos si la carga ha finalizado
             <>
-            <ToastContainer position="top-right" />
             {productos.length===0 ? <p style={{ color: '#ebca6d' , textTransform: 'uppercase'}}>No hay favoritos</p>:<div></div>}
                 <div className="container">
                     <div className="row">
