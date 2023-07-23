@@ -6,7 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../assets/css/Carrito.css";
 
-const base_url = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
+const base_url = import.meta.env.VITE_API_URL;
 
 const Carrito = () => {
 

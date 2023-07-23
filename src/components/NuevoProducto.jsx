@@ -6,7 +6,7 @@ import { Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { uploadFileSmall, uploadFileLarge } from '../assets/js/firebase';
 
-const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
+const base_url= import.meta.env.VITE_API_URL;
 
 const AgregarProducto = () => {
     const navigate = useNavigate();

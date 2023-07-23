@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const base_url= import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
+const base_url= import.meta.env.VITE_API_URL;
 
 // eslint-disable-next-line react/prop-types
 const RegistroUsuario = ({mensaje}) => {
