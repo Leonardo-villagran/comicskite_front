@@ -28,10 +28,10 @@ function App() {
   const [productos, setProductos] = useState([]);
   const [producto, setProducto] = useState([]);
   const [carrito, setCarrito] = useState([]);
-  
+  const [buscar, setBuscar] = useState("");
   const [tokenContent, setTokenContent] = useState('');
 
-  const globalState = { carrito, setCarrito, producto, setProducto, productos, setProductos, tokenContent, setTokenContent};
+  const globalState = { carrito, setCarrito, producto, setProducto, productos, setProductos, tokenContent, setTokenContent, buscar, setBuscar };
 
   useEffect(() => {
     // Retrieve the token from local storage
