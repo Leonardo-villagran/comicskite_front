@@ -129,7 +129,7 @@ La aplicación contiene las siguientes rutas:
 
 ## Deploy
 
-Se realizó el deploy del Frontend, Backend y base de datos (Postgress) en reder.com, por lo cual se puede acceder directamente a la aplicación, a través de la siguiente dirección web: 
+Se realizó el deploy del Frontend y Backend en Render.com, base de datos (Postgress) en ElephantSQL, y subida de fotos a través de Firebase de Google. Se puede acceder directamente a la aplicación, a través de la siguiente dirección web: 
 
 ```bash
 https://react-comicskites.onrender.com/

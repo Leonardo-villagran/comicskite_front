@@ -29,6 +29,7 @@ const Productos = ({ mensajeDeCarga }) => {
     setBuscar(e.target.value);
   };
 
+  //Función para realizar una búsqueda de texto dentro de el estado producto
   const filtro = productos.filter((producto) =>
     producto.nombre.toUpperCase().includes(buscar.toUpperCase())
   );
@@ -167,6 +168,7 @@ const Productos = ({ mensajeDeCarga }) => {
   console.log("La ruta utilizada para el backend es: ", base_url);
   return (
     <div>
+       {/* Componente necesario para mostrar los toasts */}
       <ToastContainer position="top-right" autoClose={1000} newestOnTop />
       {/* Mostrar "Cargando..." mientras los datos se están cargando */}
       {loading ? (
@@ -176,7 +178,6 @@ const Productos = ({ mensajeDeCarga }) => {
       ) : (
         // Renderizar los datos si la carga ha finalizado
         <>
-          {/* Componente necesario para mostrar los toasts */}
           <div className="container">
             <div className="form">
               <form>
