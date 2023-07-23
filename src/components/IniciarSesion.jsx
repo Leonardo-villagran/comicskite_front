@@ -47,7 +47,8 @@ const Login = () => {
 
                 const payload = JSON.parse(window.atob(token.split('.')[1]));
                 setTokenContent(payload); // Actualizamos el token en el contexto
-                //toast.success('Inicio de sesión exitoso');
+                // Después de logear exitosamente al usuario:
+                localStorage.setItem('usuarioLog', 'true');
                 navigate('/productos'); // Redirección a /productos después de un inicio de sesión exitoso
             } else {
                 toast.error('Error. Por favor, verifica tus credenciales.');

@@ -25,6 +25,16 @@ const Productos = ({ mensajeDeCarga }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const usuarioLog = localStorage.getItem('usuarioLog');
+        console.log ("usuario logeado: ",usuarioLog);
+        if (usuarioLog === 'true') {
+            toast.success('Usuario logeado exitosamente. Ahora puede continuar.');
+            localStorage.removeItem('usuarioLog');
+        }
+    }, []);
+
+
+    useEffect(() => {
         const getTokenFromLocalStorage = localStorage.getItem("token");
         // Función para obtener el token de JWT almacenado en el navegador
         // Realizar la solicitud GET al backend con Axios
@@ -145,13 +155,14 @@ const Productos = ({ mensajeDeCarga }) => {
     console.log("La ruta utilizada para el backend es: ", base_url);
     return (
         <div>
+            <ToastContainer position="top-right" />
             {/* Mostrar "Cargando..." mientras los datos se están cargando */}
             {loading ? (
                 <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>{mensajeDeCarga}</p>
             ) : (
                 // Renderizar los datos si la carga ha finalizado
                 <>
-                    <ToastContainer position="top-right" /> {/* Componente necesario para mostrar los toasts */}
+                     {/* Componente necesario para mostrar los toasts */}
                     <div className="container">
                         <div className="row">
                             {productos.map((producto) => (

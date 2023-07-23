@@ -11,6 +11,7 @@ const base_url = import.meta.env.VITE_API_URL;
 const RegistroUsuario = ({ mensaje }) => {
     const navigate = useNavigate();
 
+    const [isProcessing, setIsProcessing] = useState(false);
     const [formData, setFormData] = useState({
         nombre: '',
         apellido: '',
@@ -28,12 +29,14 @@ const RegistroUsuario = ({ mensaje }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            setIsProcessing(true); // Bloquear el botón al inicio de la solicitud
             // Aquí va la URL del backend donde se procesará el formulario
             const response = await axios.post(base_url + '/registrar', formData);
             // Si el registro fue exitoso, muestra el toast de éxito y redirecciona a la página de inicio de sesión
             if (response.data) {
                 // Después de registrar exitosamente al usuario:
                 localStorage.setItem('usuarioCreado', 'true');
+                setIsProcessing(false); //Liberar el botón cuando entra
                 navigate('/iniciar_sesion');
             } else {
                 // Si ocurrió un error en el registro, muestra el toast de error
@@ -171,7 +174,9 @@ const RegistroUsuario = ({ mensaje }) => {
 
                 <div className="form-group row justify-content-end">
                     <div className="col-sm-10 text-right">
-                        <Button variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }} type="submit">Registrar</Button>
+                        <Button variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }} type="submit"
+                        disabled={isProcessing} // Deshabilitar el botón mientras se está procesando
+                        >Registrar</Button>
                     </div>
                 </div>
             </form>
