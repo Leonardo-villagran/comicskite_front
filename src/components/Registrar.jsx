@@ -5,10 +5,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const base_url= import.meta.env.VITE_API_URL;
+const base_url = import.meta.env.VITE_API_URL;
 
 // eslint-disable-next-line react/prop-types
-const RegistroUsuario = ({mensaje}) => {
+const RegistroUsuario = ({ mensaje }) => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -29,10 +29,11 @@ const RegistroUsuario = ({mensaje}) => {
         e.preventDefault();
         try {
             // Aquí va la URL del backend donde se procesará el formulario
-            const response = await axios.post(base_url+'/registrar', formData);
+            const response = await axios.post(base_url + '/registrar', formData);
             // Si el registro fue exitoso, muestra el toast de éxito y redirecciona a la página de inicio de sesión
             if (response.data) {
-                toast.success('Usuario creado satisfactoriamente');
+                // Después de registrar exitosamente al usuario:
+                localStorage.setItem('usuarioCreado', 'true');
                 navigate('/iniciar_sesion');
             } else {
                 // Si ocurrió un error en el registro, muestra el toast de error
@@ -50,6 +51,7 @@ const RegistroUsuario = ({mensaje}) => {
 
     return (
         <div>
+            <ToastContainer />
             <h2 style={{ color: '#ebca6d' }}>{mensaje}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group row my-3">
@@ -75,7 +77,7 @@ const RegistroUsuario = ({mensaje}) => {
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Apellido:</label>
                     <div className="col-sm-10">
                         <TextField
-                        key="2"
+                            key="2"
                             type="text"
                             name="apellido"
                             value={formData.apellido}
@@ -86,7 +88,7 @@ const RegistroUsuario = ({mensaje}) => {
                                 style: textFieldStyle,
                                 autoComplete: 'family-name', // suggested autocomplete attribute
                             }}
-                            
+
                         />
                     </div>
                 </div>
@@ -169,11 +171,11 @@ const RegistroUsuario = ({mensaje}) => {
 
                 <div className="form-group row justify-content-end">
                     <div className="col-sm-10 text-right">
-                        <Button variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d'  }} type="submit">Registrar</Button>
+                        <Button variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }} type="submit">Registrar</Button>
                     </div>
                 </div>
             </form>
-            <ToastContainer />
+
         </div>
     );
 };

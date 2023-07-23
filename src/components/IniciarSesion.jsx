@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
 
-const base_url= import.meta.env.VITE_API_URL;
+const base_url = import.meta.env.VITE_API_URL;
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -24,19 +24,27 @@ const Login = () => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
+    useEffect(() => {
+        const usuarioCreado = localStorage.getItem('usuarioCreado');
+        if (usuarioCreado === 'true') {
+            toast.success('Usuario creado exitosamente. Ahora puedes iniciar sesión.');
+            localStorage.removeItem('usuarioCreado');
+        }
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             // Aquí va la URL del backend donde se realizará el inicio de sesión
-            const response = await axios.post(base_url+'/iniciar_sesion', formData);
+            const response = await axios.post(base_url + '/iniciar_sesion', formData);
             //console.log(response.data);
             // Si el inicio de sesión fue exitoso, guarda el token en el local storage y muestra el toast de éxito
             if (response.data.token) {
-                
+
                 localStorage.setItem('token', response.data.token);
-                
+
                 const token = localStorage.getItem('token');
-                
+
                 const payload = JSON.parse(window.atob(token.split('.')[1]));
                 setTokenContent(payload); // Actualizamos el token en el contexto
                 //toast.success('Inicio de sesión exitoso');
