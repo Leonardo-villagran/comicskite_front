@@ -57,16 +57,22 @@ const Productos = ({ mensajeDeCarga }) => {
     const getTokenFromLocalStorage = localStorage.getItem("token");
     //console.log(productos);
 
-    const producto = productos.find(
-      (producto) => producto.id_producto === id_producto
-    );
+    const producto = productos.find((producto) => producto.id_producto === id_producto);
+
+    if (!producto) {
+      // If the product with the given id doesn't exist, return without doing anything
+      return;
+    }
 
     if (producto.likes) {
       producto.likes = false;
 
+      // If the product is disliked, remove it from the productos array
+      
+
       // Realizar la solicitud GET al backend con Axios
       axios
-        .delete(`http://localhost:3000/dislikes/${id_producto}`, {
+        .delete(base_url +`/dislikes/${id_producto}`, {
           headers: {
             Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
           },
@@ -74,40 +80,15 @@ const Productos = ({ mensajeDeCarga }) => {
         .then((response) => {
           // Actualizar el estado con la lista de productos obtenida del backend
           console.log(response.data.mensaje);
+          // If the product is disliked, remove it from the productos array
+          const updatedProductos = productos.filter((p) => p.id_producto !== id_producto);
+          setProductos(updatedProductos);
 
-          // Eliminar el producto de la lista 'productos' en el frontend
-          const nuevosProductos = productos.filter(
-            (producto) => producto.id_producto !== id_producto
-          );
-          setProductos(nuevosProductos);
         })
         .catch((error) => {
           console.error("Error al borrar el like:", error);
         });
-    } else {
-      producto.likes = true;
-
-      // Realizar la solicitud GET al backend con Axios
-      axios
-        .post(`http://localhost:3000/likes/${id_producto}`, null, {
-          headers: {
-            Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
-          },
-        })
-        .then((response) => {
-          // Actualizar el estado con la lista de productos obtenida del backend
-          console.log(response.data.mensaje);
-
-          // Eliminar el producto de la lista 'productos' en el frontend
-          const nuevosProductos = productos.filter(
-            (producto) => producto.id_producto !== id_producto
-          );
-          setProductos(nuevosProductos);
-        })
-        .catch((error) => {
-          console.error("Error al agregar el like:", error);
-        });
-    }
+    } 
 
     //console.log(producto);
 
@@ -183,7 +164,7 @@ const Productos = ({ mensajeDeCarga }) => {
             <div></div>
           )}
           <div className="container">
-          <div className="form">
+            <div className="form">
               <form>
                 <input
                   type="text"
