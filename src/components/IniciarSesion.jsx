@@ -16,6 +16,8 @@ const Login = () => {
     });
 
     const { tokenContent, setTokenContent } = useContext(Context);
+    // New state to track if the button has been clicked
+    const [isButtonClicked, setIsButtonClicked] = useState(false);
 
     const navigate = useNavigate();
 
@@ -35,6 +37,8 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+             // Set the state to true to indicate that the button has been clicked
+             setIsButtonClicked(true);
             // Aquí va la URL del backend donde se realizará el inicio de sesión
             const response = await axios.post(base_url + '/iniciar_sesion', formData);
             //console.log(response.data);
@@ -49,12 +53,15 @@ const Login = () => {
                 setTokenContent(payload); // Actualizamos el token en el contexto
                 // Después de logear exitosamente al usuario:
                 localStorage.setItem('usuarioLog', 'true');
+                setIsButtonClicked(false);
                 navigate('/productos'); // Redirección a /productos después de un inicio de sesión exitoso
             } else {
                 toast.error('Error. Por favor, verifica tus credenciales.');
+                setIsButtonClicked(false);
             }
         } catch (error) {
             toast.error('Error al procesar el inicio de sesión. Intente nuevamente más tarde.');
+            setIsButtonClicked(false);
         }
     };
 
@@ -62,6 +69,7 @@ const Login = () => {
         // Verifica si hay un token en el estado global tokenContent
         // y si el estado formData tiene valores para email y contraseña
         if (tokenContent && formData.email && formData.contrasena) {
+            setIsButtonClicked(false);
             navigate('/productos');
         }
     }, [tokenContent, formData.email, formData.contrasena, navigate]);
@@ -111,7 +119,8 @@ const Login = () => {
                 </div>
                 <div className="form-group row justify-content-end">
                     <div className="col-sm-10 text-right">
-                        <Button type="submit" variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }}>
+                        <Button type="submit" variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }}
+                         disabled={isButtonClicked}>
                             Iniciar sesión
                         </Button>
                     </div>
