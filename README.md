@@ -1,7 +1,6 @@
-# Aplicación React Vite
+# Front Comicskites
 
-Esta es una aplicación React creada con Vite, la cual consiste en un sitio estático de venta de comics en línea, el cual se conecta a un backend con Express, donde se realizan las solicitudes a una base de datos de
-tipo Postgres. 
+Esta es una aplicación React creada con Vite, la cual consiste en un sitio estático de venta de comics en línea, el cual se conecta a un backend con Express, donde se realizan las solicitudes a una base de datos de tipo Postgres. 
 
 ## Tabla de contenidos
 
