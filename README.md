@@ -2,6 +2,12 @@
 
 Esta es una aplicación React creada con Vite, la cual consiste en un sitio estático de venta de comics en línea, el cual se conecta a un backend con Express, donde se realizan las solicitudes a una base de datos de tipo Postgres. 
 
+## Integrantes grupo 7
+
+- Lorenzo Chacano
+- Paolo Landeros
+- Leonardo Villagrán
+
 ## Tabla de contenidos
 
 - [Resumen](#resumen)
