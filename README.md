@@ -24,13 +24,35 @@ Esta aplicación React utiliza Vite como herramienta de compilación y React Rou
 
 Para comenzar con el proyecto, sigue estos pasos:
 
+Frontend: 
+
 1. Clona el repositorio del frontend: `git clone https://github.com/Leonardo-villagran/comicskite_front`
 2. Ingresa al directorio del proyecto: `cd comicskite_front`
 3. Instala las dependencias: `npm install`
 
+Backend:
+
 4. Clona el repositorio del Backend:  `https://github.com/LanderosPaolo/Backend_proyecto_final`
 5. Ingresa al directorio del proyecto: `backend_proyecto_final`
 6. Instala las dependencias: `npm install`
+7. Generar el archivo .env con las siguientes variables:
+
+```
+## Local
+PORT=3000
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_NAME=comics
+JWT_SECRET=ultrasecreto
+```
+
+Nota: Los datos contenidos de las variables son solo ejemplos, generar según su configuración local.  
+
+Base de datos:
+
+7. Crea una base de datos llamada comics en Postgres.
+8. Ejecuta las sentencias de SQL en el archivo `comics.sql`  en la razín del backend.
 
 ## Funcionalidades
 
@@ -129,7 +151,7 @@ La aplicación contiene las siguientes rutas:
 
 ## Deploy
 
-Se realizó el deploy del Frontend y Backend en Render.com, base de datos (Postgress) en ElephantSQL, y subida de fotos a través de Firebase de Google. Se puede acceder directamente a la aplicación, a través de la siguiente dirección web: 
+Se realizó el deploy del Frontend, Backend y base de datos (Postgress) en Render.com, y subida de fotos a través de Firebase de Google. Se puede acceder directamente a la aplicación, a través de la siguiente dirección web: 
 
 ```bash
 https://react-comicskites.onrender.com/
