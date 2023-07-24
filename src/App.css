@@ -70,6 +70,12 @@ body {
 
 /*Estilo para botones*/
 
+.titulo-personalizado{
+  color: #ebca6d;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
 .boton-personalizado-titulo {
   background-color: black;
   border-color: #ebca6d;
