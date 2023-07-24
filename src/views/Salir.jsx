@@ -15,5 +15,4 @@ const SalirView = () => {
 
     );
 };
-
 export default SalirView;
