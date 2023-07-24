@@ -126,7 +126,7 @@ const Login = () => {
                             />
                         </div>
                     </div>
-                    <div className="form-group row justify-content-end">
+                    <div className="form-group row justify-content-center">
                         <div className="col-sm-10 text-right">
                             <Button type="submit" variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }}
                                 disabled={isButtonClicked}>
