@@ -60,11 +60,25 @@ CREATE TABLE IF NOT EXISTS "likes" (
 	CONSTRAINT "likes_id_usuario_fkey" FOREIGN KEY ("id_usuario") REFERENCES "usuario" ("id_usuario") ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- Tabla orden_compra
-CREATE TABLE IF NOT EXISTS "orden_compra" (
+CREATE TABLE IF NOT EXISTS "estado" (
+	"id_estado" SERIAL PRIMARY KEY,
+	"nombre" VARCHAR(255) NOT NULL
+
+);
+
+INSERT INTO "estado" ( "nombre") VALUES
+	( 'No procesado'),
+	( 'Con problemas'),
+	( 'En traslado'),
+	( 'Entregado'),
+	('Eliminado');
+	
+	CREATE TABLE IF NOT EXISTS "orden_compra" (
 	"id_orden_compra" SERIAL PRIMARY KEY,
 	"fecha_venta" DATE NOT NULL,
-	"detalle_productos" TEXT,
+	"detalle_productos" TEXT NULL DEFAULT NULL,
 	"id_usuario" INTEGER NOT NULL,
+	"id_estado" INTEGER NOT NULL DEFAULT '1',
+	CONSTRAINT "orden_compra_id_estado_fkey" FOREIGN KEY ("id_estado") REFERENCES "estado" ("id_estado") ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT "orden_compra_id_usuario_fkey" FOREIGN KEY ("id_usuario") REFERENCES "usuario" ("id_usuario") ON UPDATE CASCADE ON DELETE CASCADE
 );
