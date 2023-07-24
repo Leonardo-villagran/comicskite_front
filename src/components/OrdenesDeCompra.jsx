@@ -65,6 +65,14 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
       console.error('Error al cambiar el estado:', error);
     }
   };
+  
+    // Función para imprimir el mensaje si el estado está vacío
+    const imprimirMensajeSiVacio = () => {
+      if (ordenesCompra.length === 0) {
+        return <p style={{ color: '#ebca6d', textTransform: 'uppercase' }}>no existen órdenes de compra</p>;
+      }
+    };
+
 
   console.log(ordenesCompra);
   return (
@@ -73,6 +81,7 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
         <p style={{ color: '#ebca6d', textTransform: 'uppercase' }}>{mensajeDeCarga}</p>
       ) : (
         <div>
+          {imprimirMensajeSiVacio()}
           <div className="row">
             {ordenesCompra.map((orden) => (
               <div className="col-12 m-2" key={orden.id_orden_compra}>
