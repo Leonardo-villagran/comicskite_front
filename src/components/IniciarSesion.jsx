@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, CircularProgress } from '@mui/material';
+
 
 const base_url = import.meta.env.VITE_API_URL;
 
@@ -83,48 +84,57 @@ const Login = () => {
             <ToastContainer position="top-right" autoClose={1000} newestOnTop />
             <h2 style={{ color: '#ebca6d' }}>INICIAR SESIÓN</h2>
             <form onSubmit={handleSubmit}>
-                <div className="form-group row my-3">
-                    <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>E-mail:</label>
-                    <div className="col-sm-10">
-                        <TextField
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            variant="outlined"
-                            fullWidth
-                            InputProps={{
-                                style: textFieldStyle,
-                                autoComplete: 'email-name', // suggested autocomplete attribute
-                            }}
-                        />
+                {/* Conditional rendering based on the value of isButtonClicked */}
+                {isButtonClicked ? (
+                    <>
+                        <p style={{ color: '#ebca6d' }}>Cargando...</p>
+                        <CircularProgress style={{ color: '#ebca6d' }} />
+                    </>
+
+                ) : (<>
+                    <div className="form-group row my-3">
+                        <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>E-mail:</label>
+                        <div className="col-sm-10">
+                            <TextField
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                variant="outlined"
+                                fullWidth
+                                InputProps={{
+                                    style: textFieldStyle,
+                                    autoComplete: 'email-name', // suggested autocomplete attribute
+                                }}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className="form-group row my-3">
-                    <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Contraseña:</label>
-                    <div className="col-sm-10">
-                        <TextField
-                            type="password"
-                            name="contrasena"
-                            value={formData.contrasena}
-                            onChange={handleChange}
-                            variant="outlined"
-                            fullWidth
-                            InputProps={{
-                                style: textFieldStyle,
-                                autoComplete: 'password-name', // suggested autocomplete attribute
-                            }}
-                        />
+                    <div className="form-group row my-3">
+                        <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Contraseña:</label>
+                        <div className="col-sm-10">
+                            <TextField
+                                type="password"
+                                name="contrasena"
+                                value={formData.contrasena}
+                                onChange={handleChange}
+                                variant="outlined"
+                                fullWidth
+                                InputProps={{
+                                    style: textFieldStyle,
+                                    autoComplete: 'password-name', // suggested autocomplete attribute
+                                }}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className="form-group row justify-content-end">
-                    <div className="col-sm-10 text-right">
-                        <Button type="submit" variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }}
-                            disabled={isButtonClicked}>
-                            Iniciar sesión
-                        </Button>
+                    <div className="form-group row justify-content-end">
+                        <div className="col-sm-10 text-right">
+                            <Button type="submit" variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }}
+                                disabled={isButtonClicked}>
+                                Iniciar sesión
+                            </Button>
+                        </div>
                     </div>
-                </div>
+                </>)}
             </form>
 
         </div>
