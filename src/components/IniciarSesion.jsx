@@ -37,8 +37,8 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-             // Set the state to true to indicate that the button has been clicked
-             setIsButtonClicked(true);
+            // Set the state to true to indicate that the button has been clicked
+            setIsButtonClicked(true);
             // Aquí va la URL del backend donde se realizará el inicio de sesión
             const response = await axios.post(base_url + '/iniciar_sesion', formData);
             //console.log(response.data);
@@ -120,13 +120,13 @@ const Login = () => {
                 <div className="form-group row justify-content-end">
                     <div className="col-sm-10 text-right">
                         <Button type="submit" variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }}
-                         disabled={isButtonClicked}>
+                            disabled={isButtonClicked}>
                             Iniciar sesión
                         </Button>
                     </div>
                 </div>
             </form>
-            
+
         </div>
     );
 };
