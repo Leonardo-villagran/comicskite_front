@@ -5,6 +5,7 @@ import NavbarButtonsAdmin from '../components/NavbarButtonsAdmin';
 import NavbarTitle from '../components/NavbarTitle';
 import Context from '../Context/Context';
 import { useContext } from 'react';
+import "../assets/css/Navbar.css";
 
 export default function NavbarComponent() {
 

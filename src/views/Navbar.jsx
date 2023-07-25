@@ -10,7 +10,7 @@ export default function navbar() {
 
   return (
     <Navbar bg="dark" variant="dark">
-      <Container>
+      <Container className="navbar-inicio">
         <Navbar.Brand href="/">
           <div className="circle-border">
             <img
