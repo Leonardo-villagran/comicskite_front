@@ -23,11 +23,11 @@ export default function navbar() {
         <h2 className="mx-auto" style={{ color: "#ebca6d" }}>
           COMICSKITES - VENTA DE COMICS
         </h2>
-        <Nav className="ml-auto">
+        <Nav className="main-buttons d-flex m-1 ml-auto">
           <NavLink to="/registrar" className={setActiveClass}>
             <Button
               variant="primary"
-              className="mr-2 text-uppercase custom-button"
+              className="text-uppercase custom-button"
               style={{
                 borderColor: "#ebca6d",
                 color: "#ebca6d",
@@ -40,7 +40,7 @@ export default function navbar() {
           <NavLink to="/iniciar_sesion" className={setActiveClass}>
             <Button
               variant="primary"
-              className="text-uppercase custom-button"
+              className="iniciar-sesion-btn text-uppercase custom-button"
               style={{
                 borderColor: "#ebca6d",
                 color: "#ebca6d",
