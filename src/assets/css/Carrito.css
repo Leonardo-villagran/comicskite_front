@@ -26,5 +26,14 @@
   border-radius: 10px;
   transition: transform 0.2s ease-in-out;
   font-weight: bold; /* Agrega negrita al texto */
-  
+}
+
+@media (max-width: 576px){
+  .gradient-table{
+    font-size: 10px;
+  }
+
+  .btn-table{
+    padding: 5px;
+  }
 }

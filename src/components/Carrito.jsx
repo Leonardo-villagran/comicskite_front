@@ -136,6 +136,7 @@ const Carrito = () => {
                     <td className="d-none d-md-table-cell">{formatearNumeroConPunto(producto.precio)}</td>
                     <td>
                       <Button
+                        className="btn-table"
                         variant="outline-primary"
                         onClick={() => disminuirCantidad(producto.id_producto)}
                       >
@@ -143,6 +144,7 @@ const Carrito = () => {
                       </Button>{" "}
                       {producto.cantidad}{" "}
                       <Button
+                        className="btn-table"
                         variant="outline-primary"
                         onClick={() => aumentarCantidad(producto.id_producto)}
                       >
@@ -154,6 +156,7 @@ const Carrito = () => {
                     </td>
                     <td>
                       <Button
+                        className="btn-table"
                         variant="danger"
                         onClick={() => eliminarDelCarrito(producto.id_producto)}
                       >
