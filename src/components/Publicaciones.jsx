@@ -4,7 +4,7 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Context from "../Context/Context";
 import { useContext } from "react";
-import "../assets/css/Producto.css";
+import "../assets/css/Publicaciones.css";
 
 // import decodeTokenPayload from '../services/services'
 const base_url = import.meta.env.VITE_API_URL;
@@ -78,7 +78,7 @@ const Productos = ({ mensajeDeCarga }) => {
                   className="col-12 col-sm-6 col-md-4 col-lg-3 mt-3"
                 >
                   <Card
-                    className="super_card container-fluid h-100"
+                    className="super_card_pub container-fluid h-100"
                     style={{
                       backgroundColor: "#295b6fff",
                       color: "#ebca6d",
