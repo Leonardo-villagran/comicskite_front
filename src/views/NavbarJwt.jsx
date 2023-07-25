@@ -11,7 +11,7 @@ export default function NavbarComponent() {
   const { tokenContent } = useContext(Context);
     return (
       <Navbar bg="dark" variant="dark">
-        <div className="d-flex align-items-center">
+        <div className="navbar-logo container">
           <div className="d-flex align-items-center">
             <NavbarLogo />
           </div>

@@ -10,45 +10,52 @@
   transform: scale(1.05);
 }
 
-/* Estilos para el botón hamburguesa */
+.navbar-logo{
+  align-items: flex-start !important;
+  justify-content: space-around !important;
+}
+
 .nav-btn {
-    display: none; /* Por defecto, oculta el botón */
+    display: none;
   }
   
-  /* Mostrar el botón hamburguesa cuando la pantalla tenga un ancho menor que 700px */
-  @media (max-width: 890px) {
-    .div-fabars {
-      display: flex;
-      justify-content: center;
-    }
-  
-    .nav-btn {
-      display: flex; /* Muestra el botón cuando se cumple la condición del media query */
-      align-items: end;
-      background-color: #295b6fff;
-      color: #ebca6d;
-      border: none;
-      font-size: 24px;
-    }
-  
-    .nav-buttons {
-      display: none;
-    }
-  
-    .nav-buttons.active {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .navbar-buttons{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .header-btn{
-      justify-content: center;
-      flex-direction: column;
-    }
+@media (max-width: 890px) {
+  .div-fabars {
+    display: flex;
+    justify-content: center;
   }
+ 
+  .nav-btn {
+    display: flex;
+    align-items: end;
+    background-color: #295b6fff;
+    color: #ebca6d;
+    border: none;
+    font-size: 24px;
+  }
+
+  .nav-btn:hover{
+    background-color: #295b6fff;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .nav-buttons.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header-btn{
+    justify-content: center;
+    flex-direction: column;
+  }
+}
   

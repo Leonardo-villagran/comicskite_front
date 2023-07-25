@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import "../assets/css/Navbar.css";
 
 export default function navbar() {
-  const setActiveClass = ({ isActive }) => (isActive ? "active" : "inactive");
+  const setActiveClass = ({ isActive }) => (isActive ? "isactive" : "inactive");
 
   return (
     <Navbar bg="dark" variant="dark">
