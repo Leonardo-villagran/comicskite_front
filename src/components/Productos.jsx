@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { toast, ToastContainer } from "react-toastify"; // Importar el toast
 import "react-toastify/dist/ReactToastify.css"; // Estilos del toast
 import "../assets/css/Producto.css";
+import {formatearNumeroConPunto} from '../services/servicesNumbers';
 
 //Importación de imágenes utilizadas para la generación de botón like.
 import blanco from "../assets/img/iconos/corazon_blanco.png";
@@ -220,9 +221,9 @@ const Productos = ({ mensajeDeCarga }) => {
                         />
                       </div>
                       <Card.Title>{producto.nombre}</Card.Title>
-                      <Card.Text>Número: {producto.numero}</Card.Text>
-                      <Card.Text>Stock: {producto.stock}</Card.Text>
-                      <Card.Text>Precio: ${producto.precio}</Card.Text>
+                      <Card.Text>Número: {formatearNumeroConPunto(producto.numero)}</Card.Text>
+                      <Card.Text>Stock: {formatearNumeroConPunto(producto.stock)}</Card.Text>
+                      <Card.Text>Precio: ${formatearNumeroConPunto(producto.precio)}</Card.Text>
                       <div className="w-100 justify-content-between">
                         <Link to={"/detalles/" + producto.id_producto}>
                           <Button

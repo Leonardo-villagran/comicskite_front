@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import Context from "./Context/Context";
-import {decodeJWT} from './services/services';
+import {decodeJWT} from './services/servicesJwt';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';

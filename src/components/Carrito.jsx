@@ -5,6 +5,7 @@ import Context from "../Context/Context";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../assets/css/Carrito.css";
+import {formatearNumeroConPunto} from '../services/servicesNumbers';
 
 const base_url = import.meta.env.VITE_API_URL;
 
@@ -113,14 +114,14 @@ const Carrito = () => {
                           />
                         </td>
                         <td>{producto.nombre}</td>
-                        <td>{producto.numero}</td>
-                        <td>{producto.precio}</td>
+                        <td>{formatearNumeroConPunto(producto.numero)}</td>
+                        <td>{formatearNumeroConPunto(producto.precio)}</td>
                         <td>
                           <Button variant="outline-primary" onClick={() => disminuirCantidad(producto.id_producto)}>-</Button>{" "}
                           {producto.cantidad}{" "}
                           <Button variant="outline-primary" onClick={() => aumentarCantidad(producto.id_producto)}>+</Button>
                         </td>
-                        <td>{getTotalPorProducto(producto)}</td>
+                        <td>{formatearNumeroConPunto(getTotalPorProducto(producto))}</td>
                         <td>
                           <Button variant="danger" onClick={() => eliminarDelCarrito(producto.id_producto)}>
                             Eliminar del carro
@@ -135,7 +136,7 @@ const Carrito = () => {
                 backgroundColor: "black",
                 color: "#ebca6d",
                 fontSize: "24px",
-              }}>Total general: ${getTotalGeneral()}</h4></div>
+              }}>Total general: ${formatearNumeroConPunto(getTotalGeneral())}</h4></div>
               <Button variant="primary"
                 className="mr-2 text-uppercase"
                 style={{

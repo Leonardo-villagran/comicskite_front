@@ -3,6 +3,7 @@ import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Context from "../Context/Context";
+import {formatearNumeroConPunto} from '../services/servicesNumbers';
 import { useContext } from "react";
 import "../assets/css/Detalles.css";
 import { toast, ToastContainer } from "react-toastify"; // Importar el toast
@@ -170,7 +171,7 @@ const Detalles = ({ mensajeDeCarga }) => {
                     </div>
                     <Card.Title className="d-flex">{producto.nombre}</Card.Title>
                     <Card.Text className="d-flex">
-                      Número: {producto.numero}
+                      Número: {formatearNumeroConPunto(producto.numero)}
                     </Card.Text>
                     <Card.Text className="d-flex" style={{ textAlign: "left" }}>
                       {producto.detalle}
@@ -180,8 +181,8 @@ const Detalles = ({ mensajeDeCarga }) => {
                       style={{ display: "flex", justifyContent: "space-around" }}
                     >
                       <div>
-                        <Card.Text>Stock: {producto.stock}</Card.Text>
-                        <Card.Text>Precio: ${producto.precio}</Card.Text>
+                        <Card.Text>Stock: {formatearNumeroConPunto(producto.stock)}</Card.Text>
+                        <Card.Text>Precio: ${formatearNumeroConPunto(producto.precio)}</Card.Text>
                       </div>
                       <div className="d-flex" style={{ alignItems: "center" }}>
                         <Button

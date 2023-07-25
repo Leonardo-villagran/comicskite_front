@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Context from "../Context/Context";
 import { useContext } from "react";
 import "../assets/css/Publicaciones.css";
+import {formatearNumeroConPunto} from '../services/servicesNumbers';
 
 // import decodeTokenPayload from '../services/services'
 const base_url = import.meta.env.VITE_API_URL;
@@ -94,9 +95,9 @@ const Productos = ({ mensajeDeCarga }) => {
                     </div>
                     <Card.Body>
                       <Card.Title>{producto.nombre}</Card.Title>
-                      <Card.Text>Número: {producto.numero}</Card.Text>
-                      <Card.Text>Stock: {producto.stock}</Card.Text>
-                      <Card.Text>Precio: ${producto.precio}</Card.Text>
+                      <Card.Text>Número: {formatearNumeroConPunto(producto.numero)}</Card.Text>
+                      <Card.Text>Stock: {formatearNumeroConPunto(producto.stock)}</Card.Text>
+                      <Card.Text>Precio: ${formatearNumeroConPunto(producto.precio)}</Card.Text>
                       <div className="w-100 justify-content-between">
                         <Link to={"/detalles/" + producto.id_producto}>
                           <Button

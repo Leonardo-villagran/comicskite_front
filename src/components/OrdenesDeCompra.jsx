@@ -109,7 +109,7 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
         {imprimirMensajeSiVacio()}
         {ordenesCompra.map((orden) => (
           <>
-            <div
+            <div  key={orden.id_orden_compra}
               className="card d-flex mb-2"
               style={{
                 backgroundColor: '#09232d',
@@ -118,7 +118,7 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
                 textAlign: 'left',
               }}
             >
-              <div key={orden.id_orden_compra}>
+            
                 <h5 className="card-title">Orden de compra: {orden.id_orden_compra}</h5>
 
                 <p className="card-text">Fecha: {formatearFechaLatino(orden.fecha_venta)}</p>
@@ -136,7 +136,7 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
                 </select>
                 <br />
                 <br />
-              </div>
+              
             </div>
           </>
         ))}
