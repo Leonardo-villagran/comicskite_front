@@ -6,26 +6,21 @@
     transition: transform 0.2s ease-in-out;
   }
 
-
-
   .tr-table{
     border-bottom: white 1px solid;
   }
 
-/* Agrega el siguiente bloque de estilos */
 @media (max-width: 576px) {
   .tr-table {
     display: flex;
     flex-direction: column;
-    border-bottom: none; /* Remueve las líneas de separación entre filas */
+    border-bottom: none;
   }
 
   .tr-table th,
   .tr-table td {
-    /* Estilos para cada celda en la tabla */
     display: flex;
     justify-content: center;
     padding: 5px;
-    /*border-bottom: 1px solid #ebca6d;*/ /* Líneas de separación entre celdas */
   }
 }
