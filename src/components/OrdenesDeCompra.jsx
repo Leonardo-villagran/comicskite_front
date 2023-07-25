@@ -1,55 +1,69 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
 
 const base_url = import.meta.env.VITE_API_URL;
 
 // eslint-disable-next-line react/prop-types
 const OrdenesCompra = ({ mensajeDeCarga }) => {
+  const [estados, setEstados] = useState([]);
   const [ordenesCompra, setOrdenesCompra] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  const token = localStorage.getItem('token');
+
+  const obtenerEstados = async (token) => {
+    try {
+      const response = await axios.get(base_url + '/estados', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error al obtener estados:', error);
+      return [];
+    }
+  };
+
+  const obtenerOrdenesCompra = async (token) => {
+    try {
+      const response = await axios.get(base_url + '/orden_compras', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error al obtener órdenes de compra:', error);
+      return [];
+    }
+  };
 
   useEffect(() => {
-    const obtenerOrdenesCompra = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(base_url + '/orden_compras', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+    // Obtener estados y órdenes de compra cuando el componente se monta
+    obtenerEstados(token)
+      .then((estadosData) => setEstados(estadosData))
+      .catch((error) => console.error(error));
 
-        setOrdenesCompra(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error al obtener las órdenes de compra:', error);
-        setIsLoading(false);
-      }
-    };
+    obtenerOrdenesCompra(token)
+      .then((ordenesData) => {
+        setOrdenesCompra(ordenesData)
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error)
+        setLoading(false);
+      });
+  }, [token]);
 
-    obtenerOrdenesCompra();
-  }, []);
-
-  const formatearFechaLatino = (fecha) => {
-    const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
-    return new Date(fecha).toLocaleDateString('es-ES', options);
-  };
-
-  const handleEstadoChange = (event, orderId) => {
-    const newState = [...ordenesCompra];
-    const index = newState.findIndex((orden) => orden.id_orden_compra === orderId);
-    newState[index].id_estado = parseInt(event.target.value);
-    setOrdenesCompra(newState);
-  };
-
-  const handleSubmit = async (event, orderId) => {
-    event.preventDefault();
+  const cambiarEstadoOrdenCompra = async (id_orden_compra, id_estado_nuevo) => {
     try {
-      const token = localStorage.getItem('token');
-      const estadoToUpdate = ordenesCompra.find((orden) => orden.id_orden_compra === orderId);
       const response = await axios.put(
         base_url + '/estado',
-        { id_orden_compra: orderId, id_estado: estadoToUpdate.id_estado },
+        {
+          id_orden_compra: id_orden_compra,
+          id_estado: id_estado_nuevo,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -57,77 +71,77 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
         }
       );
 
-      const updatedOrdenesCompra = [...ordenesCompra];
-      const index = updatedOrdenesCompra.findIndex((orden) => orden.id_orden_compra === orderId);
-      updatedOrdenesCompra[index].id_estado = response.data.nuevo_id_estado;
-      setOrdenesCompra(updatedOrdenesCompra);
+      // Si el servidor responde con éxito, actualizamos el estado de la orden de compra localmente
+      // Aquí asumimos que el servidor responde con los datos actualizados de la orden de compra
+      const ordenActualizada = response.data;
+
+      setOrdenesCompra((ordenes) =>
+        ordenes.map((orden) =>
+          orden.id_orden_compra === ordenActualizada.id_orden_compra ? ordenActualizada : orden
+        )
+      );
     } catch (error) {
-      console.error('Error al cambiar el estado:', error);
+      console.error('Error al cambiar el estado de la orden de compra:', error);
     }
   };
-  
-    // Función para imprimir el mensaje si el estado está vacío
-    const imprimirMensajeSiVacio = () => {
-      if (ordenesCompra.length === 0) {
-        return <p style={{ color: '#ebca6d', textTransform: 'uppercase' }}>no existen órdenes de compra</p>;
-      }
-    };
+
+  const formatearFechaLatino = (fecha) => {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    return new Date(fecha).toLocaleDateString('es-ES', options);
+  };
+
+
+  // Función para imprimir el mensaje si el estado está vacío
+  const imprimirMensajeSiVacio = () => {
+    if (ordenesCompra.length === 0) {
+      return <p style={{ color: '#ebca6d', textTransform: 'uppercase' }}>no existen órdenes de compra</p>;
+    }
+  };
 
 
   console.log(ordenesCompra);
   return (
     <div className="container">
-      {isLoading ? (
-        <p style={{ color: '#ebca6d', textTransform: 'uppercase' }}>{mensajeDeCarga}</p>
-      ) : (
-        <div>
-          {imprimirMensajeSiVacio()}
-          <div className="row">
-            {ordenesCompra.map((orden) => (
-              <div className="col-12 m-2" key={orden.id_orden_compra}>
-                <div
-                  className="card d-flex"
-                  style={{
-                    backgroundColor: '#09232d',
-                    color: '#ebca6d',
-                    border: '1px solid white',
-                    textAlign: 'left',
-                  }}
+      {/* Mostrar "Cargando..." mientras los datos se están cargando */}
+      {loading ? (
+        <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>{mensajeDeCarga}</p>
+      ) : (<>
+        {imprimirMensajeSiVacio()}
+        {ordenesCompra.map((orden) => (
+          <>
+            <div
+              className="card d-flex mb-2"
+              style={{
+                backgroundColor: '#09232d',
+                color: '#ebca6d',
+                border: '1px solid white',
+                textAlign: 'left',
+              }}
+            >
+              <div key={orden.id_orden_compra}>
+                <h5 className="card-title">Orden de compra: {orden.id_orden_compra}</h5>
+
+                <p className="card-text">Fecha: {formatearFechaLatino(orden.fecha_venta)}</p>
+                <pre>{orden.detalle_productos}</pre>
+                <select
+                  defaultValue={orden.id_estado} // Establecer el valor del select como el id_estado actual
+                  value={orden.estado.id_estado}
+                  onChange={(e) => cambiarEstadoOrdenCompra(orden.id_orden_compra, e.target.value)}
                 >
-                  <div className="card-body">
-                    <h5 className="card-title">Orden de Compra #{orden.id_orden_compra}</h5>
-                    <p className="card-text">Fecha: {formatearFechaLatino(orden.fecha_venta)}</p>
-                    <pre>{orden.detalle_productos}</pre>
-                    <p className="card-text">
-                      Estado: <span style={{ color: 'white' }}>{orden.estado}</span>
-                    </p>
-                    <div>
-                      <form onSubmit={(event) => handleSubmit(event, orden.id_orden_compra)}>
-                        <div className="form-group">
-                          <select
-                            className="form-control"
-                            value={orden.id_estado}
-                            onChange={(event) => handleEstadoChange(event, orden.id_orden_compra)}
-                          >
-                            <option value="1">No procesado</option>
-                            <option value="2">Con problemas</option>
-                            <option value="3">En traslado</option>
-                            <option value="4">Entregado</option>
-                            <option value="5">Eliminado</option>
-                          </select>
-                        </div>
-                        <Button variant="dark" className="m-1 mr-2 boton-personalizado-card" type="submit">
-                          Cambiar Estado
-                        </Button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+                  {estados.map((estado) => (
+                    <option key={estado.id_estado} value={estado.id_estado}>
+                      {estado.nombre}
+                    </option>
+                  ))}
+                </select>
+                <br />
+                <br />
               </div>
-            ))}
-          </div>
-        </div>
-      )}
+            </div>
+          </>
+        ))}
+
+      </>)}
     </div>
   );
 };
