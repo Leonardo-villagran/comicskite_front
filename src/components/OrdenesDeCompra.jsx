@@ -109,11 +109,11 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
       'Entregado': 'success',
       'Cancelado': 'danger',
     };
-    console.log(estadoClases[nombreEstado]);
+    //console.log(estadoClases[nombreEstado]);
     return estadoClases[nombreEstado] || 'badge badge-secondary'; // Color por defecto si el estado no coincide
   };
 
-  console.log(ordenesCompra);
+  console.log("Ordenes de compra: ", ordenesCompra);
   return (
     <div className="container">
       {/* Mostrar "Cargando..." mientras los datos se están cargando */}
