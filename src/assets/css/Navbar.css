@@ -13,8 +13,6 @@
 .navbar-logo{
   align-items: flex-start !important;
   justify-content: space-around !important;
-  margin-left: 0;
-  padding-left: 0;
 }
 
 .nav-btn {
@@ -62,6 +60,13 @@
 
   .custom-button{
     width: 150px;
+  }
+}
+
+@media (min-width: 768px){
+  .navbar-logo{
+    margin-left: 0;
+    padding-left: 0;
   }
 }
 
