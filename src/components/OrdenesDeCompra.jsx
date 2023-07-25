@@ -122,7 +122,6 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
       ) : (<>
         {imprimirMensajeSiVacio()}
         {ordenesCompra.map((orden) => (
-          <>
             <div  key={orden.id_orden_compra}
               className="card d-flex mb-2"
               style={{
@@ -151,7 +150,6 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
                   ))}
                 </select>
             </div>
-          </>
         ))}
 
       </>)}
