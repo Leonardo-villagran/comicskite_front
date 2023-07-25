@@ -139,7 +139,7 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
                 </Badge></p>
                 <p className="card-text">Fecha: {formatearFechaLatino(orden.fecha_venta)}</p>
                 <pre>{orden.detalle_productos}</pre>
-                <select style={{ fontSize: '14px', padding: '4px', width: '150px' }}
+                <select className="select-estado-de-compra"
                   defaultValue={orden.id_estado} // Establecer el valor del select como el id_estado actual
                   value={orden.estado.id_estado}
                   onChange={(e) => cambiarEstadoOrdenCompra(orden.id_orden_compra, e.target.value)}
