@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import Context from "./Context/Context";
-import {decodeJWT} from './services/servicesJwt';
+import { decodeJWT } from './services/servicesJwt';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -38,13 +38,15 @@ function App() {
     const token = localStorage.getItem('token');
     const decodedToken = decodeJWT(token);
     // Check if the token exists before proceeding
-    if (decodedToken) setTokenContent(decodedToken); 
+    if (decodedToken) setTokenContent(decodedToken);
     else console.log('No se encontró ningún token. ');
 
   }, []);
   // Función para decodificar el token JWT
+
   
-  console.log("Contenido token: ",tokenContent);
+
+  console.log("Contenido token: ", tokenContent);
   console.log("Producto: ", producto);
   console.log("Carrito: ", carrito);
 

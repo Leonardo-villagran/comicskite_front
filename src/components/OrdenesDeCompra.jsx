@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Badge from 'react-bootstrap/Badge';
+import "../assets/css/OrdenesDeCompra.css";
 
 const base_url = import.meta.env.VITE_API_URL;
 
@@ -98,6 +100,18 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
     }
   };
 
+  // Función para obtener la clase de color del badge según el nombre del estado
+  const obtenerClaseBadgePorEstado = (nombreEstado) => {
+    const estadoClases = {
+      'No procesado':'secondary', 
+      'Pendiente': 'warning',
+      'En traslado': 'info',
+      'Entregado': 'success',
+      'Cancelado': 'danger',
+    };
+    console.log(estadoClases[nombreEstado]);
+    return estadoClases[nombreEstado] || 'badge badge-secondary'; // Color por defecto si el estado no coincide
+  };
 
   console.log(ordenesCompra);
   return (
@@ -120,10 +134,12 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
             >
             
                 <h5 className="card-title">Orden de compra: {orden.id_orden_compra}</h5>
-
+                <p className="card-text"> <Badge className="badge-custom" bg={obtenerClaseBadgePorEstado(orden.estado)}>
+                  {orden.estado}
+                </Badge></p>
                 <p className="card-text">Fecha: {formatearFechaLatino(orden.fecha_venta)}</p>
                 <pre>{orden.detalle_productos}</pre>
-                <select
+                <select style={{ fontSize: '14px', padding: '4px', width: '150px' }}
                   defaultValue={orden.id_estado} // Establecer el valor del select como el id_estado actual
                   value={orden.estado.id_estado}
                   onChange={(e) => cambiarEstadoOrdenCompra(orden.id_orden_compra, e.target.value)}
@@ -134,9 +150,6 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
                     </option>
                   ))}
                 </select>
-                <br />
-                <br />
-              
             </div>
           </>
         ))}
