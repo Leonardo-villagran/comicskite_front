@@ -146,7 +146,7 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
                   {orden.estado}
                 </Badge></p>
                 <p className="card-text">Fecha: {formatearFechaLatino(orden.fecha_venta)}</p>
-                <pre>{orden.detalle_productos}</pre>
+                <div className="detalle-productos" dangerouslySetInnerHTML={{ __html: orden.detalle_productos }} />
                 <select className="select-estado-de-compra"
                   defaultValue={orden.id_estado} // Establecer el valor del select como el id_estado actual
                   value={orden.estado.id_estado}
