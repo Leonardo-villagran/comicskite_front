@@ -24,7 +24,7 @@
   padding: 10px; /* Añade un poco de espacio de relleno para mejorar la apariencia */
   margin: 0px 10px 0px 0px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  border-radius: 10px 10px 0px 0px;
   transition: transform 0.2s ease-in-out;
   font-weight: bold; /* Agrega negrita al texto */
   border: none
