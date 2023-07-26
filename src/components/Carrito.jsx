@@ -154,7 +154,7 @@ const Carrito = () => {
                     <td>
                       {formatearNumeroConPunto(getTotalPorProducto(producto))}
                     </td>
-                    <td>
+                    <td className="td-eliminar">
                       <Button
                         className="btn-table"
                         variant="danger"
