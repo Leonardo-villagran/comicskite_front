@@ -123,7 +123,7 @@ const Carrito = () => {
               </thead>
               <tbody>
                 {carrito.map((producto) => (
-                  <tr key={producto.id_producto}>
+                  <tr className="tr-border" key={producto.id_producto}>
                     <td className="d-none d-md-table-cell">
                       <img
                         src={producto.imagen_pequena}
