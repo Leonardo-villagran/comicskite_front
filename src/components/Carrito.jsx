@@ -114,10 +114,10 @@ const Carrito = () => {
                 <tr>
                   <th className="d-none d-md-table-cell">Imagen</th>
                   <th className="d-none d-sm-table-cell">Nombre</th>
-                  <th className="d-none d-md-table-cell">Número</th>
-                  <th className="d-none d-md-table-cell">Precio</th>
+                  <th className="d-none d-md-table-cell texto-derecha" >Número</th>
+                  <th className="d-none d-md-table-cell texto-derecha">Precio</th>
                   <th className="d-none d-sm-table-cell">Cantidad</th>
-                  <th className="d-none d-sm-table-cell">Total</th>
+                  <th className="d-none d-sm-table-cell texto-derecha">Total</th>
                   <th className="d-none d-sm-table-cell">Acciones</th>
                 </tr>
               </thead>
@@ -132,8 +132,8 @@ const Carrito = () => {
                       />
                     </td>
                     <td>{producto.nombre}</td>
-                    <td className="d-none d-md-table-cell">{formatearNumeroConPunto(producto.numero)}</td>
-                    <td className="d-none d-md-table-cell">{formatearNumeroConPunto(producto.precio)}</td>
+                    <td className="d-none d-md-table-cell texto-derecha">{formatearNumeroConPunto(producto.numero)}</td>
+                    <td className="d-none d-md-table-cell texto-derecha">{formatearNumeroConPunto(producto.precio)}</td>
                     <td className="td-cantidad">
                       <Button
                         className="btn-table"
@@ -151,7 +151,7 @@ const Carrito = () => {
                         +
                       </Button>
                     </td>
-                    <td>
+                    <td className="texto-derecha">
                       {formatearNumeroConPunto(getTotalPorProducto(producto))}
                     </td>
                     <td className="td-eliminar">
