@@ -16,7 +16,8 @@
 
 /* Clase personalizada para aplicar el degradado */
 .gradient-table {
-  background: linear-gradient(to bottom,  #295b6f, rgb(7, 134, 184));
+  --bs-table-bg: none;
+  background: linear-gradient(to bottom,  #56a5c4, rgb(7, 134, 184));
   font-size: 1em; /* Tamaño de fuente para agrandar el texto */
   color: #ebca6d; /* Cambia el color del texto a blanco */
   text-align: left; /* Alinea el texto a la izquierda */
@@ -28,6 +29,8 @@
   font-weight: bold; /* Agrega negrita al texto */
   border: none
 }
+
+
 
 .gradient-table tr{
   border: none;
@@ -41,6 +44,15 @@
   border: none;
 }
 
+@media (max-width: 850px){
+  .td-cantidad{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 !important;
+  }
+}
+
 @media (max-width: 576px){
   .gradient-table{
     font-size: 10px;
@@ -52,13 +64,6 @@
 
   .mas{
     padding: 3px;
-  }
-
-  .td-cantidad{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 !important;
   }
 
   .td-eliminar{

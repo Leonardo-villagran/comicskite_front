@@ -137,7 +137,7 @@ const Carrito = () => {
                     <td className="td-cantidad">
                       <Button
                         className="btn-table"
-                        variant="outline-primary"
+                        variant="primary"
                         onClick={() => disminuirCantidad(producto.id_producto)}
                       >
                         -
@@ -145,7 +145,7 @@ const Carrito = () => {
                       {producto.cantidad}{" "}
                       <Button
                         className="btn-table mas"
-                        variant="outline-primary"
+                        variant="primary"
                         onClick={() => aumentarCantidad(producto.id_producto)}
                       >
                         +
