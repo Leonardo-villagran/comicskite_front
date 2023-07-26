@@ -2,13 +2,18 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Badge from 'react-bootstrap/Badge';
 import "../assets/css/OrdenesDeCompra.css";
+import Context from "../Context/Context";
+import { useContext } from "react";
+import OrdenesDeCompraPaginator from './OrdenesDeCompraPaginator';
 
 const base_url = import.meta.env.VITE_API_URL;
 
 // eslint-disable-next-line react/prop-types
 const OrdenesCompra = ({ mensajeDeCarga }) => {
+
+  const {ordenesCompra, setOrdenesCompra, OrdenPage, OrdenSize} = useContext(Context);
+
   const [estados, setEstados] = useState([]);
-  const [ordenesCompra, setOrdenesCompra] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem('token');
@@ -30,6 +35,10 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
   const obtenerOrdenesCompra = async (token) => {
     try {
       const response = await axios.get(base_url + '/orden_compras', {
+        params: {
+          page: OrdenPage,
+          size: OrdenSize,
+        },
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -56,7 +65,7 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
         console.error(error)
         setLoading(false);
       });
-  }, [token]);
+  }, [token,OrdenPage,OrdenSize,setOrdenesCompra,setEstados]);
 
   const cambiarEstadoOrdenCompra = async (id_orden_compra, id_estado_nuevo) => {
     try {
@@ -137,7 +146,7 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
                   {orden.estado}
                 </Badge></p>
                 <p className="card-text">Fecha: {formatearFechaLatino(orden.fecha_venta)}</p>
-                <pre>{orden.detalle_productos}</pre>
+                <div className="detalle-productos" dangerouslySetInnerHTML={{ __html: orden.detalle_productos }} />
                 <select className="select-estado-de-compra"
                   defaultValue={orden.id_estado} // Establecer el valor del select como el id_estado actual
                   value={orden.estado.id_estado}
@@ -153,6 +162,7 @@ const OrdenesCompra = ({ mensajeDeCarga }) => {
         ))}
 
       </>)}
+      <OrdenesDeCompraPaginator/>
     </div>
   );
 };

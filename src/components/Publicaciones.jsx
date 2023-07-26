@@ -6,6 +6,7 @@ import Context from "../Context/Context";
 import { useContext } from "react";
 import "../assets/css/Publicaciones.css";
 import {formatearNumeroConPunto} from '../services/servicesNumbers';
+import ProductosPaginator from "./PublicacionesPaginator";
 
 // import decodeTokenPayload from '../services/services'
 const base_url = import.meta.env.VITE_API_URL;
@@ -14,7 +15,7 @@ const base_url = import.meta.env.VITE_API_URL;
 const Productos = ({ mensajeDeCarga }) => {
   // const token = localStorage.getItem("token");
   // const payload = decodeTokenPayload(token);
-  const { productos, setProductos, buscar, setBuscar } = useContext(Context);
+  const { PublicacionesPage, PublicacionesSize, productos, setProductos, buscar, setBuscar } = useContext(Context);
   const [loading, setLoading] = useState(true);
 
   const capturaBuscar = (e) => {
@@ -31,6 +32,10 @@ const Productos = ({ mensajeDeCarga }) => {
     // Realizar la solicitud GET al backend con Axios
     axios
       .get(base_url + "/publicaciones", {
+        params: {
+          page: PublicacionesPage,
+          size: PublicacionesSize,
+        },
         headers: {
           Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
         },
@@ -44,7 +49,7 @@ const Productos = ({ mensajeDeCarga }) => {
         console.error("Error al obtener la lista de productos:", error);
         setLoading(false);
       });
-  }, [setProductos]);
+  }, [setProductos,PublicacionesPage, PublicacionesSize]);
 
   return (
     <div>
@@ -121,6 +126,7 @@ const Productos = ({ mensajeDeCarga }) => {
                 </div>
               ))}
             </div>
+            <ProductosPaginator/>
           </div>
         </>
       )}
