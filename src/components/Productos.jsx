@@ -7,11 +7,12 @@ import { useContext } from "react";
 import { toast, ToastContainer } from "react-toastify"; // Importar el toast
 import "react-toastify/dist/ReactToastify.css"; // Estilos del toast
 import "../assets/css/Producto.css";
-import {formatearNumeroConPunto} from '../services/servicesNumbers';
+import { formatearNumeroConPunto } from '../services/servicesNumbers';
 
 //Importación de imágenes utilizadas para la generación de botón like.
 import blanco from "../assets/img/iconos/corazon_blanco.png";
 import rojo from "../assets/img/iconos/corazon_rojo.png";
+import ProductosPaginator from "./ProductosPaginator";
 
 // import decodeTokenPayload from '../services/services'
 
@@ -19,9 +20,9 @@ const base_url = import.meta.env.VITE_API_URL;
 
 // eslint-disable-next-line react/prop-types
 const Productos = ({ mensajeDeCarga }) => {
-  // const token = localStorage.getItem("token");
-  // const payload = decodeTokenPayload(token);
-  const { carrito, setCarrito, productos, setProductos, buscar, setBuscar } =
+
+
+  const { ProductosPageSize, ProductosPage, carrito, setCarrito, productos, setProductos, buscar, setBuscar } =
     useContext(Context);
   // Agregar estado para controlar si los datos han sido cargados
   const [loading, setLoading] = useState(true);
@@ -50,6 +51,10 @@ const Productos = ({ mensajeDeCarga }) => {
     // Realizar la solicitud GET al backend con Axios
     axios
       .get(base_url + "/productos", {
+        params: {
+          page: ProductosPage,
+          size: ProductosPageSize,
+        },
         headers: {
           Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
         },
@@ -65,7 +70,7 @@ const Productos = ({ mensajeDeCarga }) => {
         // Marcar que la carga ha finalizado
         setLoading(false);
       });
-  }, [setProductos]);
+  }, [setProductos, ProductosPage,ProductosPageSize]);
 
   const presionarboton = (id_producto) => {
     const getTokenFromLocalStorage = localStorage.getItem("token");
@@ -169,7 +174,7 @@ const Productos = ({ mensajeDeCarga }) => {
   console.log("La ruta utilizada para el backend es: ", base_url);
   return (
     <div>
-       {/* Componente necesario para mostrar los toasts */}
+      {/* Componente necesario para mostrar los toasts */}
       <ToastContainer position="top-right" autoClose={1000} newestOnTop />
       {/* Mostrar "Cargando..." mientras los datos se están cargando */}
       {loading ? (
@@ -246,6 +251,7 @@ const Productos = ({ mensajeDeCarga }) => {
                 </div>
               ))}
             </div>
+            <ProductosPaginator/>
           </div>
         </>
       )}

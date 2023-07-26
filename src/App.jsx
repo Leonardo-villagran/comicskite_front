@@ -31,7 +31,18 @@ function App() {
   const [buscar, setBuscar] = useState("");
   const [tokenContent, setTokenContent] = useState('');
 
-  const globalState = { carrito, setCarrito, producto, setProducto, productos, setProductos, tokenContent, setTokenContent, buscar, setBuscar };
+  const [ProductosPage, setProductosPage] = useState(1);
+  const [ProductosPageSize, setProductosPageSize] = useState(8);
+
+  const [PublicacionesPage, setPublicacionesPage] = useState(1);
+  const [PublicacionesSize, setPublicacionesSize] = useState(8);
+
+  const [OrdenPage, setOrdenPage] = useState(1);
+  const [OrdenSize, setOrdenSize] = useState(4);
+
+  const [ordenesCompra, setOrdenesCompra] = useState([]);
+
+  const globalState = {ordenesCompra, setOrdenesCompra, OrdenPage, setOrdenPage, OrdenSize, setOrdenSize, PublicacionesPage, setPublicacionesPage, PublicacionesSize, setPublicacionesSize, ProductosPageSize, setProductosPageSize, ProductosPage, setProductosPage, carrito, setCarrito, producto, setProducto, productos, setProductos, tokenContent, setTokenContent, buscar, setBuscar };
 
   useEffect(() => {
     // Retrieve the token from local storage
@@ -46,9 +57,9 @@ function App() {
 
   
 
-  console.log("Contenido token: ", tokenContent);
-  console.log("Producto: ", producto);
-  console.log("Carrito: ", carrito);
+  //console.log("Contenido token: ", tokenContent);
+  //console.log("Producto: ", producto);
+  //console.log("Carrito: ", carrito);
 
   return (
     <Router>
@@ -67,7 +78,7 @@ function App() {
             <Route path="/carro_compras" element={tokenContent ? <CarroCompras /> : <Navigate to="/" />} />
             <Route path="/detalles/:id_producto" element={tokenContent ? <Detalles /> : <Navigate to="/" />} />
             <Route path="/orden_compra" element={tokenContent ? <OrdenDeCompra /> : <Navigate to="/" />} />
-            <Route path="/salir" element={<Salir />} />
+            <Route path="/salir" element={tokenContent ? <Salir /> : <Navigate to="/" />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

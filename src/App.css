@@ -6,6 +6,7 @@ body {
   min-height: 100vh; /* Establece la altura mínima para asegurarse de que la imagen de fondo cubra todo el viewport */
   margin: 0; /* Elimina los márgenes predeterminados del body */
   padding: 0; /* Elimina el padding predeterminado del body */
+  color: #ebca6d;
 }
 
 #root {
@@ -113,3 +114,22 @@ body {
 }
 
 /* Fin vista de cajas de vistas*/
+
+/* Paginator*/
+
+.boton-paginator {
+  background-color: black;
+  border-color: #ebca6d;
+  color: #ebca6d;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.boton-paginator:disabled {
+  background-color: rgb(50, 47, 47); /* Cambia el color de fondo cuando está deshabilitado */
+  border-color: #ebca6d; /* Cambia el color del borde cuando está deshabilitado */
+  color: #ebca6d; /* Cambia el color del texto cuando está deshabilitado */
+  /* Otros estilos adicionales que desees aplicar cuando el botón está deshabilitado */
+}
+
+/* Fin Paginator*/
