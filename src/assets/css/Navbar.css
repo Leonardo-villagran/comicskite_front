@@ -18,6 +18,13 @@
 .nav-btn {
     display: none;
   }
+
+@media (min-width: 1200px) {
+  .navbar-logo{
+    justify-content: flex-start !important;
+    padding-left: 36px !important;
+  }
+}
   
 @media (max-width: 992px) {
   .div-fabars {
