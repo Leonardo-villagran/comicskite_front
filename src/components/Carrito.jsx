@@ -134,7 +134,7 @@ const Carrito = () => {
                     <td>{producto.nombre}</td>
                     <td className="d-none d-md-table-cell">{formatearNumeroConPunto(producto.numero)}</td>
                     <td className="d-none d-md-table-cell">{formatearNumeroConPunto(producto.precio)}</td>
-                    <td>
+                    <td className="td-cantidad">
                       <Button
                         className="btn-table"
                         variant="outline-primary"
@@ -144,7 +144,7 @@ const Carrito = () => {
                       </Button>{" "}
                       {producto.cantidad}{" "}
                       <Button
-                        className="btn-table"
+                        className="btn-table mas"
                         variant="outline-primary"
                         onClick={() => aumentarCantidad(producto.id_producto)}
                       >
