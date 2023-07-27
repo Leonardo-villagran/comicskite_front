@@ -159,6 +159,7 @@ const Detalles = ({ mensajeDeCarga }) => {
                       variant="top"
                       src={producto.imagen_grande}
                       alt={producto.nombre}
+                      style={{ maxHeight: "371px", maxWidth: "246px" }}
                     />
                   </div>
                   <Card.Body>
