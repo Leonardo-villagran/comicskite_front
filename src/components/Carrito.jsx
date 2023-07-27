@@ -201,7 +201,7 @@ const Carrito = () => {
           <div></div>
         ) : (
           <p
-            className="gradient-table "
+            className="detalle_final"
             dangerouslySetInnerHTML={{ __html: detalleFinal }}
           ></p>
         )}

@@ -53,13 +53,12 @@ function App() {
     else console.log('No se encontró ningún token. ');
 
   }, []);
-  // Función para decodificar el token JWT
-
-  
-
   //console.log("Contenido token: ", tokenContent);
   //console.log("Producto: ", producto);
   //console.log("Carrito: ", carrito);
+  const rol=tokenContent.administrador;
+  const algo=tokenContent && (rol===1);
+  console.log("Rol: ", rol,algo);
 
   return (
     <Router>
@@ -72,7 +71,7 @@ function App() {
             <Route path="/productos" element={tokenContent ? <Productos /> : <Navigate to="/" />} />
             <Route path="/favoritos" element={tokenContent ? <Favoritos /> : <Navigate to="/" />} />
             <Route path="/perfil" element={tokenContent ? <Perfil /> : <Navigate to="/" />} />
-            <Route path="/publicaciones" element={tokenContent ? <Publicaciones /> : <Navigate to="/" />} />
+            <Route path="/publicaciones" element={(tokenContent && (rol===1)) ? <Publicaciones /> : <Navigate to="/" />} />
             <Route path="/nuevo_producto" element={tokenContent ? <NuevoProducto /> : <Navigate to="/" />} />
             <Route path="/editar_producto/:id_producto" element={tokenContent ? <EditarProducto /> : <Navigate to="/" />} />
             <Route path="/carro_compras" element={tokenContent ? <CarroCompras /> : <Navigate to="/" />} />

@@ -29,6 +29,21 @@
   font-weight: bold; /* Agrega negrita al texto */
   border: none
 }
+/* Clase personalizada para aplicar el degradado */
+.detalle_final {
+  --bs-table-bg: none;
+  background: linear-gradient(to top, rgb(15, 45, 57), rgb(29, 93, 118));
+  font-size: 1em; /* Tamaño de fuente para agrandar el texto */
+  color: #ebca6d; /* Cambia el color del texto a blanco */
+  text-align: left; /* Alinea el texto a la izquierda */
+  padding: 10px; /* Añade un poco de espacio de relleno para mejorar la apariencia */
+  margin: 0px 10px 0px 0px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px 10px 0px 0px;
+  transition: transform 0.2s ease-in-out;
+  font-weight: bold; /* Agrega negrita al texto */
+  border: none
+}
 
 .texto-derecha {
   text-align: center;
