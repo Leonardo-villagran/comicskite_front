@@ -10,3 +10,8 @@
     transform: scale(1.05);
 }
 
+.error_formulario{
+    color: red;
+    font-weight: bold;
+    font-size: 1em;
+}
