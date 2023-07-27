@@ -73,10 +73,10 @@ function App() {
             <Route path="/perfil" element={tokenContent ? <Perfil /> : <Navigate to="/" />} />
             <Route path="/publicaciones" element={(tokenContent && (rol===1)) ? <Publicaciones /> : <Navigate to="/" />} />
             <Route path="/nuevo_producto" element={tokenContent ? <NuevoProducto /> : <Navigate to="/" />} />
-            <Route path="/editar_producto/:id_producto" element={tokenContent ? <EditarProducto /> : <Navigate to="/" />} />
+            <Route path="/editar_producto/:id_producto" element={(tokenContent && (rol===1)) ? <EditarProducto /> : <Navigate to="/" />} />
             <Route path="/carro_compras" element={tokenContent ? <CarroCompras /> : <Navigate to="/" />} />
             <Route path="/detalles/:id_producto" element={tokenContent ? <Detalles /> : <Navigate to="/" />} />
-            <Route path="/orden_compra" element={tokenContent ? <OrdenDeCompra /> : <Navigate to="/" />} />
+            <Route path="/orden_compra" element={(tokenContent && (rol===1)) ? <OrdenDeCompra /> : <Navigate to="/" />} />
             <Route path="/salir" element={tokenContent ? <Salir /> : <Navigate to="/" />} />
             <Route path="*" element={<NotFound />} />
           </Route>
