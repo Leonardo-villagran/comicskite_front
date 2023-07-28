@@ -147,14 +147,44 @@ const AgregarProducto = () => {
 
     const handleSmallImageChange = (e) => {
         const file = e.target.files[0];
+
+        // Validar si se seleccionó una imagen
+        if (!file) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                imagen_pequena: 'Por favor, seleccione una imagen pequeña.',
+            }));
+            setSmallImage(null);
+            return;
+        }
+
+        // Validar tamaño o tipo de imagen si es necesario
+        // Puedes agregar más validaciones aquí si es necesario
+
+        setErrors((prevErrors) => ({ ...prevErrors, imagen_pequena: '' }));
         setSmallImage(file);
+
     };
 
     const handleLargeImageChange = (e) => {
         const file = e.target.files[0];
+
+        // Validar si se seleccionó una imagen
+        if (!file) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                imagen_grande: 'Por favor, seleccione una imagen grande.',
+            }));
+            setLargeImage(null);
+            return;
+        }
+
+        // Validar tamaño o tipo de imagen si es necesario
+        // Puedes agregar más validaciones aquí si es necesario
+
+        setErrors((prevErrors) => ({ ...prevErrors, imagen_grande: '' }));
         setLargeImage(file);
     };
-
 
     return (
         <div>
@@ -203,9 +233,7 @@ const AgregarProducto = () => {
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Imagen pequeña:</label>
                     <div className="col-sm-10">
                         <input type="file" name="imagen_pequena" onChange={handleSmallImageChange} />
-                        {errors.imagen_pequena && (
-                            <div className="error_formulario">{errors.imagen_pequena}</div>
-                        )}
+                        {errors.imagen_pequena && <div style={{ color: 'red', fontSize: '16px' }}>{errors.imagen_pequena}</div>}
                         {/*smallImage && (
                             <img src={URL.createObjectURL(smallImage)} alt="Imagen pequeña" style={{ maxWidth: '50px', marginTop: '10px' }} />
                         )*/}
@@ -216,9 +244,7 @@ const AgregarProducto = () => {
                     <div className="col-sm-10">
                         <input type="file" name="imagen_grande" onChange={handleLargeImageChange}
                         />
-                        {errors.imagen_grande && (
-                            <div className="error_formulario">{errors.imagen_grande}</div>
-                        )}
+                        {errors.imagen_grande && <div style={{ color: 'red', fontSize: '16px' }}>{errors.imagen_grande}</div>}
                         {/*largeImage && (
                             <img src={URL.createObjectURL(largeImage)} alt="Imagen grande" style={{ maxWidth: '100px', marginTop: '10px' }} />
                         )*/}
@@ -284,17 +310,18 @@ const AgregarProducto = () => {
                     </div>
                 </div>
 
-                <div className="form-group row justify-content-end">
+                <div className="form-group row justify-content-center">
                     <div className="col-sm-10 text-right">
-                        <Button variant="contained" 
-                        style={{ 
-                            backgroundColor: isLoading ? 'gray' : 'black',
-                            color: '#ebca6d', 
-                            marginLeft: '10px', 
-                            fontSize: '12px', 
-                            border: '2px solid #ebca6d' }} 
-                        type="submit"
-                        disabled={isLoading}
+                        <Button variant="contained"
+                            style={{
+                                backgroundColor: isLoading ? 'gray' : 'black',
+                                color: '#ebca6d',
+                                marginLeft: '10px',
+                                fontSize: '12px',
+                                border: '2px solid #ebca6d'
+                            }}
+                            type="submit"
+                            disabled={isLoading}
                         >
                             {isLoading ? 'Enviando...' : 'Agregar Producto'}
                         </Button>
