@@ -6,7 +6,7 @@ import { Button, TextField } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { uploadFileSmall, uploadFileLarge } from '../assets/js/firebase';
 
-const base_url= import.meta.env.VITE_API_URL;
+const base_url = import.meta.env.VITE_API_URL;
 
 const EditarProducto = () => {
     const navigate = useNavigate();
@@ -24,6 +24,31 @@ const EditarProducto = () => {
         precio: '',
         stock: ''
     });
+
+    const [errors, setErrors] = useState({
+        nombre: '',
+        numero: '',
+        imagen_pequena: '',
+        imagen_grande: '',
+        detalle: '',
+        precio: '',
+        stock: '',
+    });
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+
+        // Validar campos obligatorios mientras se escribe
+        if (value.trim() === '') {
+            setErrors((prevErrors) => ({ ...prevErrors, [name]: 'Este campo es obligatorio' }));
+        } else {
+            setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
+        }
+
+    };
 
     useEffect(() => {
         // Cargar los datos del producto existente
@@ -45,8 +70,6 @@ const EditarProducto = () => {
                 const response = await axios.get(`${base_url}/producto/${id_producto}`, config);
                 const productData = response.data;
 
-                
-
                 // Actualizar el estado con los datos del producto existente
                 setFormData({
                     nombre: productData.nombre,
@@ -57,6 +80,7 @@ const EditarProducto = () => {
                     precio: productData.precio,
                     stock: productData.stock,
                 });
+                
             } catch (error) {
                 toast.error('Error al cargar los datos del producto. Intente nuevamente más tarde.');
             }
@@ -65,51 +89,88 @@ const EditarProducto = () => {
         fetchProduct();
     }, [id_producto]);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({ ...prevData, [name]: value }));
-    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        let formIsValid = true;
+        const newErrors = {};
+
+        //console.log("FormData:", formData);
+
+        // Validar campos obligatorios al enviar el formulario
+        if (formData.nombre.trim() === '') {
+            newErrors.nombre = 'El nombre no puede estar vacío';
+            formIsValid = false;
+        }
+        if (formData.numero === '') {
+            newErrors.numero = 'El número no puede estar vacío';
+            formIsValid = false;
+        }
+
+        if (formData.detalle.trim() === '') {
+            newErrors.detalle = 'El detalle no puede estar vacío';
+            formIsValid = false;
+        }
+
+        if (formData.precio === '') {
+            newErrors.precio = 'El precio no puede estar vacío';
+            formIsValid = false;
+        }
+
+        if (formData.stock === '') {
+            newErrors.stock = 'El stock no puede estar vacío';
+            formIsValid = false;
+        }
+
+        if (!formIsValid) {
+            setErrors(newErrors);
+            toast.error('Error. Por favor, complete correctamente el formulario.');
+            return;
+        }
+
+
         try {
+
+            setIsLoading(true); // Iniciar el estado de envío del formulario
+
             const token = localStorage.getItem('token'); // Reemplaza 'jwt_token' por la clave adecuada para el token JWT en el almacenamiento local
             if (!token) {
                 // Manejo del caso donde el token no está disponible
                 toast.error('Token no encontrado. Inicie sesión para continuar.');
                 return;
             }
-
             const config = {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             };
 
-            let resultSmall="";
-            let resultLarge="";
+            let resultSmall = "";
+            let resultLarge = "";
 
-                if (smallImage === null) {
-                    // El estado está null
-                    console.log('smallImage está null');
-                    resultSmall = formData.imagen_pequena
-                } else {
-                    // El estado no está null
-                    console.log('smallImage no está null');
-                    resultSmall = await uploadFileSmall(smallImage);   
-                }
-                console.log("Imagen pequeña: ", resultSmall);
+            if (smallImage === null) {
+                // El estado está null
+                console.log('smallImage está null');
+                resultSmall = formData.imagen_pequena
+            } else {
+                // El estado no está null
+                console.log('smallImage no está null');
+                resultSmall = await uploadFileSmall(smallImage);
+            }
+            console.log("Imagen pequeña: ", resultSmall);
 
-                if (largeImage === null) {
-                    // El estado está null
-                    console.log('largeImage está null');
-                    resultLarge = formData.imagen_grande;
-                } else {
-                    // El estado no está null
-                    console.log('largeImage no está null');
-                    resultLarge = await uploadFileLarge(largeImage);
-                }
-                console.log("Imagen grande: ", resultLarge);
+            if (largeImage === null) {
+                // El estado está null
+                console.log('largeImage está null');
+                resultLarge = formData.imagen_grande;
+            } else {
+                // El estado no está null
+                console.log('largeImage no está null');
+                resultLarge = await uploadFileLarge(largeImage);
+            }
+            console.log("Imagen grande: ", resultLarge);
 
             const productInfo = {
                 nombre: formData.nombre,
@@ -125,6 +186,7 @@ const EditarProducto = () => {
 
             if (response.data) {
                 toast.success('Producto actualizado satisfactoriamente');
+                setIsLoading(false); // Finalizar el estado de envío del formulario
                 navigate('/publicaciones');
             } else {
                 toast.error('Error. Por favor, complete correctamente el formulario.');
@@ -167,6 +229,8 @@ const EditarProducto = () => {
                             InputProps={{
                                 style: textFieldStyle,
                             }}
+                            error={!!errors.nombre}
+                            helperText={errors.nombre && <span style={{ color: 'red', fontSize: '16px' }}>{errors.nombre}</span>}
                         />
                     </div>
                 </div>
@@ -175,7 +239,7 @@ const EditarProducto = () => {
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Número:</label>
                     <div className="col-sm-10">
                         <TextField
-                            type="text"
+                            type="number"
                             name="numero"
                             value={formData.numero}
                             onChange={handleChange}
@@ -184,14 +248,21 @@ const EditarProducto = () => {
                             InputProps={{
                                 style: textFieldStyle,
                             }}
+                            error={!!errors.numero}
+                            helperText={errors.numero && <span style={{ color: 'red', fontSize: '16px' }}>{errors.numero}</span>}
                         />
                     </div>
                 </div>
 
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Imagen pequeña:</label>
-                    <div className="col-sm-10">
+                    <div className="col-sm-10 ">
                         <input type="file" name="imagen_pequena" onChange={handleSmallImageChange} />
+                    </div>
+                    <div>
+                        {/*smallImage && (
+                            <img src={URL.createObjectURL(smallImage)} alt="Imagen pequeña" style={{ maxWidth: '50px', marginTop: '10px' }} />
+                        )*/}
                     </div>
                 </div>
                 <div className="form-group row my-3">
@@ -217,6 +288,8 @@ const EditarProducto = () => {
                             InputProps={{
                                 style: textFieldStyle,
                             }}
+                            error={!!errors.detalle}
+                            helperText={errors.detalle && <span style={{ color: 'red', fontSize: '16px' }}>{errors.detalle}</span>}
                         />
                     </div>
                 </div>
@@ -234,6 +307,8 @@ const EditarProducto = () => {
                             InputProps={{
                                 style: textFieldStyle,
                             }}
+                            error={!!errors.precio}
+                            helperText={errors.precio && <span style={{ color: 'red', fontSize: '16px' }}>{errors.precio}</span>}
                         />
                     </div>
                 </div>
@@ -251,17 +326,30 @@ const EditarProducto = () => {
                             InputProps={{
                                 style: textFieldStyle,
                             }}
+                            error={!!errors.stock}
+                            helperText={errors.stock && <span style={{ color: 'red', fontSize: '16px' }}>{errors.stock}</span>}
                         />
                     </div>
                 </div>
 
-                <div className="form-group row justify-content-end">
+                <div className="form-group row justify-content-center">
                     <div className="col-sm-10 text-right">
-                        <Button variant="contained" style={{ backgroundColor: 'black', color: '#ebca6d', marginLeft: '10px', fontSize: '12px', border: '2px solid #ebca6d' }} type="submit">Actualizar Producto</Button>
+                        <Button variant="contained" 
+                        style={{ 
+                            backgroundColor: isLoading ? 'gray' : 'black',
+                            color: '#ebca6d', 
+                            marginLeft: '10px', 
+                            fontSize: '12px', 
+                            border: '2px solid #ebca6d' 
+                        }} 
+                        type="submit" disabled={isLoading}
+                        >
+                            {isLoading ? 'Enviando...' : 'Actualizar Producto'}
+                        </Button>
                     </div>
                 </div>
             </form>
-           
+
         </div>
     );
 

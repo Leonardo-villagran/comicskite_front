@@ -91,6 +91,7 @@ const AgregarProducto = () => {
 
         if (!formIsValid) {
             setErrors(newErrors);
+            toast.error('Error. Por favor, complete correctamente el formulario.');
             return;
         }
 
@@ -188,7 +189,7 @@ const AgregarProducto = () => {
 
     return (
         <div>
-            <ToastContainer />
+            <ToastContainer position="top-right" autoClose={1000} newestOnTop/>
             <h2 style={{ color: '#ebca6d' }}>AGREGAR PRODUCTO</h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-group row my-3">
