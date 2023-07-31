@@ -46,7 +46,7 @@ function App() {
 
   useEffect(() => {
     // Retrieve the token from local storage
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');     
     const decodedToken = decodeJWT(token);
     // Check if the token exists before proceeding
     if (decodedToken) setTokenContent(decodedToken);
@@ -65,20 +65,35 @@ function App() {
       <Context.Provider value={globalState}>
         <Routes>
           <Route path="/" element={<Outlet />}>
+
             <Route index element={!tokenContent ? <Home /> : <Navigate to="/productos" />} />
+
             <Route path="/registrar" element={tokenContent ? <Navigate to="/" /> : <Registrar />} />
+
             <Route path="/iniciar_sesion" element={tokenContent ? <Navigate to="/" /> : <IniciarSesion />} />
+
             <Route path="/productos" element={tokenContent ? <Productos /> : <Navigate to="/" />} />
+
             <Route path="/favoritos" element={tokenContent ? <Favoritos /> : <Navigate to="/" />} />
+
             <Route path="/perfil" element={tokenContent ? <Perfil /> : <Navigate to="/" />} />
+
             <Route path="/publicaciones" element={(tokenContent && (rol===1)) ? <Publicaciones /> : <Navigate to="/" />} />
+
             <Route path="/nuevo_producto" element={(tokenContent && (rol===1)) ? <NuevoProducto /> : <Navigate to="/" />} />
+
             <Route path="/editar_producto/:id_producto" element={(tokenContent && (rol===1)) ? <EditarProducto /> : <Navigate to="/" />} />
+
             <Route path="/carro_compras" element={tokenContent ? <CarroCompras /> : <Navigate to="/" />} />
+
             <Route path="/detalles/:id_producto" element={tokenContent ? <Detalles /> : <Navigate to="/" />} />
+
             <Route path="/orden_compra" element={(tokenContent && (rol===1)) ? <OrdenDeCompra /> : <Navigate to="/" />} />
+
             <Route path="/salir" element={tokenContent ? <Salir /> : <Navigate to="/" />} />
+
             <Route path="*" element={<NotFound />} />
+            
           </Route>
         </Routes>
         <Footer />
