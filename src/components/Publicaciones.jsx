@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Context from "../Context/Context";
 import { useContext } from "react";
 import "../assets/css/Publicaciones.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {formatearNumeroConPunto} from '../services/servicesNumbers';
 import ProductosPaginator from "./PublicacionesPaginator";
 
@@ -27,8 +29,21 @@ const Productos = ({ mensajeDeCarga }) => {
   );
 
   useEffect(() => {
-    const getTokenFromLocalStorage = localStorage.getItem("token");
-    // Función para obtener el token de JWT almacenado en el navegador
+    const getTokenFromLocalStorage = localStorage.getItem("token"); // Función para obtener el token de JWT almacenado en el navegador
+    const comicAgregado = localStorage.getItem('ComicAgregado');
+    console.log("Cómic Agregado: ", comicAgregado);
+    if (comicAgregado === "true") {
+      toast.success("Cómic agregado exitosamente. Ahora puede continuar.");
+      localStorage.removeItem('ComicAgregado');
+    }
+
+    const comicEditado = localStorage.getItem('ComicEditado');
+    console.log("Cómic Editado: ", comicEditado);
+    if (comicEditado === "true") {
+      toast.success("Comic Editado exitosamente. Ahora puede continuar.");
+      localStorage.removeItem('ComicEditado');
+    }
+
     // Realizar la solicitud GET al backend con Axios
     axios
       .get(base_url + "/publicaciones", {
@@ -53,6 +68,7 @@ const Productos = ({ mensajeDeCarga }) => {
 
   return (
     <div>
+      <ToastContainer position="top-right" autoClose={1000} newestOnTop/>
       {loading ? (
         <p style={{ color: "#ebca6d", textTransform: "uppercase" }}>
           {mensajeDeCarga}

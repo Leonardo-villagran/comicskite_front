@@ -31,7 +31,7 @@ const Productos = ({ mensajeDeCarga }) => {
     setBuscar(e.target.value);
   };
 
-  //Función para realizar una búsqueda de texto dentro de el estado producto
+  //Función para realizar una búsqueda de texto dentro del estado producto
   const filtro = productos.filter((producto) =>
     producto.nombre.toUpperCase().includes(buscar.toUpperCase())
   );
@@ -141,9 +141,7 @@ const Productos = ({ mensajeDeCarga }) => {
 
     if (producto) {
       if (carrito && carrito.length > 0) {
-        const productoEnCarrito = carrito.find(
-          (item) => item.id_producto === id_producto
-        );
+        const productoEnCarrito = carrito.find((item) => item.id_producto === id_producto);
         if (productoEnCarrito) {
           toast.warning("Este cómic ya está en el carrito");
         } else {

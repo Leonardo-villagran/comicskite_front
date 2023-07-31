@@ -187,6 +187,7 @@ const EditarProducto = () => {
             if (response.data) {
                 toast.success('Producto actualizado satisfactoriamente');
                 setIsLoading(false); // Finalizar el estado de envío del formulario
+                localStorage.setItem('ComicEditado', 'true');
                 navigate('/publicaciones');
             } else {
                 toast.error('Error. Por favor, complete correctamente el formulario.');
@@ -214,7 +215,7 @@ const EditarProducto = () => {
     return (
         <div>
             <ToastContainer position="top-right" autoClose={1000} newestOnTop />
-            <h2 style={{ color: '#ebca6d' }}>EDITAR PRODUCTO</h2>
+            <h2 style={{ color: '#ebca6d' }}>EDITAR CÓMIC</h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Nombre:</label>
@@ -257,7 +258,21 @@ const EditarProducto = () => {
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Imagen pequeña:</label>
                     <div className="col-sm-10 ">
-                        <input type="file" name="imagen_pequena" onChange={handleSmallImageChange} />
+                        <input id="icon-button-file1" hidden type="file" name="imagen_pequena" onChange={handleSmallImageChange} accept="image/*" />
+                        <label htmlFor="icon-button-file1">
+                            <div
+                                style={{
+                                    display: 'inline-block',
+                                    backgroundColor: 'black',
+                                    color: '#ebca6d',
+                                    fontSize: '12px',
+                                    border: '2px solid #ebca6d',
+                                    padding: '10px 30px',
+                                    borderRadius: '4px',
+                                    cursor: 'pointer',
+                                }}
+                            >AGREGAR IMAGEN PEQUEÑA</div>
+                        </label>
                     </div>
                     <div>
                         {/*smallImage && (
@@ -268,7 +283,21 @@ const EditarProducto = () => {
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Imagen grande:</label>
                     <div className="col-sm-10">
-                        <input type="file" name="imagen_grande" onChange={handleLargeImageChange} />
+                        <input id="icon-button-file2" hidden type="file" name="imagen_grande" onChange={handleLargeImageChange} accept="image/*" />
+                        <label htmlFor="icon-button-file2">
+                            <div
+                                style={{
+                                    display: 'inline-block',
+                                    backgroundColor: 'black',
+                                    color: '#ebca6d',
+                                    fontSize: '12px',
+                                    border: '2px solid #ebca6d',
+                                    padding: '10px 30px',
+                                    borderRadius: '4px',
+                                    cursor: 'pointer',
+                                }}
+                            >AGREGAR IMAGEN GRANDE</div>
+                        </label>                     
                     </div>
                 </div>
 
@@ -338,7 +367,6 @@ const EditarProducto = () => {
                         style={{ 
                             backgroundColor: isLoading ? 'gray' : 'black',
                             color: '#ebca6d', 
-                            marginLeft: '10px', 
                             fontSize: '12px', 
                             border: '2px solid #ebca6d' 
                         }} 

@@ -131,8 +131,8 @@ const AgregarProducto = () => {
             const response = await axios.post(base_url + '/nuevo_producto', productInfo, config);
 
             if (response.data) {
-                toast.success('Producto agregado satisfactoriamente');
                 setIsLoading(false); // Finalizar el estado de envío del formulario
+                localStorage.setItem('ComicAgregado', 'true');
                 navigate('/publicaciones');
             } else {
                 toast.error('Error. Por favor, complete correctamente el formulario.');
@@ -189,8 +189,8 @@ const AgregarProducto = () => {
 
     return (
         <div>
-            <ToastContainer position="top-right" autoClose={1000} newestOnTop/>
-            <h2 style={{ color: '#ebca6d' }}>AGREGAR PRODUCTO</h2>
+            <ToastContainer position="top-right" autoClose={1000} newestOnTop />
+            <h2 style={{ color: '#ebca6d' }}>AGREGAR CÓMIC</h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Nombre:</label>
@@ -233,7 +233,27 @@ const AgregarProducto = () => {
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Imagen pequeña:</label>
                     <div className="col-sm-10">
-                        <input type="file" name="imagen_pequena" onChange={handleSmallImageChange} />
+                        <input type="file"
+                            id="icon-button-file1"
+                            hidden
+                            name="imagen_pequena"
+                            onChange={handleSmallImageChange}
+                            accept="image/png,image/jpeg"
+                        />
+                        <label htmlFor="icon-button-file1">
+                            <div
+                                style={{
+                                    display: 'inline-block',
+                                    backgroundColor: 'black',
+                                    color: '#ebca6d',
+                                    fontSize: '12px',
+                                    border: '2px solid #ebca6d',
+                                    padding: '10px 20px',
+                                    borderRadius: '4px',
+                                    cursor: 'pointer',
+                                }}
+                            >AGREGAR IMAGEN PEQUEÑA</div>
+                        </label>
                         {errors.imagen_pequena && <div style={{ color: 'red', fontSize: '16px' }}>{errors.imagen_pequena}</div>}
                         {/*smallImage && (
                             <img src={URL.createObjectURL(smallImage)} alt="Imagen pequeña" style={{ maxWidth: '50px', marginTop: '10px' }} />
@@ -243,8 +263,22 @@ const AgregarProducto = () => {
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Imagen grande:</label>
                     <div className="col-sm-10">
-                        <input type="file" name="imagen_grande" onChange={handleLargeImageChange}
+                        <input id="icon-button-file2" hidden type="file" name="imagen_grande" onChange={handleLargeImageChange} accept="image/png,image/jpeg"
                         />
+                        <label htmlFor="icon-button-file2">
+                            <div
+                                style={{
+                                    display: 'inline-block',
+                                    backgroundColor: 'black',
+                                    color: '#ebca6d',
+                                    fontSize: '12px',
+                                    border: '2px solid #ebca6d',
+                                    padding: '10px 20px',
+                                    borderRadius: '4px',
+                                    cursor: 'pointer',
+                                }}
+                            >AGREGAR IMAGEN GRANDE</div>
+                        </label>
                         {errors.imagen_grande && <div style={{ color: 'red', fontSize: '16px' }}>{errors.imagen_grande}</div>}
                         {/*largeImage && (
                             <img src={URL.createObjectURL(largeImage)} alt="Imagen grande" style={{ maxWidth: '100px', marginTop: '10px' }} />
@@ -317,7 +351,6 @@ const AgregarProducto = () => {
                             style={{
                                 backgroundColor: isLoading ? 'gray' : 'black',
                                 color: '#ebca6d',
-                                marginLeft: '10px',
                                 fontSize: '12px',
                                 border: '2px solid #ebca6d'
                             }}
