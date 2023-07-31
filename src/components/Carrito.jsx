@@ -5,7 +5,7 @@ import Context from "../Context/Context";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../assets/css/Carrito.css";
-import { formatearNumeroConPunto } from "../services/servicesNumbers";
+import { formatearNumeroConPunto } from "../utils/utilsNumbers";
 
 const base_url = import.meta.env.VITE_API_URL;
 

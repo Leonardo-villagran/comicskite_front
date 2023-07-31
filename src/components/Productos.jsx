@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { toast, ToastContainer } from "react-toastify"; // Importar el toast
 import "react-toastify/dist/ReactToastify.css"; // Estilos del toast
 import "../assets/css/Producto.css";
-import { formatearNumeroConPunto } from '../services/servicesNumbers';
+import { formatearNumeroConPunto } from "../utils/utilsNumbers";
 
 //Importación de imágenes utilizadas para la generación de botón like.
 import blanco from "../assets/img/iconos/corazon_blanco.png";

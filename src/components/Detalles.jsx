@@ -3,7 +3,7 @@ import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Context from "../Context/Context";
-import {formatearNumeroConPunto} from '../services/servicesNumbers';
+import { formatearNumeroConPunto } from "../utils/utilsNumbers";
 import { useContext } from "react";
 import "../assets/css/Detalles.css";
 import { toast, ToastContainer } from "react-toastify"; // Importar el toast

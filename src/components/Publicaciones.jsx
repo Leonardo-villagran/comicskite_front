@@ -7,7 +7,7 @@ import { useContext } from "react";
 import "../assets/css/Publicaciones.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {formatearNumeroConPunto} from '../services/servicesNumbers';
+import { formatearNumeroConPunto } from "../utils/utilsNumbers";
 import ProductosPaginator from "./PublicacionesPaginator";
 
 // import decodeTokenPayload from '../services/services'
