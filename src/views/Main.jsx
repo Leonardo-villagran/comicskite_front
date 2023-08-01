@@ -10,7 +10,7 @@ export default function Home() {
                         BIENVENIDO A COMICSKITE
                     </h2>
                     <h2 className="my-auto" style={{ color: '#ebca6d' }}>
-                        VENTA DE COMICS
+                        VENTA DE COMICS DE COLECCIÓN
                     </h2>
                     <div className="container">
                         <img className="main-img rounded-5 border border-white border-4" src={fotos} alt="Imagen" />
