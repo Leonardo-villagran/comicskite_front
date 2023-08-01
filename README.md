@@ -44,7 +44,7 @@ Backend:
 
 ```
 ## Local
-PORT=3000
+PORT=5000
 DB_PORT=5432
 DB_HOST=localhost
 DB_USER=postgres
@@ -125,7 +125,7 @@ Esto iniciará el frontend y podrás acceder a la aplicación en tu navegador we
 npm run dev
 ```
 
-Esto iniciará el servidor de backend y podrás acceder en `http://localhost:3000/`.
+Esto iniciará el servidor de backend y podrás acceder en `http://localhost:5000/`.
 
 ## Contexto
 
