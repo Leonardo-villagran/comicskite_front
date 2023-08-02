@@ -58,7 +58,7 @@ Nota: Los datos contenidos de las variables son solo ejemplos, generar según su
 Base de datos:
 
 7. Crea una base de datos llamada comics en Postgres.
-8. Ejecuta las sentencias de SQL en el archivo `comics.sql`  en la razín del backend.
+8. Ejecuta las sentencias de SQL en el archivo `comics.sql`  en la raíz del backend.
 
 ## Funcionalidades
 
