@@ -190,7 +190,7 @@ const AgregarProducto = () => {
     return (
         <div>
             <ToastContainer position="top-right" autoClose={1000} newestOnTop />
-            <h2 style={{ color: '#ebca6d' }}>AGREGAR CÓMIC</h2>
+            <h2 style={{ color: '#ebca6d' }}>AGREGAR PRODUCTO</h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-group row my-3">
                     <label className="col-sm-2 col-form-label label-bold text-uppercase" style={{ color: '#ebca6d' }}>Nombre:</label>

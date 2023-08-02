@@ -78,7 +78,7 @@ const Productos = ({ mensajeDeCarga }) => {
         <>
           <Link to="/nuevo_producto">
             <Button variant="dark" className="boton-personalizado-titulo">
-              Agregar Comic
+              Agregar Producto
             </Button>
           </Link>
           <div className="container">
