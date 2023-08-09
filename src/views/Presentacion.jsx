@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 import { Link } from 'react-router-dom'; // Importar el componente Link
 import { BsArrowRight } from 'react-icons/bs';
 
-function App() {
+function Presentacion1() {
     return (
         <div className="App">
             <Navbar />
@@ -75,7 +75,7 @@ function App() {
     );
 }
 
-export default App;
+export default Presentacion1;
 
 
 

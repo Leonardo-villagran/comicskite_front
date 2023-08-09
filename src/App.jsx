@@ -20,10 +20,9 @@ import Registrar from './views/Registrar';
 import IniciarSesion from './views/IniciarSesion';
 import OrdenDeCompra from './views/OrdenesDeCompra';
 import Salir from './views/Salir';
-import NotFound from './views/NotFound';
-import Presentacion1 from './views/Presentacion1';
+import Presentacion1 from "./views/Presentacion";
 import Presentacion2 from './views/Presentacion2';
-
+import NotFound from './views/NotFound';
 
 function App() {
 
@@ -71,6 +70,7 @@ function App() {
             <Route path="/registrar" element={tokenContent ? <Navigate to="/" /> : <Registrar />} />
             <Route path="/presentacion1" element={tokenContent ? <Navigate to="/" /> : <Presentacion1 />} />
             <Route path="/presentacion2" element={tokenContent ? <Navigate to="/" /> : <Presentacion2 />} />
+
             <Route path="/iniciar_sesion" element={tokenContent ? <Navigate to="/" /> : <IniciarSesion />} />
             <Route path="/productos" element={tokenContent ? <Productos /> : <Navigate to="/" />} />
             <Route path="/favoritos" element={tokenContent ? <Favoritos /> : <Navigate to="/" />} />
