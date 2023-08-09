@@ -23,13 +23,13 @@ function Presentacion1() {
                                         }}
                                     >
                                         <div className="card-body" style={{ textAlign: "left" }}>
-                                            <h2 className="card-title">Grupo: 7</h2>
-                                            <p className="card-text">Generación: G27</p>
-                                            <p className="card-text">Carrera: Fullstack Javascript</p>
-                                            <p className="card-text">Presentación: Final</p>
-                                            <p className="card-text">Tema: Comicskites – Venta de comics de colección a través de internet</p>
-                                            <p className="card-text">Integrantes:</p>
-                                            <ul>
+                                            <h2 className="card-title" >Grupo: 7</h2>
+                                            <p className="card-text" style={{ fontSize: "18px" }}>Generación: G27</p>
+                                            <p className="card-text" style={{ fontSize: "18px" }}>Carrera: Full Stack Javascript</p>
+                                            <p className="card-text" style={{ fontSize: "18px" }}>Presentación: Final</p>
+                                            <p className="card-text" style={{ fontSize: "18px" }}>Tema: Comicskites – Venta de comics de colección a través de internet</p>
+                                            <p className="card-text" style={{ fontSize: "18px" }}>Integrantes:</p>
+                                            <ul style={{ fontSize: "18px" }}>
                                                 <li>Lorenzo Chacano</li>
                                                 <li>Paolo Landeros</li>
                                                 <li>Leonardo Villagrán</li>
