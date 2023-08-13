@@ -21,7 +21,7 @@ const Salir = ({ mensaje }) => {
         // Eliminar el token del localStorage y el estado global
         localStorage.removeItem('token');
         setTokenContent('');
-
+        
         setOrdenesCompra([]);
 
         setOrdenPage(1);
