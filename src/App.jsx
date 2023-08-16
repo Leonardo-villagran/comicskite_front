@@ -21,6 +21,7 @@ import IniciarSesion from './views/IniciarSesion';
 import OrdenDeCompra from './views/OrdenesDeCompra';
 import Salir from './views/Salir';
 import Presentacion1 from "./views/Presentacion";
+import Presentacion1a from "./views/Presentacion1a";
 import Presentacion2 from './views/Presentacion2';
 import Final1 from './views/Final1';
 import Final2 from './views/Final2';
@@ -74,6 +75,7 @@ function App() {
             <Route path="/registrar" element={tokenContent ? <Navigate to="/" /> : <Registrar />} />
             <Route path="/presentacion1" element={tokenContent ? <Navigate to="/" /> : <Presentacion1 />} />
             <Route path="/presentacion2" element={tokenContent ? <Navigate to="/" /> : <Presentacion2 />} />
+            <Route path="/presentacion1a" element={tokenContent ? <Navigate to="/" /> : <Presentacion1a />} />
             <Route path="/final1" element={tokenContent ? <Navigate to="/" /> : <Final1 />} />
             <Route path="/final2" element={tokenContent ? <Navigate to="/" /> : <Final2 />} />
             <Route path="/final3" element={tokenContent ? <Navigate to="/" /> : <Final3 />} />

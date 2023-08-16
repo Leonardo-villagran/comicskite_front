@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 import { Link } from 'react-router-dom'; // Importar el componente Link
 import { BsArrowRight } from 'react-icons/bs';
 
-function Presentacion1() {
+function App() {
     return (
         <div className="App">
             <Navbar />
@@ -13,28 +13,18 @@ function Presentacion1() {
                     <div className="caja-tercera">
                         <div className="container-fluid">
                             <div className="row justify-content-center">
-                                <div className="col-lg-6 col-md-6 col-sm-12">
+                            <div className="col-lg-6 col-md-6 col-sm-12">
                                     <Card
                                         className="super_card h-100"
                                         style={{
                                             backgroundColor: "#295b6fff",
-                                            color: "#ebca6d",
+                                            color: "#90b043",
                                             border: "1px solid white",
                                         }}
                                     >
-                                        <div className="card-body" style={{ textAlign: "left" }}>
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fpresentacion%2Fhireline_logo_adl.png?alt=media&token=cc787e36-e269-4d06-9e33-0411560a9d04" alt="Imagen de ejemplo" className="img-fluid w-50 mb-2" />
-                                            <p className="card-text" style={{ fontSize: "17px" }}>Grupo: 7</p>
-                                            <p className="card-text" style={{ fontSize: "17px" }}>Generación: G27</p>
-                                            <p className="card-text" style={{ fontSize: "17px" }}>Carrera: Full Stack Javascript</p>
-                                            <p className="card-text" style={{ fontSize: "17px" }}>Presentación: Final</p>
-                                            <p className="card-text" style={{ fontSize: "17px" }}>Tema: Comicskites – Venta de comics de colección a través de internet</p>
-                                            <p className="card-text" style={{ fontSize: "17px" }}>Integrantes:</p>
-                                            <ul className="list-unstyled" style={{ fontSize: "17px" }}>
-                                            <li>&nbsp;&nbsp;&nbsp;<i className="fas fa-user"></i> Lorenzo Chacano</li>
-                                            <li>&nbsp;&nbsp;&nbsp;<i className="fas fa-user"></i> Paolo Landeros</li>
-                                            <li>&nbsp;&nbsp;&nbsp;<i className="fas fa-user"></i> Leonardo Villagrán</li>
-</ul>
+                                        <div className="card-body text-center">
+                                            <h2 className="card-title">Coleccionistas</h2>
+                                            <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fpresentacion%2Fcoleccionistas_01.png?alt=media&token=73f29f53-f74c-4bff-b448-cba37ca7f3e2" alt="Imagen de ejemplo" className="img-fluid " />
                                         </div>
                                     </Card>
                                 </div>
@@ -49,8 +39,8 @@ function Presentacion1() {
                                         }}
                                     >
                                         <div className="card-body text-center">
-                                            <h2 className="card-title">Venta de comics de colección</h2>
-                                            <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2FComics.jpg?alt=media&token=3929c4fe-911e-44c3-8d82-97b7dba2a240" alt="Imagen de ejemplo" className="img-fluid " />
+                                            <h2 className="card-title">Tienda de Comics</h2>
+                                            <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fpresentacion%2Fcoleccionistas_02.png?alt=media&token=89eacb1c-e69c-454c-826d-2535307de624" alt="Imagen de ejemplo" className="img-fluid " />
                                         </div>
                                     </Card>
                                 </div>
@@ -58,7 +48,7 @@ function Presentacion1() {
                         </div>
                         <div className="row justify-content-center mt-3">
                             <div className="col-12 text-center">
-                                <Link to="/presentacion1a" className="boton-personalizado-titulo"
+                                <Link to="/presentacion2" className="boton-personalizado-titulo"
                                     style={{
                                         border: "1px solid white",
                                         padding: "10px"
@@ -76,7 +66,7 @@ function Presentacion1() {
     );
 }
 
-export default Presentacion1;
+export default App;
 
 
 
