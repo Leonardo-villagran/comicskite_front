@@ -23,17 +23,18 @@ function Presentacion1() {
                                         }}
                                     >
                                         <div className="card-body" style={{ textAlign: "left" }}>
-                                            <h2 className="card-title" >Grupo: 7</h2>
-                                            <p className="card-text" style={{ fontSize: "18px" }}>Generación: G27</p>
-                                            <p className="card-text" style={{ fontSize: "18px" }}>Carrera: Full Stack Javascript</p>
-                                            <p className="card-text" style={{ fontSize: "18px" }}>Presentación: Final</p>
-                                            <p className="card-text" style={{ fontSize: "18px" }}>Tema: Comicskites – Venta de comics de colección a través de internet</p>
-                                            <p className="card-text" style={{ fontSize: "18px" }}>Integrantes:</p>
-                                            <ul style={{ fontSize: "18px" }}>
-                                                <li>Lorenzo Chacano</li>
-                                                <li>Paolo Landeros</li>
-                                                <li>Leonardo Villagrán</li>
-                                            </ul>
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fpresentacion%2Fhireline_logo_adl.png?alt=media&token=cc787e36-e269-4d06-9e33-0411560a9d04" alt="Imagen de ejemplo" className="img-fluid w-50 mb-2" />
+                                            <p className="card-text" style={{ fontSize: "17px" }}>Grupo: 7</p>
+                                            <p className="card-text" style={{ fontSize: "17px" }}>Generación: G27</p>
+                                            <p className="card-text" style={{ fontSize: "17px" }}>Carrera: Full Stack Javascript</p>
+                                            <p className="card-text" style={{ fontSize: "17px" }}>Presentación: Final</p>
+                                            <p className="card-text" style={{ fontSize: "17px" }}>Tema: Comicskites – Venta de comics de colección a través de internet</p>
+                                            <p className="card-text" style={{ fontSize: "17px" }}>Integrantes:</p>
+                                            <ul className="list-unstyled" style={{ fontSize: "17px" }}>
+                                            <li>&nbsp;&nbsp;&nbsp;<i className="fas fa-user"></i> Lorenzo Chacano</li>
+                                            <li>&nbsp;&nbsp;&nbsp;<i className="fas fa-user"></i> Paolo Landeros</li>
+                                            <li>&nbsp;&nbsp;&nbsp;<i className="fas fa-user"></i> Leonardo Villagrán</li>
+</ul>
                                         </div>
                                     </Card>
                                 </div>
@@ -43,7 +44,7 @@ function Presentacion1() {
                                         className="super_card h-100"
                                         style={{
                                             backgroundColor: "#295b6fff",
-                                            color: "#ebca6d",
+                                            color: "#90b043",
                                             border: "1px solid white",
                                         }}
                                     >

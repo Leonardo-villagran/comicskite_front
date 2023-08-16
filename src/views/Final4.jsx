@@ -13,37 +13,24 @@ function App() {
                     <div className="caja-tercera">
                         <div className="container-fluid">
                             <div className="row justify-content-center">
-                            <div className="col-lg-6 col-md-6 col-sm-12">
+                            <div className="col-lg-12 col-md-12 col-sm-12">
                                     <Card
                                         className="super_card h-100"
                                         style={{
                                             backgroundColor: "#295b6fff",
-                                            color: "#90b043",
+                                            color: "#ebca6d",
                                             border: "1px solid white",
                                         }}
                                     >
                                         <div className="card-body text-center">
-                                            <h2 className="card-title">Vista de usuario</h2>
-                                            <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fusuario.PNG?alt=media&token=de429c01-607a-4316-8149-ff803b144334" alt="Imagen de ejemplo" className="img-fluid " />
+                                            <h1 className="card-title">Fin</h1>
+                                            <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fpresentacion%2Fhireline_logo_adl.png?alt=media&token=cc787e36-e269-4d06-9e33-0411560a9d04" alt="Imagen de ejemplo" className="img-fluid my-4 w-20" />
+                                        
                                         </div>
                                     </Card>
                                 </div>
 
-                                <div className="col-lg-6 col-md-6 col-sm-12">
-                                    <Card
-                                        className="super_card h-100"
-                                        style={{
-                                            backgroundColor: "#295b6fff",
-                                            color: "#90b043",
-                                            border: "1px solid white",
-                                        }}
-                                    >
-                                        <div className="card-body text-center">
-                                            <h2 className="card-title">Vista de administrador</h2>
-                                            <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fadministrador.PNG?alt=media&token=7e71a835-e7e1-47eb-9fc6-9668e19078a6" alt="Imagen de ejemplo" className="img-fluid " />
-                                        </div>
-                                    </Card>
-                                </div>
+                                
                             </div>
                         </div>
                         <div className="row justify-content-center mt-3">

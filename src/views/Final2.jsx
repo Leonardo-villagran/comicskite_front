@@ -18,13 +18,13 @@ function App() {
                                         className="super_card h-100"
                                         style={{
                                             backgroundColor: "#295b6fff",
-                                            color: "#90b043",
+                                            color: "#ebca6d",
                                             border: "1px solid white",
                                         }}
                                     >
                                         <div className="card-body text-center">
-                                            <h2 className="card-title">Vista de usuario</h2>
-                                            <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fusuario.PNG?alt=media&token=de429c01-607a-4316-8149-ff803b144334" alt="Imagen de ejemplo" className="img-fluid " />
+                                            <h2 className="card-title">Subir archivos</h2>
+                                            <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fpresentacion%2Ffinal3.png?alt=media&token=9614f127-0f0e-426d-bdbe-2734ea3608b7" alt="Imagen de ejemplo" className="img-fluid " />
                                         </div>
                                     </Card>
                                 </div>
@@ -34,13 +34,13 @@ function App() {
                                         className="super_card h-100"
                                         style={{
                                             backgroundColor: "#295b6fff",
-                                            color: "#90b043",
+                                            color: "#ebca6d",
                                             border: "1px solid white",
                                         }}
                                     >
                                         <div className="card-body text-center">
-                                            <h2 className="card-title">Vista de administrador</h2>
-                                            <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fadministrador.PNG?alt=media&token=7e71a835-e7e1-47eb-9fc6-9668e19078a6" alt="Imagen de ejemplo" className="img-fluid " />
+                                            <h2 className="card-title">Ajuste de bloques</h2>
+                                            <img src="https://firebasestorage.googleapis.com/v0/b/comicskite.appspot.com/o/img%2Fpresentacion%2Ffinal4.png?alt=media&token=2109bd5b-a28f-44d8-92eb-239d24f83d2e" alt="Imagen de ejemplo" className="img-fluid " />
                                         </div>
                                     </Card>
                                 </div>
@@ -48,7 +48,7 @@ function App() {
                         </div>
                         <div className="row justify-content-center mt-3">
                             <div className="col-12 text-center">
-                                <Link to="/" className="boton-personalizado-titulo"
+                                <Link to="/final3" className="boton-personalizado-titulo"
                                     style={{
                                         border: "1px solid white",
                                         padding: "10px"

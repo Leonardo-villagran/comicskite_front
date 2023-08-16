@@ -16,7 +16,6 @@ import rojo from "../assets/img/iconos/corazon_rojo.png";
 
 const base_url = import.meta.env.VITE_API_URL;
 
-
 // eslint-disable-next-line react/prop-types
 const Detalles = ({ mensajeDeCarga }) => {
   // const token = localStorage.getItem("token");
@@ -63,7 +62,7 @@ const Detalles = ({ mensajeDeCarga }) => {
 
       // Realizar la solicitud GET al backend con Axios
       axios
-        .delete(`http://localhost:3000/dislikes/${id_producto}`, {
+        .delete(`${base_url}/dislikes/${id_producto}`, {
           headers: {
             Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
           },
@@ -80,7 +79,7 @@ const Detalles = ({ mensajeDeCarga }) => {
 
       // Realizar la solicitud GET al backend con Axios
       axios
-        .post(`http://localhost:3000/likes/${id_producto}`, null, {
+        .post(`${base_url}/likes/${id_producto}`, null, {
           headers: {
             Authorization: `Bearer ${getTokenFromLocalStorage}`, // Agregar el token en el encabezado con formato Bearer
           },
